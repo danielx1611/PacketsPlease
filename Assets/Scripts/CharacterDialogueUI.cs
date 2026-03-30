@@ -9,6 +9,7 @@ public class CharacterDialogueUI : MonoBehaviour
     [SerializeField] private GameObject rootContainer;
     [SerializeField] private Image portraitImage;
     [SerializeField] private TMP_Text dialogueText;
+    [SerializeField] private TMP_Text continueHintText;
 
     [Header("Reveal Timing")]
     [Min(0f)]
@@ -21,6 +22,8 @@ public class CharacterDialogueUI : MonoBehaviour
     private bool skipToEndRequested;
     private string currentFullText;
     private float currentLettersPerSecond;
+    private DialogueSequence activeSequence;
+    private int activeSequenceLineIndex;
 
     public bool IsRevealing { get; private set; }
     public bool IsVisible => rootContainer != null && rootContainer.activeSelf;
@@ -38,7 +41,7 @@ public class CharacterDialogueUI : MonoBehaviour
 
     private void Update()
     {
-        if (!IsRevealing)
+        if (!IsVisible)
         {
             return;
         }
@@ -48,17 +51,25 @@ public class CharacterDialogueUI : MonoBehaviour
             return;
         }
 
-        if (!hasAcceleratedReveal)
+        if (IsRevealing)
         {
-            hasAcceleratedReveal = true;
+            if (!hasAcceleratedReveal)
+            {
+                hasAcceleratedReveal = true;
+                return;
+            }
+
+            skipToEndRequested = true;
             return;
         }
 
-        skipToEndRequested = true;
+        AdvanceDialogue();
     }
 
     public void ShowDialogue(DialogueLine line)
     {
+        ResetSequenceProgress();
+
         if (line == null)
         {
             ShowDialogue(string.Empty);
@@ -72,16 +83,19 @@ public class CharacterDialogueUI : MonoBehaviour
     {
         if (sequence == null)
         {
+            ResetSequenceProgress();
             ShowDialogue(string.Empty);
             return;
         }
 
-        var line = sequence.GetLine(lineIndex);
-        ShowDialogue(line);
+        activeSequence = sequence;
+        activeSequenceLineIndex = Mathf.Max(0, lineIndex);
+        ShowDialogueLineFromActiveSequence();
     }
 
     public void ShowDialogue(string text, Sprite portrait = null, string speakerName = null)
     {
+        ResetSequenceProgress();
         ShowDialogue(text, portrait, speakerName, false, lettersPerSecond);
     }
 
@@ -111,6 +125,7 @@ public class CharacterDialogueUI : MonoBehaviour
         dialogueText.text = string.Empty;
         hasAcceleratedReveal = false;
         skipToEndRequested = false;
+        SetContinueHintVisible(false);
 
         revealCoroutine = StartCoroutine(RevealTextCoroutine());
     }
@@ -128,6 +143,8 @@ public class CharacterDialogueUI : MonoBehaviour
         skipToEndRequested = false;
         currentFullText = string.Empty;
         currentLettersPerSecond = lettersPerSecond;
+        ResetSequenceProgress();
+        SetContinueHintVisible(false);
 
         if (dialogueText != null)
         {
@@ -168,6 +185,7 @@ public class CharacterDialogueUI : MonoBehaviour
         hasAcceleratedReveal = false;
         skipToEndRequested = false;
         revealCoroutine = null;
+        SetContinueHintVisible(true);
     }
 
     private string FormatDialogueText(string text, string speakerName)
@@ -196,5 +214,52 @@ public class CharacterDialogueUI : MonoBehaviour
         }
 
         return true;
+    }
+
+    private void AdvanceDialogue()
+    {
+        if (activeSequence == null)
+        {
+            HideDialogue();
+            return;
+        }
+
+        activeSequenceLineIndex++;
+        ShowDialogueLineFromActiveSequence();
+    }
+
+    private void ShowDialogueLineFromActiveSequence()
+    {
+        if (activeSequence == null)
+        {
+            HideDialogue();
+            return;
+        }
+
+        var line = activeSequence.GetLine(activeSequenceLineIndex);
+        if (line == null)
+        {
+            HideDialogue();
+            return;
+        }
+
+        ShowDialogue(line.text, line.portrait, line.speakerName, line.useCustomRevealSpeed, line.revealLettersPerSecond);
+    }
+
+    private void ResetSequenceProgress()
+    {
+        activeSequence = null;
+        activeSequenceLineIndex = 0;
+    }
+
+    private void SetContinueHintVisible(bool isVisible)
+    {
+        if (continueHintText == null)
+        {
+            return;
+        }
+
+        continueHintText.text = "Press left click to continue";
+        continueHintText.gameObject.SetActive(isVisible);
     }
 }

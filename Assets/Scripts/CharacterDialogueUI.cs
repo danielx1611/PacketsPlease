@@ -3,22 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-[System.Serializable]
-public struct DialogueLine
-{
-    [TextArea]
-    public string text;
-    public Sprite portrait;
-    public string speakerName;
-
-    public DialogueLine(string text, Sprite portrait = null, string speakerName = null)
-    {
-        this.text = text;
-        this.portrait = portrait;
-        this.speakerName = speakerName;
-    }
-}
-
 public class CharacterDialogueUI : MonoBehaviour
 {
     [Header("UI References")]
@@ -36,6 +20,7 @@ public class CharacterDialogueUI : MonoBehaviour
     private bool hasAcceleratedReveal;
     private bool skipToEndRequested;
     private string currentFullText;
+    private float currentLettersPerSecond;
 
     public bool IsRevealing { get; private set; }
     public bool IsVisible => rootContainer != null && rootContainer.activeSelf;
@@ -74,10 +59,33 @@ public class CharacterDialogueUI : MonoBehaviour
 
     public void ShowDialogue(DialogueLine line)
     {
-        ShowDialogue(line.text, line.portrait, line.speakerName);
+        if (line == null)
+        {
+            ShowDialogue(string.Empty);
+            return;
+        }
+
+        ShowDialogue(line.text, line.portrait, line.speakerName, line.useCustomRevealSpeed, line.revealLettersPerSecond);
+    }
+
+    public void ShowDialogue(DialogueSequence sequence, int lineIndex = 0)
+    {
+        if (sequence == null)
+        {
+            ShowDialogue(string.Empty);
+            return;
+        }
+
+        var line = sequence.GetLine(lineIndex);
+        ShowDialogue(line);
     }
 
     public void ShowDialogue(string text, Sprite portrait = null, string speakerName = null)
+    {
+        ShowDialogue(text, portrait, speakerName, false, lettersPerSecond);
+    }
+
+    private void ShowDialogue(string text, Sprite portrait, string speakerName, bool useCustomRevealSpeed, float lineRevealSpeed)
     {
         if (!ValidateCoreReferences())
         {
@@ -99,6 +107,7 @@ public class CharacterDialogueUI : MonoBehaviour
         }
 
         currentFullText = FormatDialogueText(text, speakerName);
+        currentLettersPerSecond = useCustomRevealSpeed ? Mathf.Max(0f, lineRevealSpeed) : lettersPerSecond;
         dialogueText.text = string.Empty;
         hasAcceleratedReveal = false;
         skipToEndRequested = false;
@@ -118,6 +127,7 @@ public class CharacterDialogueUI : MonoBehaviour
         hasAcceleratedReveal = false;
         skipToEndRequested = false;
         currentFullText = string.Empty;
+        currentLettersPerSecond = lettersPerSecond;
 
         if (dialogueText != null)
         {
@@ -144,7 +154,7 @@ public class CharacterDialogueUI : MonoBehaviour
 
             dialogueText.text += currentFullText[i];
 
-            var revealSpeed = hasAcceleratedReveal ? acceleratedLettersPerSecond : lettersPerSecond;
+            var revealSpeed = hasAcceleratedReveal ? acceleratedLettersPerSecond : currentLettersPerSecond;
             if (revealSpeed <= 0f)
             {
                 continue;

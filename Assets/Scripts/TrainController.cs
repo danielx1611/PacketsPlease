@@ -135,7 +135,7 @@ public class TrainController : MonoBehaviour
         StartCoroutine(MoveTrainsWithDelay(
             TrainDestination.OffScreenRight,
             snapToLeftBeforeMove: false,
-            accelerateFromStart: false));
+            accelerateFromStart: true));
     }
 
     public void SendRejectedTrainsOffScreen()

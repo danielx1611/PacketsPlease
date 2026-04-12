@@ -56,9 +56,45 @@ public class TrainController : MonoBehaviour
         OffScreenRight
     }
 
+    [Serializable]
+    private class TrainSpeedProfile
+    {
+        [Header("Distance Breakpoints (units from target)")]
+        [SerializeField] private float farRange = 10f;
+        [SerializeField] private float nearRange = 3f;
+
+        [Header("Speed At Breakpoints (units / second)")]
+        [SerializeField] private float farSpeed = 9f;
+        [SerializeField] private float midSpeed = 5f;
+        [SerializeField] private float nearSpeed = 2f;
+
+        public float GetSpeed(float distanceToTarget)
+        {
+            var clampedNearRange = Mathf.Max(0.01f, nearRange);
+            var clampedFarRange = Mathf.Max(clampedNearRange, farRange);
+            var clampedNearSpeed = Mathf.Max(0.01f, nearSpeed);
+            var clampedMidSpeed = Mathf.Max(clampedNearSpeed, midSpeed);
+            var clampedFarSpeed = Mathf.Max(clampedMidSpeed, farSpeed);
+
+            if (distanceToTarget >= clampedFarRange)
+            {
+                return clampedFarSpeed;
+            }
+
+            if (distanceToTarget >= clampedNearRange)
+            {
+                var t = Mathf.InverseLerp(clampedNearRange, clampedFarRange, distanceToTarget);
+                return Mathf.Lerp(clampedMidSpeed, clampedFarSpeed, t);
+            }
+
+            var nearT = Mathf.InverseLerp(0f, clampedNearRange, distanceToTarget);
+            return Mathf.Lerp(clampedNearSpeed, clampedMidSpeed, nearT);
+        }
+    }
+
     [Header("Train Configuration")]
     [SerializeField] private List<TrainConfig> trains = new();
-    [SerializeField] private float entrySpeed = 4f;
+    [SerializeField] private TrainSpeedProfile speedProfile = new();
     [SerializeField] private float delayBetweenTrains = 0.15f;
     [SerializeField] private bool autoRunOnStart;
 
@@ -151,7 +187,9 @@ public class TrainController : MonoBehaviour
         while (!Mathf.Approximately(train.TrainRoot.localPosition.x, targetX))
         {
             var position = train.TrainRoot.localPosition;
-            var nextX = Mathf.MoveTowards(position.x, targetX, entrySpeed * Time.deltaTime);
+            var distanceToTarget = Mathf.Abs(targetX - position.x);
+            var movementSpeed = (speedProfile ??= new TrainSpeedProfile()).GetSpeed(distanceToTarget);
+            var nextX = Mathf.MoveTowards(position.x, targetX, movementSpeed * Time.deltaTime);
             train.TrainRoot.localPosition = new Vector3(nextX, position.y, position.z);
             yield return null;
         }

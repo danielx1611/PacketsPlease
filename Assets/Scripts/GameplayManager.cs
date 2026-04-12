@@ -53,11 +53,8 @@ public class GameplayManager : MonoBehaviour
         [Tooltip("Manual page indexes to unlock at level start.")]
         public List<int> manualPagesToUnlock = new();
 
-        [Header("Dialogue Timeline")]
-        public DialogueSequence openingDialogue;
-        public int openingDialogueLineIndex;
-        public DialogueSequence completionDialogue;
-        public int completionDialogueLineIndex;
+        [Header("Dialogue Flow")]
+        public LevelDialoguePlan dialoguePlan;
 
         [Header("Advance Conditions")]
         public WinConditions winConditions = new();
@@ -79,17 +76,25 @@ public class GameplayManager : MonoBehaviour
     [Tooltip("Global multiplier applied on top of each level difficulty.")]
     [SerializeField] private float globalDifficultyMultiplier = 1f;
 
+    [Tooltip("Reserved trigger id used to start optional end-of-level dialogue blocks.")]
+    [SerializeField] private string levelCompletionTriggerId = "level_complete";
+
     [SerializeField] private List<LevelConfig> levels = new();
 
     public GameState CurrentState { get; private set; } = GameState.Idle;
     public int CurrentLevelIndex { get; private set; } = -1;
     public float CurrentDifficultyScalar { get; private set; } = 1f;
 
+    private readonly Dictionary<string, LevelDialoguePlan.DialogueBlock> blocksById = new(StringComparer.Ordinal);
+    private readonly HashSet<string> completedBlocks = new(StringComparer.Ordinal);
+    private readonly HashSet<string> startedBlocks = new(StringComparer.Ordinal);
+
     private int completedInspections;
     private bool decisionReceived;
     private RequiredDecision latestDecision = RequiredDecision.None;
-    private bool waitingForOpeningDialogue;
-    private bool waitingForCompletionDialogue;
+    private bool levelWinConditionsMet;
+    private string activeDialogueBlockId;
+    private LevelDialoguePlan activeDialoguePlan;
 
     private void OnEnable()
     {
@@ -116,17 +121,9 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        if (waitingForOpeningDialogue)
+        if (!string.IsNullOrWhiteSpace(activeDialogueBlockId))
         {
-            waitingForOpeningDialogue = false;
-            SetState(GameState.PlayerAction);
-            return;
-        }
-
-        if (waitingForCompletionDialogue)
-        {
-            waitingForCompletionDialogue = false;
-            SetState(GameState.LevelComplete);
+            OnDialogueBlockCompleted(activeDialogueBlockId);
         }
     }
 
@@ -148,9 +145,9 @@ public class GameplayManager : MonoBehaviour
 
         ApplyDifficultySettings(config);
         ApplyManualUnlocks(config);
-        StartOpeningDialogue(config);
+        InitializeDialoguePlan(config.dialoguePlan);
 
-        if (!waitingForOpeningDialogue)
+        if (!TryStartAutoDialogueForTrigger(string.Empty))
         {
             SetState(GameState.PlayerAction);
         }
@@ -199,6 +196,86 @@ public class GameplayManager : MonoBehaviour
         }
 
         EvaluateLevelProgression();
+    }
+
+    public void StartDialogueBlock(string blockId)
+    {
+        if (CurrentState == GameState.Dialogue)
+        {
+            return;
+        }
+
+        if (characterDialogueUI == null)
+        {
+            Debug.LogWarning($"{nameof(GameplayManager)} cannot start dialogue block without {nameof(characterDialogueUI)}.", this);
+            return;
+        }
+
+        if (!TryGetDialogueBlock(blockId, out var block))
+        {
+            Debug.LogWarning($"{nameof(GameplayManager)} could not find dialogue block '{blockId}'.", this);
+            return;
+        }
+
+        if (block.sequence == null)
+        {
+            Debug.LogWarning($"Dialogue block '{blockId}' has no {nameof(DialogueSequence)} assigned.", this);
+            return;
+        }
+
+        if (completedBlocks.Contains(blockId))
+        {
+            return;
+        }
+
+        startedBlocks.Add(blockId);
+        activeDialogueBlockId = blockId;
+        SetState(GameState.Dialogue);
+        characterDialogueUI.ShowDialogue(block.sequence, block.startingLineIndex);
+    }
+
+    public void OnDialogueBlockCompleted(string blockId)
+    {
+        if (!string.Equals(activeDialogueBlockId, blockId, StringComparison.Ordinal))
+        {
+            return;
+        }
+
+        activeDialogueBlockId = null;
+        completedBlocks.Add(blockId);
+
+        if (levelWinConditionsMet)
+        {
+            if (!TryStartAutoDialogueForTrigger(levelCompletionTriggerId))
+            {
+                SetState(GameState.LevelComplete);
+            }
+
+            return;
+        }
+
+        SetState(GameState.PlayerAction);
+    }
+
+    public void ResumeDialogueAfterTrigger(string triggerId)
+    {
+        var normalizedTriggerId = triggerId?.Trim() ?? string.Empty;
+
+        if (TryStartAutoDialogueForTrigger(normalizedTriggerId))
+        {
+            return;
+        }
+
+        if (CurrentState == GameState.AwaitingTrigger)
+        {
+            EvaluateLevelProgression();
+            return;
+        }
+
+        if (levelWinConditionsMet && string.Equals(normalizedTriggerId, levelCompletionTriggerId, StringComparison.Ordinal))
+        {
+            SetState(GameState.LevelComplete);
+        }
     }
 
     private void SubscribeToEvents()
@@ -266,7 +343,8 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        StartCompletionDialogueOrComplete(config);
+        levelWinConditionsMet = true;
+        ResumeDialogueAfterTrigger(levelCompletionTriggerId);
     }
 
     private bool AreWinConditionsMet(WinConditions conditions)
@@ -299,31 +377,82 @@ public class GameplayManager : MonoBehaviour
         };
     }
 
-    private void StartCompletionDialogueOrComplete(LevelConfig config)
+    private void InitializeDialoguePlan(LevelDialoguePlan plan)
     {
-        if (characterDialogueUI != null && config.completionDialogue != null)
+        activeDialoguePlan = plan;
+        blocksById.Clear();
+        completedBlocks.Clear();
+        startedBlocks.Clear();
+        activeDialogueBlockId = null;
+
+        if (activeDialoguePlan == null || activeDialoguePlan.DialogueBlocks == null)
         {
-            waitingForCompletionDialogue = true;
-            SetState(GameState.Dialogue);
-            characterDialogueUI.ShowDialogue(config.completionDialogue, config.completionDialogueLineIndex);
             return;
         }
 
-        SetState(GameState.LevelComplete);
+        var blocks = activeDialoguePlan.DialogueBlocks;
+        for (var i = 0; i < blocks.Count; i++)
+        {
+            var block = blocks[i];
+            if (block == null || string.IsNullOrWhiteSpace(block.blockId))
+            {
+                continue;
+            }
+
+            if (blocksById.ContainsKey(block.blockId))
+            {
+                Debug.LogWarning($"Duplicate dialogue block id '{block.blockId}' in {activeDialoguePlan.name}.", activeDialoguePlan);
+                continue;
+            }
+
+            blocksById.Add(block.blockId, block);
+        }
     }
 
-    private void StartOpeningDialogue(LevelConfig config)
+    private bool TryStartAutoDialogueForTrigger(string triggerId)
     {
-        waitingForOpeningDialogue = false;
-
-        if (characterDialogueUI == null || config.openingDialogue == null)
+        if (CurrentState == GameState.Dialogue || activeDialoguePlan == null)
         {
-            return;
+            return false;
         }
 
-        waitingForOpeningDialogue = true;
-        SetState(GameState.Dialogue);
-        characterDialogueUI.ShowDialogue(config.openingDialogue, config.openingDialogueLineIndex);
+        var normalizedTriggerId = triggerId?.Trim() ?? string.Empty;
+        var blocks = activeDialoguePlan.DialogueBlocks;
+        for (var i = 0; i < blocks.Count; i++)
+        {
+            var block = blocks[i];
+            if (block == null || !block.autoStart || string.IsNullOrWhiteSpace(block.blockId))
+            {
+                continue;
+            }
+
+            if (startedBlocks.Contains(block.blockId) || completedBlocks.Contains(block.blockId))
+            {
+                continue;
+            }
+
+            var blockTrigger = block.triggerId?.Trim() ?? string.Empty;
+            if (!string.Equals(blockTrigger, normalizedTriggerId, StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            StartDialogueBlock(block.blockId);
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryGetDialogueBlock(string blockId, out LevelDialoguePlan.DialogueBlock block)
+    {
+        block = null;
+        if (string.IsNullOrWhiteSpace(blockId))
+        {
+            return false;
+        }
+
+        return blocksById.TryGetValue(blockId, out block);
     }
 
     private void ResetLevelProgressTracking()
@@ -331,8 +460,8 @@ public class GameplayManager : MonoBehaviour
         completedInspections = 0;
         decisionReceived = false;
         latestDecision = RequiredDecision.None;
-        waitingForOpeningDialogue = false;
-        waitingForCompletionDialogue = false;
+        levelWinConditionsMet = false;
+        activeDialogueBlockId = null;
     }
 
     private void ApplyDifficultySettings(LevelConfig config)

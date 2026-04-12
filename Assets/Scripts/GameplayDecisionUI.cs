@@ -9,7 +9,6 @@ public class GameplayDecisionUI : MonoBehaviour
     [SerializeField] private GameObject manualMenuRoot;
     [SerializeField] private Button manualToggleButton;
     [SerializeField] private Button manualCloseButton;
-    [SerializeField] private TMP_Text manualBodyText;
 
     [Header("Decision Buttons")]
     [SerializeField] private Button acceptTrainButton;
@@ -21,11 +20,6 @@ public class GameplayDecisionUI : MonoBehaviour
 
     private void Awake()
     {
-        if (manualBodyText != null)
-        {
-            manualBodyText.text = "Review the current train details and use the available controls to make your decision.";
-        }
-
         HideManual();
     }
 

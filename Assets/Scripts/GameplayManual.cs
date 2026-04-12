@@ -12,7 +12,7 @@ public class GameplayManual : MonoBehaviour
     private readonly List<UnityEngine.Events.UnityAction> tabClickHandlers = new();
     private int currentPageIndex = -1;
 
-    private void Awake()
+    private void OnEnable()
     {
         BindTabButtons();
         ShowFirstAvailablePage();

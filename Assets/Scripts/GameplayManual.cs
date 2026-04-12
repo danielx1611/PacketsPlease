@@ -7,13 +7,17 @@ public class GameplayManual : MonoBehaviour
 {
     [SerializeField] private TMP_Text pageText;
     [SerializeField] private List<Button> tabButtons = new();
+    [SerializeField] private List<ManualPageData> manualPages = new();
     [SerializeField] private int startingPageIndex;
 
     private readonly List<UnityEngine.Events.UnityAction> tabClickHandlers = new();
+    private readonly Dictionary<int, ManualPageData> manualPagesByIndex = new();
+
     private int currentPageIndex = -1;
 
     private void OnEnable()
     {
+        RebuildManualPageLookup();
         BindTabButtons();
         ShowFirstAvailablePage();
     }
@@ -23,16 +27,66 @@ public class GameplayManual : MonoBehaviour
         UnbindTabButtons();
     }
 
+    private void OnValidate()
+    {
+        RebuildManualPageLookup();
+    }
+
     public void SetPageUnlocked(int pageIndex, bool unlocked)
     {
         if (!IsValidPageIndex(pageIndex))
         {
+            Debug.LogWarning($"{nameof(GameplayManual)} invalid page index in {nameof(SetPageUnlocked)}. {BuildWarningContext(pageIndex)}", this);
             return;
         }
 
         tabButtons[pageIndex].interactable = unlocked;
 
         if (currentPageIndex == pageIndex && !unlocked)
+        {
+            ShowFirstAvailablePage();
+        }
+    }
+
+    public void SetUnlockedPages(IEnumerable<int> pageIndices, int levelId = -1)
+    {
+        if (tabButtons.Count == 0)
+        {
+            return;
+        }
+
+        var unlockedIndexSet = new HashSet<int>();
+        if (pageIndices != null)
+        {
+            foreach (var pageIndex in pageIndices)
+            {
+                if (!IsValidPageIndex(pageIndex))
+                {
+                    Debug.LogWarning($"{nameof(GameplayManual)} invalid unlock index. {BuildWarningContext(pageIndex, levelId)}", this);
+                    continue;
+                }
+
+                unlockedIndexSet.Add(pageIndex);
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"{nameof(GameplayManual)} received null page unlock list. {BuildWarningContext(levelId: levelId)}", this);
+        }
+
+        for (var index = 0; index < tabButtons.Count; index++)
+        {
+            var tabButton = tabButtons[index];
+            if (tabButton == null)
+            {
+                Debug.LogWarning($"{nameof(GameplayManual)} missing tab button reference. {BuildWarningContext(index, levelId)}", this);
+                continue;
+            }
+
+            tabButton.interactable = unlockedIndexSet.Contains(index);
+        }
+
+        if (currentPageIndex < 0 || !IsValidPageIndex(currentPageIndex) || tabButtons[currentPageIndex] == null || !tabButtons[currentPageIndex].interactable)
         {
             ShowFirstAvailablePage();
         }
@@ -49,7 +103,7 @@ public class GameplayManual : MonoBehaviour
 
         if (pageText != null)
         {
-            pageText.text = GetHardcodedPageContent(pageIndex);
+            pageText.text = GetPageContent(pageIndex);
         }
     }
 
@@ -128,18 +182,71 @@ public class GameplayManual : MonoBehaviour
         currentPageIndex = -1;
     }
 
-    private static string GetHardcodedPageContent(int pageIndex)
+    private string GetPageContent(int pageIndex)
     {
-        return pageIndex switch
+        if (manualPagesByIndex.TryGetValue(pageIndex, out var pageData) && pageData != null)
         {
-            0 => "Section 1 - Station Rules\n\nArrive prepared, review each manifest, and verify all labels before making a decision.",
-            1 => "Section 2 - Cargo Verification\n\nMatch declared cargo to what you see. Flag mismatches and suspicious packaging immediately.",
-            2 => "Section 3 - Passenger Screening\n\nCheck identification carefully and confirm every passenger is on the approved list.",
-            3 => "Section 4 - Hazard Protocols\n\nIf hazardous materials are present, confirm permits, containment, and routing are valid.",
-            4 => "Section 5 - Escalation Steps\n\nWhen uncertain, hold the train and escalate to a supervisor for final review.",
-            5 => "Section 6 - Inspection Checklist\n\nChecklist page placeholder. Interactable checklist will be added later.",
-            _ => "Section not found."
-        };
+            return pageData.GetFormattedContent();
+        }
+
+        Debug.LogWarning($"{nameof(GameplayManual)} has no manual page data. {BuildWarningContext(pageIndex)}", this);
+        return "Section not found.";
+    }
+
+    private void RebuildManualPageLookup()
+    {
+        manualPagesByIndex.Clear();
+
+        for (var listIndex = 0; listIndex < manualPages.Count; listIndex++)
+        {
+            var pageData = manualPages[listIndex];
+            if (pageData == null)
+            {
+                Debug.LogWarning($"{nameof(GameplayManual)} null page data entry at list index {listIndex}. {BuildWarningContext()}" , this);
+                continue;
+            }
+
+            var pageIndex = pageData.PageIndex;
+            if (manualPagesByIndex.ContainsKey(pageIndex))
+            {
+                Debug.LogWarning($"{nameof(GameplayManual)} duplicate page data found. {BuildWarningContext(pageIndex)}", this);
+                continue;
+            }
+
+            manualPagesByIndex.Add(pageIndex, pageData);
+        }
+
+        ValidatePageDataAgainstTabs();
+    }
+
+    private void ValidatePageDataAgainstTabs()
+    {
+        if (tabButtons.Count == 0 && manualPagesByIndex.Count > 0)
+        {
+            Debug.LogWarning($"{nameof(GameplayManual)} manual page data configured but no tab buttons. {BuildWarningContext()}", this);
+            return;
+        }
+
+        for (var tabIndex = 0; tabIndex < tabButtons.Count; tabIndex++)
+        {
+            if (!manualPagesByIndex.ContainsKey(tabIndex))
+            {
+                Debug.LogWarning($"{nameof(GameplayManual)} missing manual data for tab. {BuildWarningContext(tabIndex)}", this);
+            }
+        }
+
+        foreach (var configuredPageId in manualPagesByIndex.Keys)
+        {
+            if (!IsValidPageIndex(configuredPageId))
+            {
+                Debug.LogWarning($"{nameof(GameplayManual)} manual page data has no matching tab button. {BuildWarningContext(configuredPageId)}", this);
+            }
+        }
+    }
+
+    private static string BuildWarningContext(int pageId = -1, int levelId = -1)
+    {
+        return $"levelId={levelId}, pageId={pageId}";
     }
 
     private bool IsValidPageIndex(int pageIndex)

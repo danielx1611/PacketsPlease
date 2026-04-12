@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 
+[Obsolete("Use GameplayManager with LevelDialoguePlan dialogue blocks instead of GameOpeningDialogueBootstrap.")]
 public class GameOpeningDialogueBootstrap : MonoBehaviour
 {
     [Header("References")]

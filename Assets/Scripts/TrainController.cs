@@ -132,7 +132,10 @@ public class TrainController : MonoBehaviour
         StopAllCoroutines();
         activeTrainMovements = 0;
         SetTrainMoving(false);
-        StartCoroutine(MoveTrainsWithDelay(TrainDestination.OffScreenRight, snapToLeftBeforeMove: false));
+        StartCoroutine(MoveTrainsWithDelay(
+            TrainDestination.OffScreenRight,
+            snapToLeftBeforeMove: false,
+            accelerateFromStart: false));
     }
 
     public void SendRejectedTrainsOffScreen()
@@ -141,10 +144,16 @@ public class TrainController : MonoBehaviour
         StopAllCoroutines();
         activeTrainMovements = 0;
         SetTrainMoving(false);
-        StartCoroutine(MoveTrainsWithDelay(TrainDestination.OffScreenLeft, snapToLeftBeforeMove: false));
+        StartCoroutine(MoveTrainsWithDelay(
+            TrainDestination.OffScreenLeft,
+            snapToLeftBeforeMove: false,
+            accelerateFromStart: true));
     }
 
-    private System.Collections.IEnumerator MoveTrainsWithDelay(TrainDestination destination, bool snapToLeftBeforeMove)
+    private System.Collections.IEnumerator MoveTrainsWithDelay(
+        TrainDestination destination,
+        bool snapToLeftBeforeMove,
+        bool accelerateFromStart = false)
     {
         if (trains == null || trains.Count == 0)
         {
@@ -164,7 +173,7 @@ public class TrainController : MonoBehaviour
                 SnapTrainToX(train, train.OffScreenLeftX);
             }
 
-            StartCoroutine(MoveSingleTrain(train, destination));
+            StartCoroutine(MoveSingleTrain(train, destination, accelerateFromStart));
 
             if (delayBetweenTrains > 0f)
             {
@@ -173,7 +182,10 @@ public class TrainController : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator MoveSingleTrain(TrainConfig train, TrainDestination destination)
+    private System.Collections.IEnumerator MoveSingleTrain(
+        TrainConfig train,
+        TrainDestination destination,
+        bool accelerateFromStart)
     {
         if (train == null || train.TrainRoot == null)
         {
@@ -184,11 +196,16 @@ public class TrainController : MonoBehaviour
         SetTrainMoving(true);
 
         var targetX = GetTargetX(train, destination);
+        var startX = train.TrainRoot.localPosition.x;
+        var totalDistance = Mathf.Abs(targetX - startX);
         while (!Mathf.Approximately(train.TrainRoot.localPosition.x, targetX))
         {
             var position = train.TrainRoot.localPosition;
             var distanceToTarget = Mathf.Abs(targetX - position.x);
-            var movementSpeed = (speedProfile ??= new TrainSpeedProfile()).GetSpeed(distanceToTarget);
+            var distanceForSpeedProfile = accelerateFromStart
+                ? Mathf.Max(0f, totalDistance - distanceToTarget)
+                : distanceToTarget;
+            var movementSpeed = (speedProfile ??= new TrainSpeedProfile()).GetSpeed(distanceForSpeedProfile);
             var nextX = Mathf.MoveTowards(position.x, targetX, movementSpeed * Time.deltaTime);
             train.TrainRoot.localPosition = new Vector3(nextX, position.y, position.z);
             yield return null;

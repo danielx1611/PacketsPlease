@@ -11,6 +11,14 @@ public class TrainInspectable : MonoBehaviour
     public bool isSuspicious;
     public string suspiciousReason;
 
+    public void SetPayloadData(string newComponentName, string newDescription, bool newIsSuspicious, string newSuspiciousReason)
+    {
+        componentName = newComponentName;
+        description = newDescription;
+        isSuspicious = newIsSuspicious;
+        suspiciousReason = newSuspiciousReason;
+    }
+
     public string GetInspectionText()
     {
         if (isSuspicious && !string.IsNullOrEmpty(suspiciousReason))

@@ -66,7 +66,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private CharacterDialogueUI characterDialogueUI;
 
     [Header("Optional External Controllers")]
-    [SerializeField] private MonoBehaviour trainController;
+    [SerializeField] private TrainController trainController;
     [SerializeField] private MonoBehaviour inspectionController;
 
     [Header("Progression Configuration")]
@@ -146,6 +146,7 @@ public class GameplayManager : MonoBehaviour
         ApplyDifficultySettings(config);
         ApplyManualUnlocks(config);
         InitializeDialoguePlan(config.dialoguePlan);
+        trainController?.BeginTrainEntry();
 
         if (!TryStartAutoDialogueForTrigger(string.Empty))
         {
@@ -307,6 +308,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
+        trainController?.SendAcceptedTrainsOffScreen();
         decisionReceived = true;
         latestDecision = RequiredDecision.Accept;
         SetState(GameState.AwaitingTrigger);
@@ -320,6 +322,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
+        trainController?.SendRejectedTrainsOffScreen();
         decisionReceived = true;
         latestDecision = RequiredDecision.Reject;
         SetState(GameState.AwaitingTrigger);

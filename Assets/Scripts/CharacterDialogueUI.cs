@@ -8,6 +8,7 @@ public class CharacterDialogueUI : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private GameObject rootContainer;
     [SerializeField] private Image portraitImage;
+    [SerializeField] private TMP_Text speakerNameText;
     [SerializeField] private TMP_Text dialogueText;
     [SerializeField] private TMP_Text continueHintText;
 
@@ -120,7 +121,8 @@ public class CharacterDialogueUI : MonoBehaviour
             portraitImage.enabled = portrait != null;
         }
 
-        currentFullText = FormatDialogueText(text, speakerName);
+        SetSpeakerName(speakerName);
+        currentFullText = text ?? string.Empty;
         currentLettersPerSecond = useCustomRevealSpeed ? Mathf.Max(0f, lineRevealSpeed) : lettersPerSecond;
         dialogueText.text = string.Empty;
         hasAcceleratedReveal = false;
@@ -145,6 +147,7 @@ public class CharacterDialogueUI : MonoBehaviour
         currentLettersPerSecond = lettersPerSecond;
         ResetSequenceProgress();
         SetContinueHintVisible(false);
+        SetSpeakerName(null);
 
         if (dialogueText != null)
         {
@@ -186,17 +189,6 @@ public class CharacterDialogueUI : MonoBehaviour
         skipToEndRequested = false;
         revealCoroutine = null;
         SetContinueHintVisible(true);
-    }
-
-    private string FormatDialogueText(string text, string speakerName)
-    {
-        var safeText = text ?? string.Empty;
-        if (string.IsNullOrWhiteSpace(speakerName))
-        {
-            return safeText;
-        }
-
-        return speakerName + ":\n" + safeText;
     }
 
     private bool ValidateCoreReferences()
@@ -261,5 +253,17 @@ public class CharacterDialogueUI : MonoBehaviour
 
         continueHintText.text = "Press left click to continue";
         continueHintText.gameObject.SetActive(isVisible);
+    }
+
+    private void SetSpeakerName(string speakerName)
+    {
+        if (speakerNameText == null)
+        {
+            return;
+        }
+
+        var hasSpeaker = !string.IsNullOrWhiteSpace(speakerName);
+        speakerNameText.text = hasSpeaker ? $"{speakerName}:" : string.Empty;
+        speakerNameText.gameObject.SetActive(hasSpeaker);
     }
 }

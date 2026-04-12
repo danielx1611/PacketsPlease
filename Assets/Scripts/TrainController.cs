@@ -148,11 +148,11 @@ public class TrainController : MonoBehaviour
         SetTrainMoving(true);
 
         var targetX = GetTargetX(train, destination);
-        while (!Mathf.Approximately(train.TrainRoot.position.x, targetX))
+        while (!Mathf.Approximately(train.TrainRoot.localPosition.x, targetX))
         {
-            var position = train.TrainRoot.position;
+            var position = train.TrainRoot.localPosition;
             var nextX = Mathf.MoveTowards(position.x, targetX, entrySpeed * Time.deltaTime);
-            train.TrainRoot.position = new Vector3(nextX, position.y, position.z);
+            train.TrainRoot.localPosition = new Vector3(nextX, position.y, position.z);
             yield return null;
         }
 
@@ -197,8 +197,8 @@ public class TrainController : MonoBehaviour
 
     private void SnapTrainToX(TrainConfig train, float x)
     {
-        var position = train.TrainRoot.position;
-        train.TrainRoot.position = new Vector3(x, position.y, position.z);
+        var position = train.TrainRoot.localPosition;
+        train.TrainRoot.localPosition = new Vector3(x, position.y, position.z);
     }
 
     private float GetTargetX(TrainConfig train, TrainDestination destination)

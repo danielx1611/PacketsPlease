@@ -75,7 +75,6 @@ public class GameplayManager : MonoBehaviour
     [Header("Progression Configuration")]
     [SerializeField] private bool autoStartFirstLevelOnStart = true;
     [SerializeField] private int initialLevelIndex;
-    [SerializeField] private int manualPageCountForLocking = 6;
 
     [Tooltip("Global multiplier applied on top of each level difficulty.")]
     [SerializeField] private float globalDifficultyMultiplier = 1f;
@@ -359,21 +358,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        var pagesToLock = Mathf.Max(0, manualPageCountForLocking);
-        for (var i = 0; i < pagesToLock; i++)
-        {
-            gameplayManual.SetPageUnlocked(i, false);
-        }
-
-        if (config.manualPagesToUnlock == null)
-        {
-            return;
-        }
-
-        for (var i = 0; i < config.manualPagesToUnlock.Count; i++)
-        {
-            gameplayManual.SetPageUnlocked(config.manualPagesToUnlock[i], true);
-        }
+        gameplayManual.SetUnlockedPages(config.manualPagesToUnlock, config.levelId);
     }
 
     private bool TryGetLevel(int index, out LevelConfig config)

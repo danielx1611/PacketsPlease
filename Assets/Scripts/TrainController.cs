@@ -103,6 +103,7 @@ public class TrainController : MonoBehaviour
     public event Action<bool> OnTrainMovementChanged;
 
     private int activeTrainMovements;
+    private bool[] activeTrainMask = Array.Empty<bool>();
 
     private void Start()
     {
@@ -123,10 +124,16 @@ public class TrainController : MonoBehaviour
         activeTrainMovements = 0;
         SetTrainMoving(false);
         ApplyAllPayloadData();
+        ResetActiveTrainMask();
         StartCoroutine(MoveTrainsWithDelay(TrainDestination.OnScreen, snapToLeftBeforeMove: true));
     }
 
     public void SendAcceptedTrainsOffScreen()
+    {
+        SendAcceptedTrainsOffScreen(GetAllActiveTrainIndices());
+    }
+
+    public void SendAcceptedTrainsOffScreen(IReadOnlyList<int> selectedTrainIndices)
     {
         EnsureDefaultTrainConfig();
         StopAllCoroutines();
@@ -135,10 +142,16 @@ public class TrainController : MonoBehaviour
         StartCoroutine(MoveTrainsWithDelay(
             TrainDestination.OffScreenRight,
             snapToLeftBeforeMove: false,
-            accelerateFromStart: true));
+            accelerateFromStart: true,
+            selectedTrainIndices: selectedTrainIndices));
     }
 
     public void SendRejectedTrainsOffScreen()
+    {
+        SendRejectedTrainsOffScreen(GetAllActiveTrainIndices());
+    }
+
+    public void SendRejectedTrainsOffScreen(IReadOnlyList<int> selectedTrainIndices)
     {
         EnsureDefaultTrainConfig();
         StopAllCoroutines();
@@ -147,21 +160,43 @@ public class TrainController : MonoBehaviour
         StartCoroutine(MoveTrainsWithDelay(
             TrainDestination.OffScreenLeft,
             snapToLeftBeforeMove: false,
-            accelerateFromStart: true));
+            accelerateFromStart: true,
+            selectedTrainIndices: selectedTrainIndices));
+    }
+
+    public int GetTrainCount()
+    {
+        EnsureDefaultTrainConfig();
+        return trains?.Count ?? 0;
     }
 
     private System.Collections.IEnumerator MoveTrainsWithDelay(
         TrainDestination destination,
         bool snapToLeftBeforeMove,
-        bool accelerateFromStart = false)
+        bool accelerateFromStart = false,
+        IReadOnlyList<int> selectedTrainIndices = null)
     {
         if (trains == null || trains.Count == 0)
         {
             yield break;
         }
 
+        var selectedIndices = selectedTrainIndices?.Count > 0
+            ? new HashSet<int>(selectedTrainIndices)
+            : null;
+
         for (var i = 0; i < trains.Count; i++)
         {
+            if (selectedIndices != null && !selectedIndices.Contains(i))
+            {
+                continue;
+            }
+
+            if (activeTrainMask.Length > i && !activeTrainMask[i])
+            {
+                continue;
+            }
+
             var train = trains[i];
             if (train == null || train.TrainRoot == null)
             {
@@ -173,7 +208,7 @@ public class TrainController : MonoBehaviour
                 SnapTrainToX(train, train.OffScreenLeftX);
             }
 
-            StartCoroutine(MoveSingleTrain(train, destination, accelerateFromStart));
+            StartCoroutine(MoveSingleTrain(i, train, destination, accelerateFromStart));
 
             if (delayBetweenTrains > 0f)
             {
@@ -183,6 +218,7 @@ public class TrainController : MonoBehaviour
     }
 
     private System.Collections.IEnumerator MoveSingleTrain(
+        int trainIndex,
         TrainConfig train,
         TrainDestination destination,
         bool accelerateFromStart)
@@ -209,6 +245,12 @@ public class TrainController : MonoBehaviour
             var nextX = Mathf.MoveTowards(position.x, targetX, movementSpeed * Time.deltaTime);
             train.TrainRoot.localPosition = new Vector3(nextX, position.y, position.z);
             yield return null;
+        }
+
+        if ((destination == TrainDestination.OffScreenLeft || destination == TrainDestination.OffScreenRight) &&
+            activeTrainMask.Length > trainIndex)
+        {
+            activeTrainMask[trainIndex] = false;
         }
 
         activeTrainMovements = Mathf.Max(0, activeTrainMovements - 1);
@@ -288,6 +330,30 @@ public class TrainController : MonoBehaviour
                 payloadData[payloadIndex]?.Apply();
             }
         }
+    }
+
+    private void ResetActiveTrainMask()
+    {
+        var count = trains?.Count ?? 0;
+        activeTrainMask = new bool[count];
+        for (var i = 0; i < count; i++)
+        {
+            activeTrainMask[i] = true;
+        }
+    }
+
+    private List<int> GetAllActiveTrainIndices()
+    {
+        var activeIndices = new List<int>();
+        for (var i = 0; i < activeTrainMask.Length; i++)
+        {
+            if (activeTrainMask[i])
+            {
+                activeIndices.Add(i);
+            }
+        }
+
+        return activeIndices;
     }
 
     private void SetTrainMoving(bool isMoving)

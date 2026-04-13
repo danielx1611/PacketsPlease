@@ -245,6 +245,6 @@ public class GameplayDecisionUI : MonoBehaviour
             return;
         }
 
-        readyToDecideLabel.text = $"{(isReadyToDecide ? "Not" : "")} Ready To Decide";
+        readyToDecideLabel.text = $"{(isReadyToDecide ? "Set Not" : "Set")} Ready To Decide";
     }
 }

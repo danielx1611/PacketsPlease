@@ -214,7 +214,7 @@ public class GameplayDecisionUI : MonoBehaviour
             var label = trainButton.GetComponentInChildren<TMP_Text>();
             if (label != null)
             {
-                label.text = $"☐ Train {i + 1}";
+                label.text = $"Train {i + 1}";
             }
 
             trainSelectionButtons.Add(trainButton);
@@ -344,7 +344,7 @@ public class GameplayDecisionUI : MonoBehaviour
             return;
         }
 
-        readyToDecideLabel.text = $"{(isReadyToDecide ? "☑" : "☐")} Ready To Decide";
+        readyToDecideLabel.text = $"{(isReadyToDecide ? "Not" : "")} Ready To Decide";
     }
 
     private void UpdateTrainSelectionLabel(int index)

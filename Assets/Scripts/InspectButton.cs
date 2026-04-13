@@ -10,7 +10,7 @@ public class InspectButton : MonoBehaviour
     {
         if (trainController == null)
         {
-            trainController = FindObjectOfType<TrainController>();
+            trainController = FindAnyObjectByType<TrainController>();
         }
     }
 

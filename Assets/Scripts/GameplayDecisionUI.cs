@@ -17,28 +17,16 @@ public class GameplayDecisionUI : MonoBehaviour
     [SerializeField] private Button readyToDecideButton;
     [SerializeField] private TMP_Text readyToDecideLabel;
 
-    [Header("Train Selection")]
-    [SerializeField] private RectTransform trainSelectionContainer;
-    [SerializeField] private Button trainSelectionButtonTemplate;
-
     public event Action<IReadOnlyList<int>> OnAcceptTrainRequested;
     public event Action<IReadOnlyList<int>> OnRejectTrainRequested;
     public event Action<bool> OnManualVisibilityChanged;
 
-    private readonly List<Button> trainSelectionButtons = new();
-    private readonly List<TMP_Text> trainSelectionLabels = new();
-    private readonly List<bool> selectedTrainStates = new();
     private readonly List<bool> resolvedTrainStates = new();
     private bool isReadyToDecide;
 
     private void Awake()
     {
         HideManual();
-        if (trainSelectionButtonTemplate != null)
-        {
-            trainSelectionButtonTemplate.gameObject.SetActive(false);
-        }
-
         UpdateReadyToDecideLabel();
         RefreshDecisionButtonState();
     }
@@ -146,7 +134,7 @@ public class GameplayDecisionUI : MonoBehaviour
             return;
         }
 
-        var selectedIndices = GetSelectedTrainIndices();
+        var selectedIndices = GetUnresolvedTrainIndices();
         if (selectedIndices.Count == 0)
         {
             return;
@@ -163,7 +151,7 @@ public class GameplayDecisionUI : MonoBehaviour
             return;
         }
 
-        var selectedIndices = GetSelectedTrainIndices();
+        var selectedIndices = GetUnresolvedTrainIndices();
         if (selectedIndices.Count == 0)
         {
             return;
@@ -175,51 +163,10 @@ public class GameplayDecisionUI : MonoBehaviour
 
     public void ConfigureTrainSelection(int trainCount)
     {
-        for (var i = 0; i < trainSelectionButtons.Count; i++)
-        {
-            if (trainSelectionButtons[i] != null)
-            {
-                Destroy(trainSelectionButtons[i].gameObject);
-            }
-        }
-
-        trainSelectionButtons.Clear();
-        trainSelectionLabels.Clear();
-        selectedTrainStates.Clear();
         resolvedTrainStates.Clear();
-
-        if (trainSelectionContainer == null || trainSelectionButtonTemplate == null)
-        {
-            for (var i = 0; i < trainCount; i++)
-            {
-                selectedTrainStates.Add(true);
-                resolvedTrainStates.Add(false);
-            }
-
-            return;
-        }
 
         for (var i = 0; i < trainCount; i++)
         {
-            var trainButton = Instantiate(trainSelectionButtonTemplate, trainSelectionContainer);
-            trainButton.name = $"TrainSelectButton_{i + 1}";
-            trainButton.gameObject.SetActive(true);
-            if (trainButton.transform is RectTransform rect)
-            {
-                rect.anchoredPosition = new Vector2(rect.anchoredPosition.x, -24f - (i * 42f));
-            }
-            var selectedIndex = i;
-            trainButton.onClick.AddListener(() => ToggleTrainSelectedState(selectedIndex));
-
-            var label = trainButton.GetComponentInChildren<TMP_Text>();
-            if (label != null)
-            {
-                label.text = $"Train {i + 1}";
-            }
-
-            trainSelectionButtons.Add(trainButton);
-            trainSelectionLabels.Add(label);
-            selectedTrainStates.Add(false);
             resolvedTrainStates.Add(false);
         }
 
@@ -233,31 +180,9 @@ public class GameplayDecisionUI : MonoBehaviour
             for (var i = 0; i < resolvedTrainIndices.Count; i++)
             {
                 var index = resolvedTrainIndices[i];
-                if (index < 0 || index >= trainSelectionButtons.Count)
-                {
-                    if (index >= 0 && index < resolvedTrainStates.Count)
-                    {
-                        resolvedTrainStates[index] = true;
-                    }
-
-                    continue;
-                }
-
-                var trainButton = trainSelectionButtons[index];
-                if (trainButton == null)
-                {
-                    continue;
-                }
-
-                trainButton.gameObject.SetActive(false);
-                if (index < resolvedTrainStates.Count)
+                if (index >= 0 && index < resolvedTrainStates.Count)
                 {
                     resolvedTrainStates[index] = true;
-                }
-
-                if (index < selectedTrainStates.Count)
-                {
-                    selectedTrainStates[index] = false;
                 }
             }
         }
@@ -265,32 +190,19 @@ public class GameplayDecisionUI : MonoBehaviour
         ResetDecisionGate();
     }
 
-    private List<int> GetSelectedTrainIndices()
+    private List<int> GetUnresolvedTrainIndices()
     {
-        var selected = new List<int>();
-        if (trainSelectionButtons.Count == 0)
-        {
-            for (var i = 0; i < resolvedTrainStates.Count; i++)
-            {
-                if (!resolvedTrainStates[i])
-                {
-                    selected.Add(i);
-                }
-            }
+        var unresolved = new List<int>();
 
-            return selected;
-        }
-
-        for (var i = 0; i < trainSelectionButtons.Count; i++)
+        for (var i = 0; i < resolvedTrainStates.Count; i++)
         {
-            var trainButton = trainSelectionButtons[i];
-            if (trainButton != null && trainButton.gameObject.activeSelf && selectedTrainStates[i])
+            if (!resolvedTrainStates[i])
             {
-                selected.Add(i);
+                unresolved.Add(i);
             }
         }
 
-        return selected;
+        return unresolved;
     }
 
     private bool IsReadyToSubmitDecision()
@@ -326,17 +238,6 @@ public class GameplayDecisionUI : MonoBehaviour
         }
     }
 
-    private void ToggleTrainSelectedState(int index)
-    {
-        if (index < 0 || index >= selectedTrainStates.Count || (index < resolvedTrainStates.Count && resolvedTrainStates[index]))
-        {
-            return;
-        }
-
-        selectedTrainStates[index] = !selectedTrainStates[index];
-        UpdateTrainSelectionLabel(index);
-    }
-
     private void UpdateReadyToDecideLabel()
     {
         if (readyToDecideLabel == null)
@@ -345,21 +246,5 @@ public class GameplayDecisionUI : MonoBehaviour
         }
 
         readyToDecideLabel.text = $"{(isReadyToDecide ? "Not" : "")} Ready To Decide";
-    }
-
-    private void UpdateTrainSelectionLabel(int index)
-    {
-        if (index < 0 || index >= trainSelectionLabels.Count)
-        {
-            return;
-        }
-
-        var label = trainSelectionLabels[index];
-        if (label == null)
-        {
-            return;
-        }
-
-        label.text = $"{(selectedTrainStates[index] ? "☑" : "☐")} Train {index + 1}";
     }
 }

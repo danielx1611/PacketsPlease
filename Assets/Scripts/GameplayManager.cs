@@ -147,6 +147,7 @@ public class GameplayManager : MonoBehaviour
         ApplyManualUnlocks(config);
         InitializeDialoguePlan(config.dialoguePlan);
         trainController?.BeginTrainEntry();
+        gameplayDecisionUI?.ConfigureTrainSelection(trainController != null ? trainController.GetTrainCount() : 0);
 
         if (!TryStartAutoDialogueForTrigger(string.Empty))
         {
@@ -301,28 +302,40 @@ public class GameplayManager : MonoBehaviour
         gameplayDecisionUI.OnRejectTrainRequested -= HandleRejectTrainRequested;
     }
 
-    private void HandleAcceptTrainRequested()
+    private void HandleAcceptTrainRequested(IReadOnlyList<int> selectedTrainIndices)
     {
         if (CurrentState != GameState.PlayerAction)
         {
             return;
         }
 
-        trainController?.SendAcceptedTrainsOffScreen();
+        if (selectedTrainIndices == null || selectedTrainIndices.Count == 0)
+        {
+            return;
+        }
+
+        trainController?.SendAcceptedTrainsOffScreen(selectedTrainIndices);
+        gameplayDecisionUI?.ResolveSelectedTrains(selectedTrainIndices);
         decisionReceived = true;
         latestDecision = RequiredDecision.Accept;
         SetState(GameState.AwaitingTrigger);
         EvaluateLevelProgression();
     }
 
-    private void HandleRejectTrainRequested()
+    private void HandleRejectTrainRequested(IReadOnlyList<int> selectedTrainIndices)
     {
         if (CurrentState != GameState.PlayerAction)
         {
             return;
         }
 
-        trainController?.SendRejectedTrainsOffScreen();
+        if (selectedTrainIndices == null || selectedTrainIndices.Count == 0)
+        {
+            return;
+        }
+
+        trainController?.SendRejectedTrainsOffScreen(selectedTrainIndices);
+        gameplayDecisionUI?.ResolveSelectedTrains(selectedTrainIndices);
         decisionReceived = true;
         latestDecision = RequiredDecision.Reject;
         SetState(GameState.AwaitingTrigger);

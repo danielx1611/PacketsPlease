@@ -176,8 +176,8 @@ public class GameplayDecisionUI : MonoBehaviour
         }
 
         Debug.Log("Accept train requested.");
-        OnTutorialInteractionPerformed?.Invoke(AcceptTrainInteractionId);
         OnAcceptTrainRequested?.Invoke(selectedIndices);
+        OnTutorialInteractionPerformed?.Invoke(AcceptTrainInteractionId);
     }
 
     public void RejectCurrentTrain()
@@ -199,8 +199,8 @@ public class GameplayDecisionUI : MonoBehaviour
         }
 
         Debug.Log("Reject train requested.");
-        OnTutorialInteractionPerformed?.Invoke(RejectTrainInteractionId);
         OnRejectTrainRequested?.Invoke(selectedIndices);
+        OnTutorialInteractionPerformed?.Invoke(RejectTrainInteractionId);
     }
 
     private void HideManualFromCloseButton()

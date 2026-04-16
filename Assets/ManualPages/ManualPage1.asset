@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pageIndex: 0
   pageTitle: Welcome To RouterCo
-  pageBody: Testing Manual page data
+  leftPageBody: Testing Manual page data
+  rightPageBody: ""
   difficultyTag: 
   unlockThreshold: 0

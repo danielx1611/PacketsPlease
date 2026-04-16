@@ -447,6 +447,7 @@ MonoBehaviour:
   targetInspectable: {fileID: 1947682775}
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
+  tutorialInteractionId: train_compartment
 --- !u!1 &134945055
 GameObject:
   m_ObjectHideFlags: 0
@@ -11282,6 +11283,7 @@ MonoBehaviour:
   targetInspectable: {fileID: 551808148}
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
+  tutorialInteractionId: train_compartment
 --- !u!1 &1394841432
 GameObject:
   m_ObjectHideFlags: 0
@@ -12072,6 +12074,7 @@ MonoBehaviour:
   targetInspectable: {fileID: 1626612990}
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
+  tutorialInteractionId: train_compartment
 --- !u!1 &1563944183
 GameObject:
   m_ObjectHideFlags: 0
@@ -12899,6 +12902,7 @@ MonoBehaviour:
   targetInspectable: {fileID: 10152729}
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
+  tutorialInteractionId: train_compartment
 --- !u!1001 &1746515908160394454
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12969,7 +12973,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4784770568440301963, guid: c5885fe3c3aece548aa03a09724bdb66, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5653182860389391564, guid: c5885fe3c3aece548aa03a09724bdb66, type: 3}
       propertyPath: m_SizeDelta.x

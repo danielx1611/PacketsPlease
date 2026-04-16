@@ -2812,6 +2812,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -45
       objectReference: {fileID: 0}
+    - target: {fileID: 2000000000000000055, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2000000000000000056, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -79
@@ -2987,6 +2991,10 @@ PrefabInstance:
     - target: {fileID: 4000000000000000055, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_fontSizeBase
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000000000000000055, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 4000000000000000065, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: apiKey

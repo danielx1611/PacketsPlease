@@ -13382,7 +13382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000000000000000022, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: manualPages.Array.size
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4000000000000000022, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: 'manualPages.Array.data[0]'
@@ -13392,6 +13392,22 @@ PrefabInstance:
       propertyPath: 'manualPages.Array.data[1]'
       value: 
       objectReference: {fileID: 11400000, guid: c0ac7aaf5e6b0874daeeb2eba0248636, type: 2}
+    - target: {fileID: 4000000000000000022, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: 'manualPages.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 337e80c9fc627fd4ebd8bdbf36e1bacc, type: 2}
+    - target: {fileID: 4000000000000000022, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: 'manualPages.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 96579350eb79b4643a0fb05d23fdeff1, type: 2}
+    - target: {fileID: 4000000000000000022, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: 'manualPages.Array.data[4]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b7701612f132c674f9b80a7f1be541d3, type: 2}
+    - target: {fileID: 4000000000000000022, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: 'manualPages.Array.data[5]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 2bbe7afb1d4d338439e0a942b28a02bb, type: 2}
     - target: {fileID: 4000000000000000024, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_Color.b
       value: 0.7075472

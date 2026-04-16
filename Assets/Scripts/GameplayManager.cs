@@ -256,6 +256,7 @@ public class GameplayManager : MonoBehaviour
 
         activeDialogueBlockId = null;
         completedBlocks.Add(blockId);
+        ClearTutorialInteractionLock();
 
         var completionTriggerId = GetDialogueBlockCompletionTrigger(blockId);
         if (!string.IsNullOrWhiteSpace(completionTriggerId))
@@ -445,15 +446,13 @@ public class GameplayManager : MonoBehaviour
         startedBlocks.Clear();
         activeDialogueBlockId = null;
 
-        if (activeDialoguePlan == null || activeDialoguePlan.DialogueBlocks == null)
+        if (activeDialoguePlan == null)
         {
             return;
         }
 
-        var blocks = activeDialoguePlan.DialogueBlocks;
-        for (var i = 0; i < blocks.Count; i++)
+        foreach (var block in activeDialoguePlan.GetAllBlocks())
         {
-            var block = blocks[i];
             if (block == null || string.IsNullOrWhiteSpace(block.blockId))
             {
                 continue;
@@ -477,7 +476,14 @@ public class GameplayManager : MonoBehaviour
         }
 
         var normalizedTriggerId = triggerId?.Trim() ?? string.Empty;
-        var blocks = activeDialoguePlan.DialogueBlocks;
+        var useEndingBlocks = string.Equals(normalizedTriggerId, levelCompletionTriggerId, StringComparison.Ordinal);
+        var blocks = activeDialoguePlan.GetBlocksForPhase(useEndingBlocks);
+
+        if (blocks == null)
+        {
+            return false;
+        }
+
         for (var i = 0; i < blocks.Count; i++)
         {
             var block = blocks[i];

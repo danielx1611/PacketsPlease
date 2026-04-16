@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "ManualPageData", menuName = "Gameplay/Manual Page Data")]
 public class ManualPageData : ScriptableObject
@@ -9,7 +10,11 @@ public class ManualPageData : ScriptableObject
     [SerializeField] private string pageTitle;
 
     [TextArea(4, 10)]
-    [SerializeField] private string pageBody;
+    [FormerlySerializedAs("pageBody")]
+    [SerializeField] private string leftPageBody;
+
+    [TextArea(4, 10)]
+    [SerializeField] private string rightPageBody;
 
     [Tooltip("Optional label used by designers for filtering/grouping manual pages by difficulty.")]
     [SerializeField] private string difficultyTag;
@@ -21,14 +26,9 @@ public class ManualPageData : ScriptableObject
     public int PageIndex => pageIndex;
     public string DifficultyTag => difficultyTag;
     public int UnlockThreshold => unlockThreshold;
+    public string PageTitle => pageTitle;
 
-    public string GetFormattedContent()
-    {
-        if (string.IsNullOrWhiteSpace(pageTitle))
-        {
-            return pageBody;
-        }
+    public string LeftPageBody => leftPageBody;
 
-        return $"{pageTitle}\n\n{pageBody}";
-    }
+    public string RightPageBody => rightPageBody;
 }

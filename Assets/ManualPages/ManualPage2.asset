@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pageIndex: 1
   pageTitle: The Whitelist
-  pageBody: Testing Manual page data 2
+  leftPageBody: Testing Manual page data 2
+  rightPageBody: ""
   difficultyTag: 
   unlockThreshold: 0

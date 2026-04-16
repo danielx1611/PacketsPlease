@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class GameplayManual : MonoBehaviour
 {
-    [SerializeField] private TMP_Text pageText;
+    [SerializeField] private TMP_Text pageTitleText;
+    [SerializeField] private TMP_Text leftPageText;
+    [SerializeField] private TMP_Text rightPageText;
     [SerializeField] private List<Button> tabButtons = new();
     [SerializeField] private List<ManualPageData> manualPages = new();
     [SerializeField] private int startingPageIndex;
@@ -101,10 +103,14 @@ public class GameplayManual : MonoBehaviour
 
         currentPageIndex = pageIndex;
 
-        if (pageText != null)
+        if (manualPagesByIndex.TryGetValue(pageIndex, out var pageData) && pageData != null)
         {
-            pageText.text = GetPageContent(pageIndex);
+            SetDisplayedPageContent(pageData);
+            return;
         }
+
+        Debug.LogWarning($"{nameof(GameplayManual)} has no manual page data. {BuildWarningContext(pageIndex)}", this);
+        SetDisplayedPageContent("Section not found.", string.Empty, string.Empty);
     }
 
     private void BindTabButtons()
@@ -148,11 +154,7 @@ public class GameplayManual : MonoBehaviour
     {
         if (tabButtons.Count == 0)
         {
-            if (pageText != null)
-            {
-                pageText.text = "No pages available.";
-            }
-
+            SetDisplayedPageContent("No pages available.", string.Empty, string.Empty);
             currentPageIndex = -1;
             return;
         }
@@ -174,23 +176,31 @@ public class GameplayManual : MonoBehaviour
             }
         }
 
-        if (pageText != null)
-        {
-            pageText.text = "No pages unlocked.";
-        }
-
+        SetDisplayedPageContent("No pages unlocked.", string.Empty, string.Empty);
         currentPageIndex = -1;
     }
 
-    private string GetPageContent(int pageIndex)
+    private void SetDisplayedPageContent(ManualPageData pageData)
     {
-        if (manualPagesByIndex.TryGetValue(pageIndex, out var pageData) && pageData != null)
+        SetDisplayedPageContent(pageData.PageTitle, pageData.LeftPageBody, pageData.RightPageBody);
+    }
+
+    private void SetDisplayedPageContent(string title, string leftBody, string rightBody)
+    {
+        if (pageTitleText != null)
         {
-            return pageData.GetFormattedContent();
+            pageTitleText.text = title;
         }
 
-        Debug.LogWarning($"{nameof(GameplayManual)} has no manual page data. {BuildWarningContext(pageIndex)}", this);
-        return "Section not found.";
+        if (leftPageText != null)
+        {
+            leftPageText.text = leftBody;
+        }
+
+        if (rightPageText != null)
+        {
+            rightPageText.text = rightBody;
+        }
     }
 
     private void RebuildManualPageLookup()

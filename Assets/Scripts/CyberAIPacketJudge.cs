@@ -11,7 +11,6 @@ public class CyberAIPacketJudge : MonoBehaviour
     {
         public bool requestSucceeded;
         public string wrongReason;
-        public string realityReason;
         public string rawResponse;
     }
 
@@ -69,8 +68,7 @@ public class CyberAIPacketJudge : MonoBehaviour
             onCompleted?.Invoke(new CyberDecisionFeedback
             {
                 requestSucceeded = false,
-                wrongReason = "AI explanation disabled for this build.",
-                realityReason = string.Empty
+                wrongReason = "AI explanation disabled for this build."
             });
             yield break;
         }
@@ -88,7 +86,7 @@ public class CyberAIPacketJudge : MonoBehaviour
             $"Packet payload: {packetPayload}\n" +
             $"Player decision: {playerDecision}\n" +
             $"Ground truth: {groundTruth}\n\n" +
-            "Return JSON only with keys wrongReason and realityReason.";
+            "Return JSON only with key wrongReason.";
 
         var requestPayload = new ChatCompletionRequest
         {
@@ -131,8 +129,7 @@ public class CyberAIPacketJudge : MonoBehaviour
             return new CyberDecisionFeedback
             {
                 requestSucceeded = false,
-                wrongReason = "You accepted a packet that matched suspicious traffic patterns.",
-                realityReason = "This packet was suspicious because it should have been quarantined, not allowed through."
+                wrongReason = "You accepted a packet that matched suspicious traffic patterns."
             };
         }
 
@@ -141,18 +138,14 @@ public class CyberAIPacketJudge : MonoBehaviour
             return new CyberDecisionFeedback
             {
                 requestSucceeded = false,
-                wrongReason = "You rejected a packet that did not show threat indicators.",
-                realityReason = "This packet was safe because its behavior looked normal and should have been allowed."
+                wrongReason = "You rejected a packet that did not show threat indicators."
             };
         }
 
         return new CyberDecisionFeedback
         {
             requestSucceeded = false,
-            wrongReason = "The decision was mismatched with packet risk.",
-            realityReason = actuallySuspicious
-                ? "The packet was suspicious and should be blocked."
-                : "The packet was safe and should be accepted."
+            wrongReason = "The decision was mismatched with packet risk."
         };
     }
 
@@ -192,7 +185,7 @@ public class CyberAIPacketJudge : MonoBehaviour
 
             feedback.requestSucceeded = true;
             feedback.rawResponse = responseBody;
-            if (string.IsNullOrWhiteSpace(feedback.wrongReason) || string.IsNullOrWhiteSpace(feedback.realityReason))
+            if (string.IsNullOrWhiteSpace(feedback.wrongReason))
             {
                 return fallback;
             }

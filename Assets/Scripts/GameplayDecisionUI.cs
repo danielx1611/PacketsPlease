@@ -148,7 +148,7 @@ public class GameplayDecisionUI : MonoBehaviour
         }
     }
 
-    public void ShowDecisionFeedback(string wrongReason, string realityReason)
+    public void ShowDecisionFeedback(string wrongReason)
     {
         EnsureDecisionFeedbackPopupReferences();
         if (decisionFeedbackPopupRoot == null)
@@ -164,15 +164,7 @@ public class GameplayDecisionUI : MonoBehaviour
 
         if (decisionFeedbackBodyText != null)
         {
-            if (string.IsNullOrWhiteSpace(realityReason))
-            {
-                decisionFeedbackBodyText.text = wrongReason;
-            }
-            else
-            {
-                decisionFeedbackBodyText.text =
-                    $"Why this was incorrect:\n{wrongReason}\n\nReality check:\n{realityReason}";
-            }
+            decisionFeedbackBodyText.text = $"Why this is wrong:\n{wrongReason}";
         }
 
         if (decisionFeedbackLoadingText != null)

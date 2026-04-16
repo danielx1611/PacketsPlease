@@ -741,7 +741,7 @@ public class GameplayManager : MonoBehaviour
                     return;
                 }
 
-                gameplayDecisionUI.ShowDecisionFeedback(feedback.wrongReason, feedback.realityReason);
+                gameplayDecisionUI.ShowDecisionFeedback(feedback.wrongReason);
             }));
     }
 
@@ -780,14 +780,12 @@ public class GameplayManager : MonoBehaviour
         if (playerAccepted && actuallySuspicious)
         {
             gameplayDecisionUI.ShowDecisionFeedback(
-                "You accepted traffic that matched suspicious indicators.",
-                "The packet was suspicious, so the safer decision was to reject it.");
+                "You accepted traffic that matched suspicious indicators.");
             return;
         }
 
         gameplayDecisionUI.ShowDecisionFeedback(
-            "You rejected traffic that lacked suspicious indicators.",
-            "The packet was safe, so the better decision was to accept it.");
+            "You rejected traffic that lacked suspicious indicators.");
     }
 
     private void ApplyDifficultySettings(LevelConfig config)

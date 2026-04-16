@@ -88,6 +88,8 @@ public class GameplayManager : MonoBehaviour
     private readonly Dictionary<string, LevelDialoguePlan.DialogueBlock> blocksById = new(StringComparer.Ordinal);
     private readonly HashSet<string> completedBlocks = new(StringComparer.Ordinal);
     private readonly HashSet<string> startedBlocks = new(StringComparer.Ordinal);
+    private readonly HashSet<string> activeTutorialAllowedInteractions = new(StringComparer.Ordinal);
+    private readonly HashSet<string> completedTutorialInteractions = new(StringComparer.Ordinal);
 
     private int completedInspections;
     private bool decisionReceived;
@@ -95,9 +97,14 @@ public class GameplayManager : MonoBehaviour
     private bool levelWinConditionsMet;
     private string activeDialogueBlockId;
     private LevelDialoguePlan activeDialoguePlan;
+    private InspectButton[] inspectButtons = Array.Empty<InspectButton>();
+    private bool tutorialInteractionLockActive;
+    private int tutorialInteractionsRequired;
+    private int tutorialInteractionProgress;
 
     private void OnEnable()
     {
+        CacheInspectButtons();
         SubscribeToEvents();
     }
 
@@ -146,6 +153,7 @@ public class GameplayManager : MonoBehaviour
         ApplyDifficultySettings(config);
         ApplyManualUnlocks(config);
         InitializeDialoguePlan(config.dialoguePlan);
+        ClearTutorialInteractionLock();
         trainController?.ResetForLevelStart();
         trainController?.HandleTrigger(string.Empty);
         gameplayDecisionUI?.ConfigureTrainSelection(trainController != null ? trainController.GetTrainCount() : 0);
@@ -297,17 +305,34 @@ public class GameplayManager : MonoBehaviour
 
     private void SubscribeToEvents()
     {
+        if (characterDialogueUI != null)
+        {
+            characterDialogueUI.OnTutorialInteractionRequested += HandleTutorialInteractionRequested;
+            characterDialogueUI.OnTutorialInteractionCompleted += HandleTutorialInteractionCompleted;
+        }
+
         if (gameplayDecisionUI == null)
         {
+            SubscribeToInspectButtons();
             return;
         }
 
         gameplayDecisionUI.OnAcceptTrainRequested += HandleAcceptTrainRequested;
         gameplayDecisionUI.OnRejectTrainRequested += HandleRejectTrainRequested;
+        gameplayDecisionUI.OnTutorialInteractionPerformed += HandleTutorialInteractionPerformed;
+        SubscribeToInspectButtons();
     }
 
     private void UnsubscribeFromEvents()
     {
+        if (characterDialogueUI != null)
+        {
+            characterDialogueUI.OnTutorialInteractionRequested -= HandleTutorialInteractionRequested;
+            characterDialogueUI.OnTutorialInteractionCompleted -= HandleTutorialInteractionCompleted;
+        }
+
+        UnsubscribeFromInspectButtons();
+
         if (gameplayDecisionUI == null)
         {
             return;
@@ -315,6 +340,7 @@ public class GameplayManager : MonoBehaviour
 
         gameplayDecisionUI.OnAcceptTrainRequested -= HandleAcceptTrainRequested;
         gameplayDecisionUI.OnRejectTrainRequested -= HandleRejectTrainRequested;
+        gameplayDecisionUI.OnTutorialInteractionPerformed -= HandleTutorialInteractionPerformed;
     }
 
     private void HandleAcceptTrainRequested(IReadOnlyList<int> selectedTrainIndices)
@@ -503,6 +529,7 @@ public class GameplayManager : MonoBehaviour
         latestDecision = RequiredDecision.None;
         levelWinConditionsMet = false;
         activeDialogueBlockId = null;
+        ClearTutorialInteractionLock();
     }
 
     private void ApplyDifficultySettings(LevelConfig config)
@@ -546,5 +573,120 @@ public class GameplayManager : MonoBehaviour
     private void SetState(GameState nextState)
     {
         CurrentState = nextState;
+    }
+
+    private void HandleTutorialInteractionRequested(CharacterDialogueUI.TutorialInteractionRequest request)
+    {
+        activeTutorialAllowedInteractions.Clear();
+        completedTutorialInteractions.Clear();
+        tutorialInteractionProgress = 0;
+        tutorialInteractionsRequired = request != null ? Mathf.Max(1, request.RequiredInteractionCount) : 1;
+
+        if (request?.AllowedInteractionIds != null)
+        {
+            for (var i = 0; i < request.AllowedInteractionIds.Count; i++)
+            {
+                var interactionId = request.AllowedInteractionIds[i];
+                if (!string.IsNullOrWhiteSpace(interactionId))
+                {
+                    activeTutorialAllowedInteractions.Add(interactionId.Trim());
+                }
+            }
+        }
+
+        tutorialInteractionLockActive = activeTutorialAllowedInteractions.Count > 0;
+        ApplyTutorialInteractionLockState();
+
+        if (!tutorialInteractionLockActive)
+        {
+            CompleteTutorialInteractionStep();
+        }
+    }
+
+    private void HandleTutorialInteractionCompleted()
+    {
+        ClearTutorialInteractionLock();
+    }
+
+    private void HandleTutorialInteractionPerformed(string interactionId)
+    {
+        if (!tutorialInteractionLockActive || string.IsNullOrWhiteSpace(interactionId))
+        {
+            return;
+        }
+
+        if (!activeTutorialAllowedInteractions.Contains(interactionId))
+        {
+            return;
+        }
+
+        if (completedTutorialInteractions.Add(interactionId))
+        {
+            tutorialInteractionProgress++;
+        }
+
+        if (tutorialInteractionProgress >= tutorialInteractionsRequired)
+        {
+            CompleteTutorialInteractionStep();
+        }
+    }
+
+    private void CompleteTutorialInteractionStep()
+    {
+        characterDialogueUI?.ResumeAfterTutorialInteraction();
+    }
+
+    private void ApplyTutorialInteractionLockState()
+    {
+        gameplayDecisionUI?.SetTutorialInteractionLock(tutorialInteractionLockActive, activeTutorialAllowedInteractions);
+
+        for (var i = 0; i < inspectButtons.Length; i++)
+        {
+            var inspectButton = inspectButtons[i];
+            if (inspectButton == null)
+            {
+                continue;
+            }
+
+            var isAllowed = !tutorialInteractionLockActive || activeTutorialAllowedInteractions.Contains("train_compartment");
+            inspectButton.SetTutorialInteractionAllowed(tutorialInteractionLockActive, isAllowed);
+        }
+    }
+
+    private void ClearTutorialInteractionLock()
+    {
+        tutorialInteractionLockActive = false;
+        tutorialInteractionsRequired = 0;
+        tutorialInteractionProgress = 0;
+        activeTutorialAllowedInteractions.Clear();
+        completedTutorialInteractions.Clear();
+        ApplyTutorialInteractionLockState();
+    }
+
+    private void CacheInspectButtons()
+    {
+        inspectButtons = FindObjectsByType<InspectButton>(FindObjectsSortMode.None);
+    }
+
+    private void SubscribeToInspectButtons()
+    {
+        for (var i = 0; i < inspectButtons.Length; i++)
+        {
+            if (inspectButtons[i] != null)
+            {
+                inspectButtons[i].OnTutorialInteractionPerformed += HandleTutorialInteractionPerformed;
+            }
+        }
+    }
+
+    private void UnsubscribeFromInspectButtons()
+    {
+        for (var i = 0; i < inspectButtons.Length; i++)
+        {
+            if (inspectButtons[i] != null)
+            {
+                inspectButtons[i].OnTutorialInteractionPerformed -= HandleTutorialInteractionPerformed;
+            }
+        }
     }
 }

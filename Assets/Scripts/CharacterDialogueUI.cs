@@ -1,10 +1,23 @@
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CharacterDialogueUI : MonoBehaviour
 {
+    public class TutorialInteractionRequest
+    {
+        public IReadOnlyList<string> AllowedInteractionIds { get; }
+        public int RequiredInteractionCount { get; }
+
+        public TutorialInteractionRequest(IReadOnlyList<string> allowedInteractionIds, int requiredInteractionCount)
+        {
+            AllowedInteractionIds = allowedInteractionIds;
+            RequiredInteractionCount = Mathf.Max(1, requiredInteractionCount);
+        }
+    }
+
     [Header("UI References")]
     [SerializeField] private GameObject rootContainer;
     [SerializeField] private Image portraitImage;
@@ -25,6 +38,11 @@ public class CharacterDialogueUI : MonoBehaviour
     private float currentLettersPerSecond;
     private DialogueSequence activeSequence;
     private int activeSequenceLineIndex;
+    private DialogueLine activeLine;
+    private bool isWaitingForTutorialInteraction;
+
+    public event System.Action<TutorialInteractionRequest> OnTutorialInteractionRequested;
+    public event System.Action OnTutorialInteractionCompleted;
 
     public bool IsRevealing { get; private set; }
     public bool IsVisible => rootContainer != null && rootContainer.activeSelf;
@@ -64,20 +82,18 @@ public class CharacterDialogueUI : MonoBehaviour
             return;
         }
 
+        if (isWaitingForTutorialInteraction)
+        {
+            return;
+        }
+
         AdvanceDialogue();
     }
 
     public void ShowDialogue(DialogueLine line)
     {
         ResetSequenceProgress();
-
-        if (line == null)
-        {
-            ShowDialogue(string.Empty);
-            return;
-        }
-
-        ShowDialogue(line.text, line.portrait, line.speakerName, line.useCustomRevealSpeed, line.revealLettersPerSecond);
+        ShowDialogueLine(line);
     }
 
     public void ShowDialogue(DialogueSequence sequence, int lineIndex = 0)
@@ -97,7 +113,20 @@ public class CharacterDialogueUI : MonoBehaviour
     public void ShowDialogue(string text, Sprite portrait = null, string speakerName = null)
     {
         ResetSequenceProgress();
+        activeLine = null;
         ShowDialogue(text, portrait, speakerName, false, lettersPerSecond);
+    }
+
+    public void ResumeAfterTutorialInteraction()
+    {
+        if (!isWaitingForTutorialInteraction)
+        {
+            return;
+        }
+
+        isWaitingForTutorialInteraction = false;
+        OnTutorialInteractionCompleted?.Invoke();
+        AdvanceDialogue();
     }
 
     private void ShowDialogue(string text, Sprite portrait, string speakerName, bool useCustomRevealSpeed, float lineRevealSpeed)
@@ -143,6 +172,7 @@ public class CharacterDialogueUI : MonoBehaviour
         IsRevealing = false;
         hasAcceleratedReveal = false;
         skipToEndRequested = false;
+        isWaitingForTutorialInteraction = false;
         currentFullText = string.Empty;
         currentLettersPerSecond = lettersPerSecond;
         ResetSequenceProgress();
@@ -188,6 +218,13 @@ public class CharacterDialogueUI : MonoBehaviour
         hasAcceleratedReveal = false;
         skipToEndRequested = false;
         revealCoroutine = null;
+
+        if (TryRequestTutorialInteraction())
+        {
+            SetContinueHintVisible(false);
+            yield break;
+        }
+
         SetContinueHintVisible(true);
     }
 
@@ -229,6 +266,18 @@ public class CharacterDialogueUI : MonoBehaviour
         }
 
         var line = activeSequence.GetLine(activeSequenceLineIndex);
+        ShowDialogueLine(line);
+    }
+
+    private void ResetSequenceProgress()
+    {
+        activeSequence = null;
+        activeSequenceLineIndex = 0;
+    }
+
+    private void ShowDialogueLine(DialogueLine line)
+    {
+        activeLine = line;
         if (line == null)
         {
             HideDialogue();
@@ -238,10 +287,18 @@ public class CharacterDialogueUI : MonoBehaviour
         ShowDialogue(line.text, line.portrait, line.speakerName, line.useCustomRevealSpeed, line.revealLettersPerSecond);
     }
 
-    private void ResetSequenceProgress()
+    private bool TryRequestTutorialInteraction()
     {
-        activeSequence = null;
-        activeSequenceLineIndex = 0;
+        var requirement = activeLine?.interactionRequirement;
+        if (requirement == null || !requirement.enabled)
+        {
+            isWaitingForTutorialInteraction = false;
+            return false;
+        }
+
+        isWaitingForTutorialInteraction = true;
+        OnTutorialInteractionRequested?.Invoke(new TutorialInteractionRequest(requirement.allowedInteractionIds, requirement.requiredInteractionCount));
+        return true;
     }
 
     private void SetContinueHintVisible(bool isVisible)

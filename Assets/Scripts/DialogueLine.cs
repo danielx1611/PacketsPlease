@@ -1,8 +1,23 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class DialogueLine
 {
+    [System.Serializable]
+    public class InteractionRequirement
+    {
+        [Tooltip("If enabled, dialogue pauses after this line until the required tutorial interactions are performed.")]
+        public bool enabled;
+
+        [Tooltip("Interaction ids allowed while this requirement is active (for example: 'manual_toggle' or 'train_compartment').")]
+        public List<string> allowedInteractionIds = new();
+
+        [Min(1)]
+        [Tooltip("How many valid interactions are required before dialogue continues.")]
+        public int requiredInteractionCount = 1;
+    }
+
     [TextArea]
     public string text;
 
@@ -15,6 +30,9 @@ public class DialogueLine
     [Min(0f)]
     [Tooltip("Characters revealed per second when using a custom reveal speed.")]
     public float revealLettersPerSecond = 30f;
+
+    [Header("Tutorial Interaction")]
+    public InteractionRequirement interactionRequirement = new();
 
     public DialogueLine(string text, Sprite portrait = null, string speakerName = null)
     {

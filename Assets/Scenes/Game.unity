@@ -815,7 +815,7 @@ MonoBehaviour:
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
       compartmentData:
       - compartment: {fileID: 551808148}
         payload: 'GET /api/products?category=electronics&sort=price&order=asc&page=2
@@ -827,11 +827,11 @@ MonoBehaviour:
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
       compartmentData:
       - compartment: {fileID: 551808148}
-        payload: 'POST /api/login HTTP/1.1\nHost: example.com\nContent-Type: application/json\n{\n 
-          \"username\": \"jsmith\",\n  \"password\": \"Tr0ub4dor&3\"\n}'
+        payload: 'POST /api/login HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
+          \"username\": \"admin'' OR ''1''=''1'' --\",\n  \"password\": \"anything\"\n}'
 --- !u!4 &410981257
 Transform:
   m_ObjectHideFlags: 0

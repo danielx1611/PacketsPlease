@@ -398,6 +398,8 @@ MonoBehaviour:
   initialLevelIndex: 0
   globalDifficultyMultiplier: 1
   winSceneName: YouWinScreen
+  loseSceneName: YouLoseScreen
+  maxLives: 3
   levels:
   - levelId: 1
     difficultyPreset: 0
@@ -444,6 +446,40 @@ MonoBehaviour:
       - compartment: {fileID: 551808148}
         payload: 'POST /api/login HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
           \"username\": \"admin'' OR ''1''=''1'' --\",\n  \"password\": \"anything\"\n}'
+    - triggerId: train_wave_4
+      isSuspicious: 0
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentData:
+      - compartment: {fileID: 551808148}
+        payload: 'POST /api/comments HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
+          \"post_id\": 42,\n  \"body\": \"Great article! Really helped me understand
+          the topic.\",\n  \"author\": \"alice\"\n}'
+    - triggerId: train_wave_5
+      isSuspicious: 1
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentData:
+      - compartment: {fileID: 551808148}
+        payload: 'GET /api/products?id=42 UNION SELECT username,password,NULL FROM
+          users-- HTTP/1.1\nHost: example.com\nAccept: application/json'
+    - triggerId: train_wave_6
+      isSuspicious: 1
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentData:
+      - compartment: {fileID: 551808148}
+        payload: 'POST /api/ping HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
+          \"host\": \"8.8.8.8; cat /etc/passwd\"\n}'
 --- !u!4 &410981257
 Transform:
   m_ObjectHideFlags: 0

@@ -595,6 +595,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1045951633048718890, guid: 75c3b8f50f51f9a43ac037badcd8db01, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045951633048718890, guid: 75c3b8f50f51f9a43ac037badcd8db01, type: 3}
+      propertyPath: m_fontStyle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1045951633048718890, guid: 75c3b8f50f51f9a43ac037badcd8db01, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729801110835433092, guid: 75c3b8f50f51f9a43ac037badcd8db01, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832973831033717007, guid: 75c3b8f50f51f9a43ac037badcd8db01, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832973831033717007, guid: 75c3b8f50f51f9a43ac037badcd8db01, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5832973831033717007, guid: 75c3b8f50f51f9a43ac037badcd8db01, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -80
+      objectReference: {fileID: 0}
     - target: {fileID: 7701273690655094533, guid: 75c3b8f50f51f9a43ac037badcd8db01, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

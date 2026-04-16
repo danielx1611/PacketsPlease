@@ -32,10 +32,10 @@ MonoBehaviour:
     POST /api/register HTTP/1.1\nHost: example.com\nContent-Type:
     application/json\n{\n  \"username\": \"mjohnson\",\n  \"email\": \"mjohnson@example.com\",\n 
     \"password\": \"S3cur3P@ssw0rd!\"\n}'
-  rightPageBody: '#GET requests
+  rightPageBody: 'GET requests
 
-    A GET request is used to retrieve data from
-    the server, with parameters typically included in the URL query string. To evaluate
+    A GET request is used to retrieve data from the
+    server, with parameters typically included in the URL query string. To evaluate
     safety, the user should examine the query parameters, since these are often user-controlled,
     and check for suspicious additions like SQL keywords (UNION, SELECT), encoded
     characters (%60, %3B), or attempts to manipulate file paths (../). Safe GET requests

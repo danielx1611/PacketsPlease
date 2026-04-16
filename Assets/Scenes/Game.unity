@@ -821,7 +821,7 @@ MonoBehaviour:
         payload: 'GET /api/products?category=electronics&sort=price&order=asc&page=2
           HTTP/1.1\nHost: example.com\nAccept: application/json\nAuthorization: Bearer
           eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzIn0.SflKxw'
-    - triggerId: 
+    - triggerId: train_wave_3
       isSuspicious: 1
       triggerFollowingWaveInList: 1
       trainIndices: 00000000

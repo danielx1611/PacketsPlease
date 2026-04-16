@@ -75,6 +75,10 @@ public class GameplayManager : MonoBehaviour
     {
         [Tooltip("Trigger id required to run this wave. Leave empty to run as a default sequential wave.")]
         public string triggerId;
+        [Tooltip("Marks this entire wave as suspicious. Accepting this wave will log a warning.")]
+        public bool isSuspicious;
+        [Tooltip("If enabled, this wave will trigger the very next configured wave when resolved.")]
+        public bool triggerFollowingWaveInList;
         public List<int> trainIndices = new();
         public bool startAllSelectedTrainsAtOnce = true;
         [Min(0f)] public float delayBeforeWaveStarts;
@@ -125,6 +129,7 @@ public class GameplayManager : MonoBehaviour
     private int tutorialInteractionsRequired;
     private int tutorialInteractionProgress;
     private int currentTrainWaveIndex;
+    private TrainWaveConfig activeTrainWave;
 
     private void OnEnable()
     {
@@ -181,6 +186,7 @@ public class GameplayManager : MonoBehaviour
         ClearTutorialInteractionLock();
         trainController?.ResetForLevelStart();
         currentTrainWaveIndex = 0;
+        activeTrainWave = null;
         TryStartNextTrainWaveForTrigger(string.Empty);
 
         if (!TryStartAutoDialogueForTrigger(string.Empty))
@@ -386,12 +392,26 @@ public class GameplayManager : MonoBehaviour
         gameplayDecisionUI?.ResolveSelectedTrains(selectedTrainIndices);
         decisionReceived = true;
         latestDecision = RequiredDecision.Accept;
+
+        if (activeTrainWave != null && activeTrainWave.isSuspicious)
+        {
+            Debug.LogWarning("A suspicious train wave was accepted.", this);
+        }
+
         if (CurrentState == GameState.PlayerAction)
         {
             SetState(GameState.AwaitingTrigger);
         }
 
-        TryStartNextTrainWaveForTrigger(string.Empty);
+        if (activeTrainWave != null && activeTrainWave.triggerFollowingWaveInList)
+        {
+            TryStartFollowingTrainWave();
+        }
+        else
+        {
+            TryStartNextTrainWaveForTrigger(string.Empty);
+        }
+
         EvaluateLevelProgression();
     }
 
@@ -416,7 +436,15 @@ public class GameplayManager : MonoBehaviour
             SetState(GameState.AwaitingTrigger);
         }
 
-        TryStartNextTrainWaveForTrigger(string.Empty);
+        if (activeTrainWave != null && activeTrainWave.triggerFollowingWaveInList)
+        {
+            TryStartFollowingTrainWave();
+        }
+        else
+        {
+            TryStartNextTrainWaveForTrigger(string.Empty);
+        }
+
         EvaluateLevelProgression();
     }
 
@@ -652,6 +680,7 @@ public class GameplayManager : MonoBehaviour
 
     private void ApplyTrainWave(TrainWaveConfig wave)
     {
+        activeTrainWave = wave;
         var trainCount = trainController != null ? trainController.GetTrainCount() : 0;
         var selectedIndices = GetValidTrainIndices(wave.trainIndices, trainCount);
         if (selectedIndices.Count == 0)
@@ -663,6 +692,33 @@ public class GameplayManager : MonoBehaviour
         trainController.SetVisibleTrains(selectedIndices);
         gameplayDecisionUI?.ConfigureTrainSelection(trainCount, selectedIndices);
         StartCoroutine(RunTrainWaveAfterDelay(wave, selectedIndices));
+    }
+
+    private void TryStartFollowingTrainWave()
+    {
+        if (trainController == null || !TryGetLevel(CurrentLevelIndex, out var config))
+        {
+            return;
+        }
+
+        var waves = config.trainWaves;
+        if (waves == null || waves.Count == 0)
+        {
+            return;
+        }
+
+        for (var i = currentTrainWaveIndex; i < waves.Count; i++)
+        {
+            var wave = waves[i];
+            if (wave == null)
+            {
+                continue;
+            }
+
+            currentTrainWaveIndex = i + 1;
+            ApplyTrainWave(wave);
+            return;
+        }
     }
 
     private System.Collections.IEnumerator RunTrainWaveAfterDelay(TrainWaveConfig wave, List<int> selectedIndices)

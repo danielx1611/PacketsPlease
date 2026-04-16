@@ -8,16 +8,12 @@ public class TrainInspectable : MonoBehaviour
     public string description;
 
     [Header("Gameplay")]
-    public bool isSuspicious;
-    public string suspiciousReason;
     public string payload;
 
-    public void SetPayloadData(string newComponentName, string newDescription, bool newIsSuspicious, string newSuspiciousReason)
+    public void SetPayloadData(string newComponentName, string newDescription)
     {
         componentName = newComponentName;
         description = newDescription;
-        isSuspicious = newIsSuspicious;
-        suspiciousReason = newSuspiciousReason;
     }
 
     public void SetPayload(string newPayload)
@@ -30,9 +26,6 @@ public class TrainInspectable : MonoBehaviour
         var payloadText = string.IsNullOrWhiteSpace(payload)
             ? string.Empty
             : $"Payload: {payload}\n\n";
-
-        if (isSuspicious && !string.IsNullOrEmpty(suspiciousReason))
-            return payloadText + description + "\n\nSuspicious: " + suspiciousReason;
 
         return payloadText + description;
     }

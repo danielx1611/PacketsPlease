@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Level1IntroBeforeTrainSequence
   m_EditorClassIdentifier: 
   lines:
-  - text: part 1
-    speakerName: Guide
+  - text: So you're the new hire in town huh? Welcome to RouterCo, where we route
+      information between towns and make sure it's safe for our company.
+    speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0
     revealLettersPerSecond: 0
@@ -22,8 +23,46 @@ MonoBehaviour:
       enabled: 0
       allowedInteractionIds: []
       requiredInteractionCount: 1
-  - text: part 2
-    speakerName: Guide
+  - text: Now buckle up 'cause I'm only gonna say this once.
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: 'We''ve got scheduled trains coming in with lots of different info. You''ll
+      have to let ''em pass or send ''em back based on what we''re expecting. '
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: I'll show you the ropes for today, but afterwards you're on your own!
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: 'When a train comes in you need to check two things for each type of request:
+      the type of request and the user input'
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: Here comes the train now, pay attention.
+    speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0
     revealLettersPerSecond: 0

@@ -24,12 +24,6 @@ MonoBehaviour:
     startingLineIndex: 0
     triggerId: train_wave_1
     autoStart: 1
-    completionTriggerId: train_arrived
-  - blockId: level1_open_train_compartment
-    sequence: {fileID: 11400000, guid: c2740da96eaa4c140b7e9d5b84b4c27d, type: 2}
-    startingLineIndex: 0
-    triggerId: train_arrived
-    autoStart: 1
     completionTriggerId: 
   endingDialogueBlocks:
   - blockId: level1_ending

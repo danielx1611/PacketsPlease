@@ -222,7 +222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &10152728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -259,6 +259,7 @@ MonoBehaviour:
   description: 
   isSuspicious: 0
   suspiciousReason: 
+  payload: 
 --- !u!1 &57132163
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +799,25 @@ MonoBehaviour:
       requiredInspectionsComplete: 0
       requiresDecision: 0
       requiredDecision: 0
+    trainWaves:
+    - triggerId: train_wave_1
+      trainIndices: 
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
+      compartmentData:
+      - compartment: {fileID: 551808148}
+        payload: 'POST /api/login HTTP/1.1\nHost: example.com\nContent-Type: application/json\n{\n 
+          \"username\": \"jsmith\",\n  \"password\": \"Tr0ub4dor&3\"\n}'
+    - triggerId: train_wave_2
+      trainIndices: 
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
+      compartmentData:
+      - compartment: {fileID: 551808148}
+        payload: 'POST /api/login HTTP/1.1\nHost: example.com\nContent-Type: application/json\n{\n 
+          \"username\": \"jsmith\",\n  \"password\": \"Tr0ub4dor&3\"\n}'
 --- !u!4 &410981257
 Transform:
   m_ObjectHideFlags: 0
@@ -1177,6 +1197,7 @@ MonoBehaviour:
   description: 
   isSuspicious: 0
   suspiciousReason: 
+  payload: 
 --- !u!1 &582382320
 GameObject:
   m_ObjectHideFlags: 0
@@ -10189,7 +10210,6 @@ MonoBehaviour:
     offScreenLeftX: -1000
     onScreenX: 0
     offScreenRightX: 1800
-    payloadData: []
   speedProfile:
     farRange: 1000
     nearRange: 150
@@ -10198,12 +10218,6 @@ MonoBehaviour:
     nearSpeed: 150
   delayBetweenTrains: 0.15
   autoRunOnStart: 0
-  triggeredTrainSets:
-  - triggerId: train_wave_1
-    trainIndices: 00000000
-    startAllSelectedTrainsAtOnce: 1
-    delayBeforeSetStarts: 0
-    snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
 --- !u!1 &794318295
 GameObject:
   m_ObjectHideFlags: 0
@@ -12352,7 +12366,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1626612989
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12389,6 +12403,7 @@ MonoBehaviour:
   description: 
   isSuspicious: 0
   suspiciousReason: 
+  payload: 
 --- !u!1 &1757695465
 GameObject:
   m_ObjectHideFlags: 0
@@ -12629,7 +12644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1947682774
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12666,6 +12681,7 @@ MonoBehaviour:
   description: 
   isSuspicious: 0
   suspiciousReason: 
+  payload: 
 --- !u!1 &2057400198
 GameObject:
   m_ObjectHideFlags: 0
@@ -13122,7 +13138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000000000000000010, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000000000000000043, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_IsActive

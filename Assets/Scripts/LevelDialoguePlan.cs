@@ -21,6 +21,9 @@ public class LevelDialoguePlan : ScriptableObject
 
         [Tooltip("If enabled, the block will auto-start when its trigger is resumed. For empty trigger ids, this starts at level begin.")]
         public bool autoStart = true;
+
+        [Tooltip("Optional trigger id emitted when this block finishes.")]
+        public string completionTriggerId;
     }
 
     [SerializeField] private List<DialogueBlock> dialogueBlocks = new();

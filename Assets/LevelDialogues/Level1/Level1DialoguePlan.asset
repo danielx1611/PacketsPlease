@@ -18,3 +18,4 @@ MonoBehaviour:
     startingLineIndex: 0
     triggerId: 
     autoStart: 1
+    completionTriggerId: train_wave_1

@@ -10197,6 +10197,12 @@ MonoBehaviour:
     nearSpeed: 150
   delayBetweenTrains: 0.15
   autoRunOnStart: 0
+  triggeredTrainSets:
+  - triggerId: train_wave_1
+    trainIndices: 00000000
+    startAllSelectedTrainsAtOnce: 1
+    delayBeforeSetStarts: 0
+    snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
 --- !u!1 &794318295
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,6 +49,24 @@ public class TrainController : MonoBehaviour
         }
     }
 
+    [Serializable]
+    public class TriggeredTrainSet
+    {
+        [Tooltip("Trigger id required to run this train set. Leave empty to run at level start.")]
+        [SerializeField] private string triggerId;
+        [SerializeField] private List<int> trainIndices = new();
+        [SerializeField] private bool startAllSelectedTrainsAtOnce = true;
+        [Min(0f)]
+        [SerializeField] private float delayBeforeSetStarts;
+        [SerializeField] private bool snapSelectedTrainsToOffScreenLeftBeforeEntry = true;
+
+        public string TriggerId => triggerId;
+        public IReadOnlyList<int> TrainIndices => trainIndices;
+        public bool StartAllSelectedTrainsAtOnce => startAllSelectedTrainsAtOnce;
+        public float DelayBeforeSetStarts => delayBeforeSetStarts;
+        public bool SnapSelectedTrainsToOffScreenLeftBeforeEntry => snapSelectedTrainsToOffScreenLeftBeforeEntry;
+    }
+
     private enum TrainDestination
     {
         OnScreen,
@@ -97,6 +115,8 @@ public class TrainController : MonoBehaviour
     [SerializeField] private TrainSpeedProfile speedProfile = new();
     [SerializeField] private float delayBetweenTrains = 0.15f;
     [SerializeField] private bool autoRunOnStart;
+    [Header("Triggered Entry Sets")]
+    [SerializeField] private List<TriggeredTrainSet> triggeredTrainSets = new();
 
     public bool IsTrainMoving { get; private set; }
 
@@ -104,28 +124,71 @@ public class TrainController : MonoBehaviour
 
     private int activeTrainMovements;
     private bool[] activeTrainMask = Array.Empty<bool>();
+    private Coroutine triggerDrivenEntryRoutine;
 
     private void Start()
     {
         EnsureDefaultTrainConfig();
-        SnapAllToOffScreenLeft();
-        ApplyAllPayloadData();
+        ResetForLevelStart();
 
         if (autoRunOnStart)
         {
-            BeginTrainEntry();
+            HandleTrigger(string.Empty);
         }
+    }
+
+    public void ResetForLevelStart()
+    {
+        StopAllCoroutines();
+        triggerDrivenEntryRoutine = null;
+        activeTrainMovements = 0;
+        SetTrainMoving(false);
+        EnsureDefaultTrainConfig();
+        SnapAllToOffScreenLeft();
+        ApplyAllPayloadData();
+        ResetActiveTrainMask(false);
+    }
+
+    public void HandleTrigger(string triggerId)
+    {
+        EnsureDefaultTrainConfig();
+        if (triggerDrivenEntryRoutine != null)
+        {
+            StopCoroutine(triggerDrivenEntryRoutine);
+        }
+
+        triggerDrivenEntryRoutine = StartCoroutine(RunTriggeredTrainSets(triggerId));
     }
 
     public void BeginTrainEntry()
     {
+        BeginTrainEntry(GetAllTrainIndices(), resetActiveMask: true, moveAllAtOnce: false);
+    }
+
+    public void BeginTrainEntry(
+        IReadOnlyList<int> selectedTrainIndices,
+        bool resetActiveMask = false,
+        bool moveAllAtOnce = false,
+        bool snapToLeftBeforeMove = true)
+    {
         EnsureDefaultTrainConfig();
         StopAllCoroutines();
+        triggerDrivenEntryRoutine = null;
         activeTrainMovements = 0;
         SetTrainMoving(false);
         ApplyAllPayloadData();
-        ResetActiveTrainMask();
-        StartCoroutine(MoveTrainsWithDelay(TrainDestination.OnScreen, snapToLeftBeforeMove: true));
+
+        if (resetActiveMask)
+        {
+            ResetActiveTrainMask(false);
+        }
+
+        MarkTrainsAsActive(selectedTrainIndices);
+        StartCoroutine(MoveTrainsWithDelay(
+            TrainDestination.OnScreen,
+            snapToLeftBeforeMove: snapToLeftBeforeMove,
+            selectedTrainIndices: selectedTrainIndices,
+            moveAllAtOnce: moveAllAtOnce));
     }
 
     public void SendAcceptedTrainsOffScreen()
@@ -143,7 +206,8 @@ public class TrainController : MonoBehaviour
             TrainDestination.OffScreenRight,
             snapToLeftBeforeMove: false,
             accelerateFromStart: true,
-            selectedTrainIndices: selectedTrainIndices));
+            selectedTrainIndices: selectedTrainIndices,
+            moveAllAtOnce: false));
     }
 
     public void SendRejectedTrainsOffScreen()
@@ -161,7 +225,8 @@ public class TrainController : MonoBehaviour
             TrainDestination.OffScreenLeft,
             snapToLeftBeforeMove: false,
             accelerateFromStart: true,
-            selectedTrainIndices: selectedTrainIndices));
+            selectedTrainIndices: selectedTrainIndices,
+            moveAllAtOnce: false));
     }
 
     public int GetTrainCount()
@@ -174,7 +239,8 @@ public class TrainController : MonoBehaviour
         TrainDestination destination,
         bool snapToLeftBeforeMove,
         bool accelerateFromStart = false,
-        IReadOnlyList<int> selectedTrainIndices = null)
+        IReadOnlyList<int> selectedTrainIndices = null,
+        bool moveAllAtOnce = false)
     {
         if (trains == null || trains.Count == 0)
         {
@@ -210,10 +276,65 @@ public class TrainController : MonoBehaviour
 
             StartCoroutine(MoveSingleTrain(i, train, destination, accelerateFromStart));
 
-            if (delayBetweenTrains > 0f)
+            if (!moveAllAtOnce && delayBetweenTrains > 0f)
             {
                 yield return new WaitForSeconds(delayBetweenTrains);
             }
+        }
+    }
+
+    private System.Collections.IEnumerator RunTriggeredTrainSets(string triggerId)
+    {
+        var normalizedTrigger = triggerId?.Trim() ?? string.Empty;
+        var hasAnySetRun = false;
+        for (var i = 0; i < triggeredTrainSets.Count; i++)
+        {
+            var set = triggeredTrainSets[i];
+            if (set == null)
+            {
+                continue;
+            }
+
+            var setTriggerId = set.TriggerId?.Trim() ?? string.Empty;
+            if (!string.Equals(setTriggerId, normalizedTrigger, StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            hasAnySetRun = true;
+            if (set.DelayBeforeSetStarts > 0f)
+            {
+                yield return new WaitForSeconds(set.DelayBeforeSetStarts);
+            }
+
+            var selectedIndices = GetValidTrainIndices(set.TrainIndices);
+            if (selectedIndices.Count == 0)
+            {
+                selectedIndices = GetAllTrainIndices();
+            }
+
+            MarkTrainsAsActive(selectedIndices);
+            yield return MoveTrainsWithDelay(
+                TrainDestination.OnScreen,
+                set.SnapSelectedTrainsToOffScreenLeftBeforeEntry,
+                selectedTrainIndices: selectedIndices,
+                moveAllAtOnce: set.StartAllSelectedTrainsAtOnce);
+            yield return WaitForTrainMovementToComplete();
+        }
+
+        if (!hasAnySetRun && string.IsNullOrEmpty(normalizedTrigger) && triggeredTrainSets.Count == 0)
+        {
+            BeginTrainEntry();
+        }
+
+        triggerDrivenEntryRoutine = null;
+    }
+
+    private System.Collections.IEnumerator WaitForTrainMovementToComplete()
+    {
+        while (IsTrainMoving)
+        {
+            yield return null;
         }
     }
 
@@ -332,14 +453,73 @@ public class TrainController : MonoBehaviour
         }
     }
 
-    private void ResetActiveTrainMask()
+    private void ResetActiveTrainMask(bool defaultValue)
     {
         var count = trains?.Count ?? 0;
         activeTrainMask = new bool[count];
         for (var i = 0; i < count; i++)
         {
-            activeTrainMask[i] = true;
+            activeTrainMask[i] = defaultValue;
         }
+    }
+
+    private void MarkTrainsAsActive(IReadOnlyList<int> indices)
+    {
+        if (activeTrainMask == null || activeTrainMask.Length != (trains?.Count ?? 0))
+        {
+            ResetActiveTrainMask(false);
+        }
+
+        var validIndices = GetValidTrainIndices(indices);
+        if (validIndices.Count == 0)
+        {
+            for (var i = 0; i < activeTrainMask.Length; i++)
+            {
+                activeTrainMask[i] = true;
+            }
+
+            return;
+        }
+
+        for (var i = 0; i < validIndices.Count; i++)
+        {
+            activeTrainMask[validIndices[i]] = true;
+        }
+    }
+
+    private List<int> GetValidTrainIndices(IReadOnlyList<int> indices)
+    {
+        var validIndices = new List<int>();
+        var maxCount = trains?.Count ?? 0;
+        if (indices == null)
+        {
+            return validIndices;
+        }
+
+        for (var i = 0; i < indices.Count; i++)
+        {
+            var index = indices[i];
+            if (index < 0 || index >= maxCount || validIndices.Contains(index))
+            {
+                continue;
+            }
+
+            validIndices.Add(index);
+        }
+
+        return validIndices;
+    }
+
+    private List<int> GetAllTrainIndices()
+    {
+        var count = trains?.Count ?? 0;
+        var indices = new List<int>(count);
+        for (var i = 0; i < count; i++)
+        {
+            indices.Add(i);
+        }
+
+        return indices;
     }
 
     private List<int> GetAllActiveTrainIndices()

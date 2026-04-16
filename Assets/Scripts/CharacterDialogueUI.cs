@@ -145,6 +145,7 @@ public class CharacterDialogueUI : MonoBehaviour
         }
 
         rootContainer.SetActive(true);
+        isWaitingForTutorialInteraction = false;
 
         if (portraitImage != null)
         {

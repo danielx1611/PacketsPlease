@@ -26,9 +26,46 @@ public class LevelDialoguePlan : ScriptableObject
         public string completionTriggerId;
     }
 
-    [SerializeField] private List<DialogueBlock> dialogueBlocks = new();
+    [Header("Intro / Gameplay Dialogue")]
+    [SerializeField] private List<DialogueBlock> introDialogueBlocks = new();
 
-    public IReadOnlyList<DialogueBlock> DialogueBlocks => dialogueBlocks;
+    [Header("Ending Dialogue")]
+    [SerializeField] private List<DialogueBlock> endingDialogueBlocks = new();
+
+    public IReadOnlyList<DialogueBlock> IntroDialogueBlocks => introDialogueBlocks;
+    public IReadOnlyList<DialogueBlock> EndingDialogueBlocks => endingDialogueBlocks;
+
+    public IEnumerable<DialogueBlock> GetAllBlocks()
+    {
+        if (introDialogueBlocks != null)
+        {
+            for (var i = 0; i < introDialogueBlocks.Count; i++)
+            {
+                var block = introDialogueBlocks[i];
+                if (block != null)
+                {
+                    yield return block;
+                }
+            }
+        }
+
+        if (endingDialogueBlocks != null)
+        {
+            for (var i = 0; i < endingDialogueBlocks.Count; i++)
+            {
+                var block = endingDialogueBlocks[i];
+                if (block != null)
+                {
+                    yield return block;
+                }
+            }
+        }
+    }
+
+    public IReadOnlyList<DialogueBlock> GetBlocksForPhase(bool includeEndingBlocks)
+    {
+        return includeEndingBlocks ? EndingDialogueBlocks : IntroDialogueBlocks;
+    }
 
     public DialogueBlock GetBlock(string blockId)
     {
@@ -37,9 +74,18 @@ public class LevelDialoguePlan : ScriptableObject
             return null;
         }
 
-        for (var i = 0; i < dialogueBlocks.Count; i++)
+        for (var i = 0; i < introDialogueBlocks.Count; i++)
         {
-            var block = dialogueBlocks[i];
+            var block = introDialogueBlocks[i];
+            if (block != null && string.Equals(block.blockId, blockId, StringComparison.Ordinal))
+            {
+                return block;
+            }
+        }
+
+        for (var i = 0; i < endingDialogueBlocks.Count; i++)
+        {
+            var block = endingDialogueBlocks[i];
             if (block != null && string.Equals(block.blockId, blockId, StringComparison.Ordinal))
             {
                 return block;

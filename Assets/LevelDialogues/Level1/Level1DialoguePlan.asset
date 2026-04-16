@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac80fa7a29d743cf9669c067efa12c7b, type: 3}
   m_Name: Level1DialoguePlan
   m_EditorClassIdentifier: 
-  dialogueBlocks:
+  introDialogueBlocks:
   - blockId: level1_intro_before_train
     sequence: {fileID: 11400000, guid: ddd1113fb7be4f8ab111111111111111, type: 2}
     startingLineIndex: 0
@@ -31,6 +31,7 @@ MonoBehaviour:
     triggerId: train_arrived
     autoStart: 1
     completionTriggerId: 
+  endingDialogueBlocks:
   - blockId: level1_ending
     sequence: {fileID: 11400000, guid: fff3335fb7be4f8ab333333333333333, type: 2}
     startingLineIndex: 0

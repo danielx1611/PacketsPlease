@@ -349,7 +349,7 @@ public class GameplayManager : MonoBehaviour
 
     private void HandleAcceptTrainRequested(IReadOnlyList<int> selectedTrainIndices)
     {
-        if (CurrentState != GameState.PlayerAction)
+        if (!CanHandleDecisionRequest())
         {
             return;
         }
@@ -363,13 +363,17 @@ public class GameplayManager : MonoBehaviour
         gameplayDecisionUI?.ResolveSelectedTrains(selectedTrainIndices);
         decisionReceived = true;
         latestDecision = RequiredDecision.Accept;
-        SetState(GameState.AwaitingTrigger);
+        if (CurrentState == GameState.PlayerAction)
+        {
+            SetState(GameState.AwaitingTrigger);
+        }
+
         EvaluateLevelProgression();
     }
 
     private void HandleRejectTrainRequested(IReadOnlyList<int> selectedTrainIndices)
     {
-        if (CurrentState != GameState.PlayerAction)
+        if (!CanHandleDecisionRequest())
         {
             return;
         }
@@ -383,8 +387,24 @@ public class GameplayManager : MonoBehaviour
         gameplayDecisionUI?.ResolveSelectedTrains(selectedTrainIndices);
         decisionReceived = true;
         latestDecision = RequiredDecision.Reject;
-        SetState(GameState.AwaitingTrigger);
+        if (CurrentState == GameState.PlayerAction)
+        {
+            SetState(GameState.AwaitingTrigger);
+        }
+
         EvaluateLevelProgression();
+    }
+
+    private bool CanHandleDecisionRequest()
+    {
+        if (CurrentState == GameState.PlayerAction)
+        {
+            return true;
+        }
+
+        return CurrentState == GameState.Dialogue &&
+               characterDialogueUI != null &&
+               characterDialogueUI.IsWaitingForTutorialInteraction;
     }
 
     private void EvaluateLevelProgression()

@@ -58,6 +58,28 @@ public class GameplayManager : MonoBehaviour
 
         [Header("Advance Conditions")]
         public WinConditions winConditions = new();
+
+        [Header("Train Waves")]
+        public List<TrainWaveConfig> trainWaves = new();
+    }
+
+    [Serializable]
+    public class TrainCompartmentWaveData
+    {
+        public TrainInspectable compartment;
+        public string payload;
+    }
+
+    [Serializable]
+    public class TrainWaveConfig
+    {
+        [Tooltip("Trigger id required to run this wave. Leave empty to run as a default sequential wave.")]
+        public string triggerId;
+        public List<int> trainIndices = new();
+        public bool startAllSelectedTrainsAtOnce = true;
+        [Min(0f)] public float delayBeforeWaveStarts;
+        public bool snapSelectedTrainsToOffScreenLeftBeforeEntry = true;
+        public List<TrainCompartmentWaveData> compartmentData = new();
     }
 
     [Header("Core References")]
@@ -102,6 +124,7 @@ public class GameplayManager : MonoBehaviour
     private bool tutorialInteractionLockActive;
     private int tutorialInteractionsRequired;
     private int tutorialInteractionProgress;
+    private int currentTrainWaveIndex;
 
     private void OnEnable()
     {
@@ -157,8 +180,8 @@ public class GameplayManager : MonoBehaviour
         InitializeDialoguePlan(config.dialoguePlan);
         ClearTutorialInteractionLock();
         trainController?.ResetForLevelStart();
-        trainController?.HandleTrigger(string.Empty);
-        gameplayDecisionUI?.ConfigureTrainSelection(trainController != null ? trainController.GetTrainCount() : 0);
+        currentTrainWaveIndex = 0;
+        TryStartNextTrainWaveForTrigger(string.Empty);
 
         if (!TryStartAutoDialogueForTrigger(string.Empty))
         {
@@ -282,7 +305,7 @@ public class GameplayManager : MonoBehaviour
     public void ResumeDialogueAfterTrigger(string triggerId)
     {
         var normalizedTriggerId = triggerId?.Trim() ?? string.Empty;
-        trainController?.HandleTrigger(normalizedTriggerId);
+        TryStartNextTrainWaveForTrigger(normalizedTriggerId);
 
         if (TryStartAutoDialogueForTrigger(normalizedTriggerId))
         {
@@ -368,6 +391,7 @@ public class GameplayManager : MonoBehaviour
             SetState(GameState.AwaitingTrigger);
         }
 
+        TryStartNextTrainWaveForTrigger(string.Empty);
         EvaluateLevelProgression();
     }
 
@@ -392,6 +416,7 @@ public class GameplayManager : MonoBehaviour
             SetState(GameState.AwaitingTrigger);
         }
 
+        TryStartNextTrainWaveForTrigger(string.Empty);
         EvaluateLevelProgression();
     }
 
@@ -585,6 +610,120 @@ public class GameplayManager : MonoBehaviour
         }
 
         gameplayManual.SetUnlockedPages(config.manualPagesToUnlock, config.levelId);
+    }
+
+    private void TryStartNextTrainWaveForTrigger(string triggerId)
+    {
+        if (trainController == null || !TryGetLevel(CurrentLevelIndex, out var config))
+        {
+            gameplayDecisionUI?.ConfigureTrainSelection(trainController != null ? trainController.GetTrainCount() : 0);
+            return;
+        }
+
+        var waves = config.trainWaves;
+        var normalizedTriggerId = triggerId?.Trim() ?? string.Empty;
+        if (waves == null || waves.Count == 0)
+        {
+            var allTrainIndices = GetAllTrainIndices(trainController.GetTrainCount());
+            trainController.SetVisibleTrains(allTrainIndices, hideUnselected: false);
+            gameplayDecisionUI?.ConfigureTrainSelection(trainController.GetTrainCount(), allTrainIndices);
+            return;
+        }
+
+        for (var i = currentTrainWaveIndex; i < waves.Count; i++)
+        {
+            var wave = waves[i];
+            if (wave == null)
+            {
+                continue;
+            }
+
+            var waveTriggerId = wave.triggerId?.Trim() ?? string.Empty;
+            if (!string.Equals(waveTriggerId, normalizedTriggerId, StringComparison.Ordinal))
+            {
+                continue;
+            }
+
+            currentTrainWaveIndex = i + 1;
+            ApplyTrainWave(wave);
+            return;
+        }
+    }
+
+    private void ApplyTrainWave(TrainWaveConfig wave)
+    {
+        var trainCount = trainController != null ? trainController.GetTrainCount() : 0;
+        var selectedIndices = GetValidTrainIndices(wave.trainIndices, trainCount);
+        if (selectedIndices.Count == 0)
+        {
+            selectedIndices = GetAllTrainIndices(trainCount);
+        }
+
+        ApplyWaveCompartmentData(wave);
+        trainController.SetVisibleTrains(selectedIndices);
+        gameplayDecisionUI?.ConfigureTrainSelection(trainCount, selectedIndices);
+        StartCoroutine(RunTrainWaveAfterDelay(wave, selectedIndices));
+    }
+
+    private System.Collections.IEnumerator RunTrainWaveAfterDelay(TrainWaveConfig wave, List<int> selectedIndices)
+    {
+        if (wave != null && wave.delayBeforeWaveStarts > 0f)
+        {
+            yield return new WaitForSeconds(wave.delayBeforeWaveStarts);
+        }
+
+        trainController?.BeginTrainEntry(
+            selectedIndices,
+            resetActiveMask: true,
+            moveAllAtOnce: wave != null && wave.startAllSelectedTrainsAtOnce,
+            snapToLeftBeforeMove: wave == null || wave.snapSelectedTrainsToOffScreenLeftBeforeEntry);
+    }
+
+    private void ApplyWaveCompartmentData(TrainWaveConfig wave)
+    {
+        if (wave?.compartmentData == null)
+        {
+            return;
+        }
+
+        for (var i = 0; i < wave.compartmentData.Count; i++)
+        {
+            var data = wave.compartmentData[i];
+            data?.compartment?.SetPayload(data.payload);
+        }
+    }
+
+    private static List<int> GetValidTrainIndices(IReadOnlyList<int> indices, int trainCount)
+    {
+        var validIndices = new List<int>();
+        if (indices == null)
+        {
+            return validIndices;
+        }
+
+        for (var i = 0; i < indices.Count; i++)
+        {
+            var index = indices[i];
+            if (index < 0 || index >= trainCount || validIndices.Contains(index))
+            {
+                continue;
+            }
+
+            validIndices.Add(index);
+        }
+
+        return validIndices;
+    }
+
+    private static List<int> GetAllTrainIndices(int trainCount)
+    {
+        var indices = new List<int>(trainCount);
+        for (var i = 0; i < trainCount; i++)
+        {
+            indices.Add(i);
+        }
+
+        return indices;
     }
 
     private bool TryGetLevel(int index, out LevelConfig config)

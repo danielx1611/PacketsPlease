@@ -245,6 +245,37 @@ public class GameplayDecisionUI : MonoBehaviour
         ResetDecisionGate();
     }
 
+    public void ConfigureTrainSelection(int trainCount, IReadOnlyList<int> selectableTrainIndices)
+    {
+        resolvedTrainStates.Clear();
+
+        for (var i = 0; i < trainCount; i++)
+        {
+            resolvedTrainStates.Add(true);
+        }
+
+        if (selectableTrainIndices == null || selectableTrainIndices.Count == 0)
+        {
+            for (var i = 0; i < trainCount; i++)
+            {
+                resolvedTrainStates[i] = false;
+            }
+        }
+        else
+        {
+            for (var i = 0; i < selectableTrainIndices.Count; i++)
+            {
+                var index = selectableTrainIndices[i];
+                if (index >= 0 && index < trainCount)
+                {
+                    resolvedTrainStates[index] = false;
+                }
+            }
+        }
+
+        ResetDecisionGate();
+    }
+
     public void ResolveSelectedTrains(IReadOnlyList<int> resolvedTrainIndices)
     {
         if (resolvedTrainIndices != null)

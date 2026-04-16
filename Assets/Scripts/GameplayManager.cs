@@ -128,6 +128,7 @@ public class GameplayManager : MonoBehaviour
     private bool tutorialInteractionLockActive;
     private int tutorialInteractionsRequired;
     private int tutorialInteractionProgress;
+    private Coroutine pendingWaveAdvanceCoroutine;
     private int currentTrainWaveIndex;
     private TrainWaveConfig activeTrainWave;
 
@@ -403,14 +404,7 @@ public class GameplayManager : MonoBehaviour
             SetState(GameState.AwaitingTrigger);
         }
 
-        if (activeTrainWave != null && activeTrainWave.triggerFollowingWaveInList)
-        {
-            TryStartFollowingTrainWave();
-        }
-        else
-        {
-            TryStartNextTrainWaveForTrigger(string.Empty);
-        }
+        QueueWaveAdvanceAfterTrainMovement();
 
         EvaluateLevelProgression();
     }
@@ -436,6 +430,30 @@ public class GameplayManager : MonoBehaviour
             SetState(GameState.AwaitingTrigger);
         }
 
+        QueueWaveAdvanceAfterTrainMovement();
+
+        EvaluateLevelProgression();
+    }
+
+    private void QueueWaveAdvanceAfterTrainMovement()
+    {
+        if (pendingWaveAdvanceCoroutine != null)
+        {
+            StopCoroutine(pendingWaveAdvanceCoroutine);
+        }
+
+        pendingWaveAdvanceCoroutine = StartCoroutine(AdvanceWaveAfterTrainMovement());
+    }
+
+    private System.Collections.IEnumerator AdvanceWaveAfterTrainMovement()
+    {
+        yield return null;
+
+        while (trainController != null && trainController.IsTrainMoving)
+        {
+            yield return null;
+        }
+
         if (activeTrainWave != null && activeTrainWave.triggerFollowingWaveInList)
         {
             TryStartFollowingTrainWave();
@@ -445,7 +463,7 @@ public class GameplayManager : MonoBehaviour
             TryStartNextTrainWaveForTrigger(string.Empty);
         }
 
-        EvaluateLevelProgression();
+        pendingWaveAdvanceCoroutine = null;
     }
 
     private bool CanHandleDecisionRequest()

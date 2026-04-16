@@ -20,8 +20,11 @@ public class EndScreenUIController : MonoBehaviour
             retryLevelIndex = 0;
         }
 
-        var shouldSkipTutorial = retryLevelIndex == 0;
-        GameplaySessionState.RequestStartLevel(retryLevelIndex, shouldSkipTutorial);
+        var isRetryingTutorialLevel = retryLevelIndex == 0;
+        GameplaySessionState.RequestStartLevel(
+            retryLevelIndex,
+            skipFirstLevelTutorial: isRetryingTutorialLevel,
+            startFirstLevelAtFirstFollowingWave: isRetryingTutorialLevel);
         SceneManager.LoadScene(gameplaySceneName);
     }
 }

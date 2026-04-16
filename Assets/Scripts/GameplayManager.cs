@@ -131,6 +131,7 @@ public class GameplayManager : MonoBehaviour
     private int currentTrainWaveIndex;
     private TrainWaveConfig activeTrainWave;
     private bool skipIntroDialogueForCurrentLevel;
+    private bool startAtFirstFollowingWaveForCurrentLevel;
 
     private void OnEnable()
     {
@@ -146,14 +147,19 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        if (GameplaySessionState.ConsumeRequestedStartLevel(out var requestedLevelIndex, out var skipFirstLevelTutorial))
+        if (GameplaySessionState.ConsumeRequestedStartLevel(
+                out var requestedLevelIndex,
+                out var skipFirstLevelTutorial,
+                out var startAtFirstFollowingWave))
         {
             skipIntroDialogueForCurrentLevel = skipFirstLevelTutorial;
+            startAtFirstFollowingWaveForCurrentLevel = startAtFirstFollowingWave;
             StartLevel(requestedLevelIndex);
             return;
         }
 
         skipIntroDialogueForCurrentLevel = false;
+        startAtFirstFollowingWaveForCurrentLevel = false;
         StartLevel(initialLevelIndex);
     }
 
@@ -199,7 +205,19 @@ public class GameplayManager : MonoBehaviour
         trainController?.ResetForLevelStart();
         currentTrainWaveIndex = 0;
         activeTrainWave = null;
-        TryStartNextTrainWaveForTrigger(string.Empty);
+        var startAtFirstFollowingWave = startAtFirstFollowingWaveForCurrentLevel && CurrentLevelIndex == initialLevelIndex;
+        startAtFirstFollowingWaveForCurrentLevel = false;
+        if (startAtFirstFollowingWave)
+        {
+            if (!TryStartFirstTriggerFollowingTrainWave())
+            {
+                TryStartNextTrainWaveForTrigger(string.Empty);
+            }
+        }
+        else
+        {
+            TryStartNextTrainWaveForTrigger(string.Empty);
+        }
 
         var shouldSkipIntroDialogue = skipIntroDialogueForCurrentLevel && CurrentLevelIndex == initialLevelIndex;
         skipIntroDialogueForCurrentLevel = false;
@@ -747,6 +765,36 @@ public class GameplayManager : MonoBehaviour
         {
             var wave = waves[i];
             if (wave == null)
+            {
+                continue;
+            }
+
+            currentTrainWaveIndex = i + 1;
+            ApplyTrainWave(wave);
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool TryStartFirstTriggerFollowingTrainWave()
+    {
+        if (trainController == null || !TryGetLevel(CurrentLevelIndex, out var config))
+        {
+            gameplayDecisionUI?.ConfigureTrainSelection(trainController != null ? trainController.GetTrainCount() : 0);
+            return false;
+        }
+
+        var waves = config.trainWaves;
+        if (waves == null || waves.Count == 0)
+        {
+            return false;
+        }
+
+        for (var i = 0; i < waves.Count; i++)
+        {
+            var wave = waves[i];
+            if (wave == null || !wave.triggerFollowingWaveInList)
             {
                 continue;
             }

@@ -6,6 +6,11 @@ using UnityEngine.UI;
 
 public class GameplayDecisionUI : MonoBehaviour
 {
+    private const string OpenManualInteractionId = "open_manual";
+    private const string CloseManualInteractionId = "close_manual";
+    private const string AcceptTrainInteractionId = "accept_train";
+    private const string RejectTrainInteractionId = "reject_train";
+
     [Header("Manual UI")]
     [SerializeField] private GameObject manualMenuRoot;
     [SerializeField] private Button manualToggleButton;
@@ -43,7 +48,7 @@ public class GameplayDecisionUI : MonoBehaviour
 
         if (manualCloseButton != null)
         {
-            manualCloseButton.onClick.AddListener(HideManual);
+            manualCloseButton.onClick.AddListener(HideManualFromCloseButton);
         }
 
         if (acceptTrainButton != null)
@@ -73,7 +78,7 @@ public class GameplayDecisionUI : MonoBehaviour
 
         if (manualCloseButton != null)
         {
-            manualCloseButton.onClick.RemoveListener(HideManual);
+            manualCloseButton.onClick.RemoveListener(HideManualFromCloseButton);
         }
 
         if (acceptTrainButton != null)
@@ -94,11 +99,6 @@ public class GameplayDecisionUI : MonoBehaviour
 
     public void ToggleManual()
     {
-        if (!IsTutorialInteractionAllowed("manual_toggle"))
-        {
-            return;
-        }
-
         if (manualMenuRoot == null)
         {
             return;
@@ -106,18 +106,28 @@ public class GameplayDecisionUI : MonoBehaviour
 
         if (manualMenuRoot.activeSelf)
         {
+            if (!IsTutorialInteractionAllowed(CloseManualInteractionId))
+            {
+                return;
+            }
+
             HideManual();
-            OnTutorialInteractionPerformed?.Invoke("manual_toggle");
+            OnTutorialInteractionPerformed?.Invoke(CloseManualInteractionId);
+            return;
+        }
+
+        if (!IsTutorialInteractionAllowed(OpenManualInteractionId))
+        {
             return;
         }
 
         ShowManual();
-        OnTutorialInteractionPerformed?.Invoke("manual_toggle");
+        OnTutorialInteractionPerformed?.Invoke(OpenManualInteractionId);
     }
 
     public void ShowManual()
     {
-        if (!IsTutorialInteractionAllowed("manual_toggle"))
+        if (!IsTutorialInteractionAllowed(OpenManualInteractionId))
         {
             return;
         }
@@ -133,7 +143,7 @@ public class GameplayDecisionUI : MonoBehaviour
 
     public void HideManual()
     {
-        if (!IsTutorialInteractionAllowed("manual_toggle"))
+        if (!IsTutorialInteractionAllowed(CloseManualInteractionId))
         {
             return;
         }
@@ -149,7 +159,7 @@ public class GameplayDecisionUI : MonoBehaviour
 
     public void AcceptCurrentTrain()
     {
-        if (!IsTutorialInteractionAllowed("accept_train"))
+        if (!IsTutorialInteractionAllowed(AcceptTrainInteractionId))
         {
             return;
         }
@@ -166,13 +176,13 @@ public class GameplayDecisionUI : MonoBehaviour
         }
 
         Debug.Log("Accept train requested.");
-        OnTutorialInteractionPerformed?.Invoke("accept_train");
+        OnTutorialInteractionPerformed?.Invoke(AcceptTrainInteractionId);
         OnAcceptTrainRequested?.Invoke(selectedIndices);
     }
 
     public void RejectCurrentTrain()
     {
-        if (!IsTutorialInteractionAllowed("reject_train"))
+        if (!IsTutorialInteractionAllowed(RejectTrainInteractionId))
         {
             return;
         }
@@ -189,8 +199,19 @@ public class GameplayDecisionUI : MonoBehaviour
         }
 
         Debug.Log("Reject train requested.");
-        OnTutorialInteractionPerformed?.Invoke("reject_train");
+        OnTutorialInteractionPerformed?.Invoke(RejectTrainInteractionId);
         OnRejectTrainRequested?.Invoke(selectedIndices);
+    }
+
+    private void HideManualFromCloseButton()
+    {
+        if (!IsTutorialInteractionAllowed(CloseManualInteractionId))
+        {
+            return;
+        }
+
+        HideManual();
+        OnTutorialInteractionPerformed?.Invoke(CloseManualInteractionId);
     }
 
     public void SetTutorialInteractionLock(bool isLocked, IReadOnlyCollection<string> allowedInteractionIds)
@@ -269,8 +290,8 @@ public class GameplayDecisionUI : MonoBehaviour
         }
 
         var tutorialAllowsDirectDecision =
-            IsTutorialInteractionAllowed("accept_train") ||
-            IsTutorialInteractionAllowed("reject_train");
+            IsTutorialInteractionAllowed(AcceptTrainInteractionId) ||
+            IsTutorialInteractionAllowed(RejectTrainInteractionId);
 
         return tutorialAllowsDirectDecision || isReadyToDecide;
     }
@@ -294,21 +315,21 @@ public class GameplayDecisionUI : MonoBehaviour
         var canDecide = IsReadyToSubmitDecision();
         if (acceptTrainButton != null)
         {
-            acceptTrainButton.interactable = canDecide && IsTutorialInteractionAllowed("accept_train");
+            acceptTrainButton.interactable = canDecide && IsTutorialInteractionAllowed(AcceptTrainInteractionId);
         }
 
         if (rejectTrainButton != null)
         {
-            rejectTrainButton.interactable = canDecide && IsTutorialInteractionAllowed("reject_train");
+            rejectTrainButton.interactable = canDecide && IsTutorialInteractionAllowed(RejectTrainInteractionId);
         }
     }
 
     private void RefreshTutorialLockState()
     {
-        SetButtonTutorialInteractable(manualToggleButton, "manual_toggle");
-        SetButtonTutorialInteractable(manualCloseButton, "manual_toggle");
-        SetButtonTutorialInteractable(acceptTrainButton, "accept_train");
-        SetButtonTutorialInteractable(rejectTrainButton, "reject_train");
+        SetButtonTutorialInteractable(manualToggleButton, OpenManualInteractionId);
+        SetButtonTutorialInteractable(manualCloseButton, CloseManualInteractionId);
+        SetButtonTutorialInteractable(acceptTrainButton, AcceptTrainInteractionId);
+        SetButtonTutorialInteractable(rejectTrainButton, RejectTrainInteractionId);
         RefreshDecisionButtonState();
 
         if (readyToDecideButton != null)

@@ -58,6 +58,8 @@ public class GameplayManager : MonoBehaviour
 
         [Header("Advance Conditions")]
         public WinConditions winConditions = new();
+        [Tooltip("Trigger id raised when this level is considered complete.")]
+        public string levelCompletionTriggerId = "level_complete";
 
         [Header("Train Waves")]
         public List<TrainWaveConfig> trainWaves = new();
@@ -101,9 +103,6 @@ public class GameplayManager : MonoBehaviour
 
     [Tooltip("Global multiplier applied on top of each level difficulty.")]
     [SerializeField] private float globalDifficultyMultiplier = 1f;
-
-    [Tooltip("Reserved trigger id used to start optional end-of-level dialogue blocks.")]
-    [SerializeField] private string levelCompletionTriggerId = "level_complete";
 
     [SerializeField] private List<LevelConfig> levels = new();
 
@@ -298,6 +297,7 @@ public class GameplayManager : MonoBehaviour
 
         if (levelWinConditionsMet)
         {
+            var levelCompletionTriggerId = GetCurrentLevelCompletionTriggerId();
             if (!TryStartAutoDialogueForTrigger(levelCompletionTriggerId))
             {
                 SetState(GameState.LevelComplete);
@@ -325,7 +325,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        if (levelWinConditionsMet && string.Equals(normalizedTriggerId, levelCompletionTriggerId, StringComparison.Ordinal))
+        if (levelWinConditionsMet && string.Equals(normalizedTriggerId, GetCurrentLevelCompletionTriggerId(), StringComparison.Ordinal))
         {
             SetState(GameState.LevelComplete);
             return;
@@ -454,13 +454,14 @@ public class GameplayManager : MonoBehaviour
             yield return null;
         }
 
-        if (activeTrainWave != null && activeTrainWave.triggerFollowingWaveInList)
+        var startedNextWave = activeTrainWave != null && activeTrainWave.triggerFollowingWaveInList
+            ? TryStartFollowingTrainWave()
+            : TryStartNextTrainWaveForTrigger(string.Empty);
+
+        if (!startedNextWave && !HasRemainingTrainWaves())
         {
-            TryStartFollowingTrainWave();
-        }
-        else
-        {
-            TryStartNextTrainWaveForTrigger(string.Empty);
+            levelWinConditionsMet = true;
+            ResumeDialogueAfterTrigger(GetCurrentLevelCompletionTriggerId());
         }
 
         pendingWaveAdvanceCoroutine = null;
@@ -496,7 +497,7 @@ public class GameplayManager : MonoBehaviour
         }
 
         levelWinConditionsMet = true;
-        ResumeDialogueAfterTrigger(levelCompletionTriggerId);
+        ResumeDialogueAfterTrigger(GetCurrentLevelCompletionTriggerId());
     }
 
     private bool AreWinConditionsMet(WinConditions conditions)
@@ -567,7 +568,7 @@ public class GameplayManager : MonoBehaviour
         }
 
         var normalizedTriggerId = triggerId?.Trim() ?? string.Empty;
-        var useEndingBlocks = string.Equals(normalizedTriggerId, levelCompletionTriggerId, StringComparison.Ordinal);
+        var useEndingBlocks = string.Equals(normalizedTriggerId, GetCurrentLevelCompletionTriggerId(), StringComparison.Ordinal);
         var blocks = activeDialoguePlan.GetBlocksForPhase(useEndingBlocks);
 
         if (blocks == null)
@@ -658,12 +659,12 @@ public class GameplayManager : MonoBehaviour
         gameplayManual.SetUnlockedPages(config.manualPagesToUnlock, config.levelId);
     }
 
-    private void TryStartNextTrainWaveForTrigger(string triggerId)
+    private bool TryStartNextTrainWaveForTrigger(string triggerId)
     {
         if (trainController == null || !TryGetLevel(CurrentLevelIndex, out var config))
         {
             gameplayDecisionUI?.ConfigureTrainSelection(trainController != null ? trainController.GetTrainCount() : 0);
-            return;
+            return false;
         }
 
         var waves = config.trainWaves;
@@ -673,7 +674,7 @@ public class GameplayManager : MonoBehaviour
             var allTrainIndices = GetAllTrainIndices(trainController.GetTrainCount());
             trainController.SetVisibleTrains(allTrainIndices, hideUnselected: false);
             gameplayDecisionUI?.ConfigureTrainSelection(trainController.GetTrainCount(), allTrainIndices);
-            return;
+            return false;
         }
 
         for (var i = currentTrainWaveIndex; i < waves.Count; i++)
@@ -692,8 +693,10 @@ public class GameplayManager : MonoBehaviour
 
             currentTrainWaveIndex = i + 1;
             ApplyTrainWave(wave);
-            return;
+            return true;
         }
+
+        return false;
     }
 
     private void ApplyTrainWave(TrainWaveConfig wave)
@@ -712,17 +715,17 @@ public class GameplayManager : MonoBehaviour
         StartCoroutine(RunTrainWaveAfterDelay(wave, selectedIndices));
     }
 
-    private void TryStartFollowingTrainWave()
+    private bool TryStartFollowingTrainWave()
     {
         if (trainController == null || !TryGetLevel(CurrentLevelIndex, out var config))
         {
-            return;
+            return false;
         }
 
         var waves = config.trainWaves;
         if (waves == null || waves.Count == 0)
         {
-            return;
+            return false;
         }
 
         for (var i = currentTrainWaveIndex; i < waves.Count; i++)
@@ -735,8 +738,34 @@ public class GameplayManager : MonoBehaviour
 
             currentTrainWaveIndex = i + 1;
             ApplyTrainWave(wave);
-            return;
+            return true;
         }
+
+        return false;
+    }
+
+    private bool HasRemainingTrainWaves()
+    {
+        if (!TryGetLevel(CurrentLevelIndex, out var config))
+        {
+            return false;
+        }
+
+        var waves = config.trainWaves;
+        if (waves == null || waves.Count == 0)
+        {
+            return false;
+        }
+
+        for (var i = currentTrainWaveIndex; i < waves.Count; i++)
+        {
+            if (waves[i] != null)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private System.Collections.IEnumerator RunTrainWaveAfterDelay(TrainWaveConfig wave, List<int> selectedIndices)
@@ -810,6 +839,21 @@ public class GameplayManager : MonoBehaviour
 
         config = levels[index];
         return config != null;
+    }
+
+    private string GetCurrentLevelCompletionTriggerId()
+    {
+        if (!TryGetLevel(CurrentLevelIndex, out var config))
+        {
+            return "level_complete";
+        }
+
+        if (string.IsNullOrWhiteSpace(config.levelCompletionTriggerId))
+        {
+            return "level_complete";
+        }
+
+        return config.levelCompletionTriggerId.Trim();
     }
 
     private void SetState(GameState nextState)

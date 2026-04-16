@@ -84,6 +84,7 @@ public class CharacterDialogueUI : MonoBehaviour
 
         if (isWaitingForTutorialInteraction)
         {
+            HideDialogueForPendingInteraction();
             return;
         }
 
@@ -299,6 +300,17 @@ public class CharacterDialogueUI : MonoBehaviour
         isWaitingForTutorialInteraction = true;
         OnTutorialInteractionRequested?.Invoke(new TutorialInteractionRequest(requirement.allowedInteractionIds, requirement.requiredInteractionCount));
         return true;
+    }
+
+    private void HideDialogueForPendingInteraction()
+    {
+        if (rootContainer == null || !rootContainer.activeSelf)
+        {
+            return;
+        }
+
+        SetContinueHintVisible(false);
+        rootContainer.SetActive(false);
     }
 
     private void SetContinueHintVisible(bool isVisible)

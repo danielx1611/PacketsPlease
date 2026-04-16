@@ -98,6 +98,7 @@ public class GameplayManager : MonoBehaviour
     private string activeDialogueBlockId;
     private LevelDialoguePlan activeDialoguePlan;
     private InspectButton[] inspectButtons = Array.Empty<InspectButton>();
+    private InspectionPopupUI[] inspectionPopups = Array.Empty<InspectionPopupUI>();
     private bool tutorialInteractionLockActive;
     private int tutorialInteractionsRequired;
     private int tutorialInteractionProgress;
@@ -105,6 +106,7 @@ public class GameplayManager : MonoBehaviour
     private void OnEnable()
     {
         CacheInspectButtons();
+        CacheInspectionPopups();
         SubscribeToEvents();
     }
 
@@ -677,6 +679,14 @@ public class GameplayManager : MonoBehaviour
                 inspectButtons[i].OnTutorialInteractionPerformed += HandleTutorialInteractionPerformed;
             }
         }
+
+        for (var i = 0; i < inspectionPopups.Length; i++)
+        {
+            if (inspectionPopups[i] != null)
+            {
+                inspectionPopups[i].OnTutorialInteractionPerformed += HandleTutorialInteractionPerformed;
+            }
+        }
     }
 
     private void UnsubscribeFromInspectButtons()
@@ -688,5 +698,18 @@ public class GameplayManager : MonoBehaviour
                 inspectButtons[i].OnTutorialInteractionPerformed -= HandleTutorialInteractionPerformed;
             }
         }
+
+        for (var i = 0; i < inspectionPopups.Length; i++)
+        {
+            if (inspectionPopups[i] != null)
+            {
+                inspectionPopups[i].OnTutorialInteractionPerformed -= HandleTutorialInteractionPerformed;
+            }
+        }
+    }
+
+    private void CacheInspectionPopups()
+    {
+        inspectionPopups = FindObjectsByType<InspectionPopupUI>(FindObjectsSortMode.None);
     }
 }

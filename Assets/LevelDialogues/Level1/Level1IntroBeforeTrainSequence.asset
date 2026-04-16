@@ -11,7 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7a5919ff3dd728499db3d01b9c7d9c4, type: 3}
   m_Name: Level1IntroBeforeTrainSequence
-  m_EditorClassIdentifier:
+  m_EditorClassIdentifier: 
   lines:
   - text: part 1
     speakerName: Guide

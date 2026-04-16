@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e7a5919ff3dd728499db3d01b9c7d9c4, type: 3}
-  m_Name: Level1OpeningSequence
+  m_Name: Level1OpenTrainCompartmentSequence
   m_EditorClassIdentifier: 
   lines:
   - text: Click a train compartment to continue this tutorial step.

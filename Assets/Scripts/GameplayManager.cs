@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : MonoBehaviour
 {
@@ -103,6 +104,9 @@ public class GameplayManager : MonoBehaviour
 
     [Tooltip("Global multiplier applied on top of each level difficulty.")]
     [SerializeField] private float globalDifficultyMultiplier = 1f;
+
+    [Header("Scene Flow")]
+    [SerializeField] private string winSceneName = "YouWinScreen";
 
     [SerializeField] private List<LevelConfig> levels = new();
 
@@ -922,6 +926,39 @@ public class GameplayManager : MonoBehaviour
     private void SetState(GameState nextState)
     {
         CurrentState = nextState;
+
+        if (nextState == GameState.LevelComplete && !HasAnotherLevelAfterCurrent())
+        {
+            LoadWinScene();
+        }
+    }
+
+    private bool HasAnotherLevelAfterCurrent()
+    {
+        if (levels == null)
+        {
+            return false;
+        }
+
+        var nextLevelIndex = CurrentLevelIndex + 1;
+        return nextLevelIndex >= 0 && nextLevelIndex < levels.Count && levels[nextLevelIndex] != null;
+    }
+
+    private void LoadWinScene()
+    {
+        if (string.IsNullOrWhiteSpace(winSceneName))
+        {
+            Debug.LogWarning($"{nameof(GameplayManager)} could not load the win scene because no scene name is configured.", this);
+            return;
+        }
+
+        var activeScene = SceneManager.GetActiveScene();
+        if (string.Equals(activeScene.name, winSceneName, StringComparison.Ordinal))
+        {
+            return;
+        }
+
+        SceneManager.LoadScene(winSceneName);
     }
 
     private void HandleTutorialInteractionRequested(CharacterDialogueUI.TutorialInteractionRequest request)

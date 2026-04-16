@@ -258,7 +258,21 @@ public class GameplayDecisionUI : MonoBehaviour
 
     private bool IsReadyToSubmitDecision()
     {
-        return readyToDecideButton == null || isReadyToDecide;
+        if (readyToDecideButton == null)
+        {
+            return true;
+        }
+
+        if (!hasTutorialInteractionLock)
+        {
+            return isReadyToDecide;
+        }
+
+        var tutorialAllowsDirectDecision =
+            IsTutorialInteractionAllowed("accept_train") ||
+            IsTutorialInteractionAllowed("reject_train");
+
+        return tutorialAllowsDirectDecision || isReadyToDecide;
     }
 
     private void ToggleReadyToDecide()

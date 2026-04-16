@@ -146,7 +146,8 @@ public class GameplayManager : MonoBehaviour
         ApplyDifficultySettings(config);
         ApplyManualUnlocks(config);
         InitializeDialoguePlan(config.dialoguePlan);
-        trainController?.BeginTrainEntry();
+        trainController?.ResetForLevelStart();
+        trainController?.HandleTrigger(string.Empty);
         gameplayDecisionUI?.ConfigureTrainSelection(trainController != null ? trainController.GetTrainCount() : 0);
 
         if (!TryStartAutoDialogueForTrigger(string.Empty))
@@ -246,6 +247,13 @@ public class GameplayManager : MonoBehaviour
         activeDialogueBlockId = null;
         completedBlocks.Add(blockId);
 
+        var completionTriggerId = GetDialogueBlockCompletionTrigger(blockId);
+        if (!string.IsNullOrWhiteSpace(completionTriggerId))
+        {
+            ResumeDialogueAfterTrigger(completionTriggerId);
+            return;
+        }
+
         if (levelWinConditionsMet)
         {
             if (!TryStartAutoDialogueForTrigger(levelCompletionTriggerId))
@@ -262,6 +270,7 @@ public class GameplayManager : MonoBehaviour
     public void ResumeDialogueAfterTrigger(string triggerId)
     {
         var normalizedTriggerId = triggerId?.Trim() ?? string.Empty;
+        trainController?.HandleTrigger(normalizedTriggerId);
 
         if (TryStartAutoDialogueForTrigger(normalizedTriggerId))
         {
@@ -277,6 +286,12 @@ public class GameplayManager : MonoBehaviour
         if (levelWinConditionsMet && string.Equals(normalizedTriggerId, levelCompletionTriggerId, StringComparison.Ordinal))
         {
             SetState(GameState.LevelComplete);
+            return;
+        }
+
+        if (CurrentState == GameState.Dialogue)
+        {
+            SetState(GameState.PlayerAction);
         }
     }
 
@@ -469,6 +484,16 @@ public class GameplayManager : MonoBehaviour
         }
 
         return blocksById.TryGetValue(blockId, out block);
+    }
+
+    private string GetDialogueBlockCompletionTrigger(string blockId)
+    {
+        if (!TryGetDialogueBlock(blockId, out var block))
+        {
+            return string.Empty;
+        }
+
+        return block?.completionTriggerId?.Trim() ?? string.Empty;
     }
 
     private void ResetLevelProgressTracking()

@@ -107,6 +107,10 @@ public class GameplayManager : MonoBehaviour
 
     [Header("Scene Flow")]
     [SerializeField] private string winSceneName = "YouWinScreen";
+    [SerializeField] private string loseSceneName = "YouLoseScreen";
+
+    [Header("Player Health")]
+    [SerializeField] private int maxLives = 3;
 
     [SerializeField] private List<LevelConfig> levels = new();
 
@@ -136,6 +140,7 @@ public class GameplayManager : MonoBehaviour
     private TrainWaveConfig activeTrainWave;
     private bool skipIntroDialogueForCurrentLevel;
     private bool startAtFirstFollowingWaveForCurrentLevel;
+    private int currentLives;
 
     private void OnEnable()
     {
@@ -436,6 +441,12 @@ public class GameplayManager : MonoBehaviour
             Debug.LogWarning("A suspicious train wave was accepted.", this);
         }
 
+        var isCorrectDecision = activeTrainWave == null || !activeTrainWave.isSuspicious;
+        if (!HandleDecisionHealthResult(isCorrectDecision))
+        {
+            return;
+        }
+
         if (CurrentState == GameState.PlayerAction)
         {
             SetState(GameState.AwaitingTrigger);
@@ -462,6 +473,13 @@ public class GameplayManager : MonoBehaviour
         gameplayDecisionUI?.ResolveSelectedTrains(selectedTrainIndices);
         decisionReceived = true;
         latestDecision = RequiredDecision.Reject;
+
+        var isCorrectDecision = activeTrainWave != null && activeTrainWave.isSuspicious;
+        if (!HandleDecisionHealthResult(isCorrectDecision))
+        {
+            return;
+        }
+
         if (CurrentState == GameState.PlayerAction)
         {
             SetState(GameState.AwaitingTrigger);
@@ -668,6 +686,27 @@ public class GameplayManager : MonoBehaviour
         levelWinConditionsMet = false;
         activeDialogueBlockId = null;
         ClearTutorialInteractionLock();
+        currentLives = Mathf.Max(1, maxLives);
+        gameplayDecisionUI?.RefreshLives(currentLives);
+    }
+
+    private bool HandleDecisionHealthResult(bool isCorrectDecision)
+    {
+        if (isCorrectDecision)
+        {
+            return true;
+        }
+
+        currentLives = Mathf.Max(0, currentLives - 1);
+        gameplayDecisionUI?.RefreshLives(currentLives);
+
+        if (currentLives > 0)
+        {
+            return true;
+        }
+
+        LoadLoseScene();
+        return false;
     }
 
     private void ApplyDifficultySettings(LevelConfig config)
@@ -959,6 +998,23 @@ public class GameplayManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(winSceneName);
+    }
+
+    private void LoadLoseScene()
+    {
+        if (string.IsNullOrWhiteSpace(loseSceneName))
+        {
+            Debug.LogWarning($"{nameof(GameplayManager)} could not load the lose scene because no scene name is configured.", this);
+            return;
+        }
+
+        var activeScene = SceneManager.GetActiveScene();
+        if (string.Equals(activeScene.name, loseSceneName, StringComparison.Ordinal))
+        {
+            return;
+        }
+
+        SceneManager.LoadScene(loseSceneName);
     }
 
     private void HandleTutorialInteractionRequested(CharacterDialogueUI.TutorialInteractionRequest request)

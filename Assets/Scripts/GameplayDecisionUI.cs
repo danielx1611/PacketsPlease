@@ -22,6 +22,11 @@ public class GameplayDecisionUI : MonoBehaviour
     [SerializeField] private Button readyToDecideButton;
     [SerializeField] private TMP_Text readyToDecideLabel;
 
+    [Header("Lives UI")]
+    [SerializeField] private Image[] lifeHeartIcons = Array.Empty<Image>();
+    [SerializeField] private Sprite heartFullIcon;
+    [SerializeField] private Sprite heartEmptyIcon;
+
     public event Action<IReadOnlyList<int>> OnAcceptTrainRequested;
     public event Action<IReadOnlyList<int>> OnRejectTrainRequested;
     public event Action<bool> OnManualVisibilityChanged;
@@ -37,6 +42,7 @@ public class GameplayDecisionUI : MonoBehaviour
         HideManual();
         UpdateReadyToDecideLabel();
         RefreshDecisionButtonState();
+        RefreshLives(0);
     }
 
     private void OnEnable()
@@ -403,5 +409,26 @@ public class GameplayDecisionUI : MonoBehaviour
         }
 
         readyToDecideLabel.text = $"{(isReadyToDecide ? "Set Not" : "Set")} Ready To Decide";
+    }
+
+    public void RefreshLives(int livesRemaining)
+    {
+        if (lifeHeartIcons == null || lifeHeartIcons.Length == 0)
+        {
+            return;
+        }
+
+        var clampedLives = Mathf.Max(0, livesRemaining);
+        for (var i = 0; i < lifeHeartIcons.Length; i++)
+        {
+            var heartIcon = lifeHeartIcons[i];
+            if (heartIcon == null)
+            {
+                continue;
+            }
+
+            heartIcon.sprite = i < clampedLives ? heartFullIcon : heartEmptyIcon;
+            heartIcon.enabled = heartIcon.sprite != null;
+        }
     }
 }

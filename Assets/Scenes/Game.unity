@@ -257,8 +257,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   description: 
-  isSuspicious: 0
-  suspiciousReason: 
   payload: 
 --- !u!1 &57132163
 GameObject:
@@ -801,6 +799,8 @@ MonoBehaviour:
       requiredDecision: 0
     trainWaves:
     - triggerId: train_wave_1
+      isSuspicious: 0
+      triggerFollowingWaveInList: 0
       trainIndices: 
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
@@ -810,6 +810,8 @@ MonoBehaviour:
         payload: 'POST /api/login HTTP/1.1\nHost: example.com\nContent-Type: application/json\n{\n 
           \"username\": \"jsmith\",\n  \"password\": \"Tr0ub4dor&3\"\n}'
     - triggerId: train_wave_2
+      isSuspicious: 0
+      triggerFollowingWaveInList: 0
       trainIndices: 
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
@@ -1195,8 +1197,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   description: 
-  isSuspicious: 0
-  suspiciousReason: 
   payload: 
 --- !u!1 &582382320
 GameObject:
@@ -11640,6 +11640,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -15
       objectReference: {fileID: 0}
+    - target: {fileID: 4000000000000000101, guid: 9bbf6e860d0046f6a88b6eec545a55cb, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9411765
+      objectReference: {fileID: 0}
     - target: {fileID: 4000000000000000102, guid: 9bbf6e860d0046f6a88b6eec545a55cb, type: 3}
       propertyPath: m_Type
       value: 1
@@ -12401,8 +12405,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   description: 
-  isSuspicious: 0
-  suspiciousReason: 
   payload: 
 --- !u!1 &1757695465
 GameObject:
@@ -12679,8 +12681,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   componentName: 
   description: 
-  isSuspicious: 0
-  suspiciousReason: 
   payload: 
 --- !u!1 &2057400198
 GameObject:

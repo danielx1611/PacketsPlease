@@ -27,6 +27,13 @@ public class GameplayDecisionUI : MonoBehaviour
     [SerializeField] private Sprite heartFullIcon;
     [SerializeField] private Sprite heartEmptyIcon;
 
+    [Header("Decision Feedback Popup")]
+    [SerializeField] private GameObject decisionFeedbackPopupRoot;
+    [SerializeField] private TMP_Text decisionFeedbackTitleText;
+    [SerializeField] private TMP_Text decisionFeedbackBodyText;
+    [SerializeField] private TMP_Text decisionFeedbackLoadingText;
+    [SerializeField] private Button decisionFeedbackCloseButton;
+
     public event Action<IReadOnlyList<int>> OnAcceptTrainRequested;
     public event Action<IReadOnlyList<int>> OnRejectTrainRequested;
     public event Action<bool> OnManualVisibilityChanged;
@@ -39,7 +46,9 @@ public class GameplayDecisionUI : MonoBehaviour
 
     private void Awake()
     {
+        EnsureDecisionFeedbackPopupReferences();
         HideManual();
+        HideDecisionFeedbackPopup();
         UpdateReadyToDecideLabel();
         RefreshDecisionButtonState();
         RefreshLives(0);
@@ -72,6 +81,11 @@ public class GameplayDecisionUI : MonoBehaviour
             readyToDecideButton.onClick.AddListener(ToggleReadyToDecide);
         }
 
+        if (decisionFeedbackCloseButton != null)
+        {
+            decisionFeedbackCloseButton.onClick.AddListener(HideDecisionFeedbackPopup);
+        }
+
         RefreshDecisionButtonState();
     }
 
@@ -100,6 +114,78 @@ public class GameplayDecisionUI : MonoBehaviour
         if (readyToDecideButton != null)
         {
             readyToDecideButton.onClick.RemoveListener(ToggleReadyToDecide);
+        }
+
+        if (decisionFeedbackCloseButton != null)
+        {
+            decisionFeedbackCloseButton.onClick.RemoveListener(HideDecisionFeedbackPopup);
+        }
+    }
+
+    public void ShowDecisionFeedbackLoading()
+    {
+        EnsureDecisionFeedbackPopupReferences();
+        if (decisionFeedbackPopupRoot == null)
+        {
+            return;
+        }
+
+        decisionFeedbackPopupRoot.SetActive(true);
+        if (decisionFeedbackTitleText != null)
+        {
+            decisionFeedbackTitleText.text = "Analyzing decision...";
+        }
+
+        if (decisionFeedbackBodyText != null)
+        {
+            decisionFeedbackBodyText.text = string.Empty;
+        }
+
+        if (decisionFeedbackLoadingText != null)
+        {
+            decisionFeedbackLoadingText.gameObject.SetActive(true);
+            decisionFeedbackLoadingText.text = "Loading analysis...";
+        }
+    }
+
+    public void ShowDecisionFeedback(string wrongReason, string realityReason)
+    {
+        EnsureDecisionFeedbackPopupReferences();
+        if (decisionFeedbackPopupRoot == null)
+        {
+            return;
+        }
+
+        decisionFeedbackPopupRoot.SetActive(true);
+        if (decisionFeedbackTitleText != null)
+        {
+            decisionFeedbackTitleText.text = "Incorrect Decision";
+        }
+
+        if (decisionFeedbackBodyText != null)
+        {
+            if (string.IsNullOrWhiteSpace(realityReason))
+            {
+                decisionFeedbackBodyText.text = wrongReason;
+            }
+            else
+            {
+                decisionFeedbackBodyText.text =
+                    $"Why this was incorrect:\n{wrongReason}\n\nReality check:\n{realityReason}";
+            }
+        }
+
+        if (decisionFeedbackLoadingText != null)
+        {
+            decisionFeedbackLoadingText.gameObject.SetActive(false);
+        }
+    }
+
+    public void HideDecisionFeedbackPopup()
+    {
+        if (decisionFeedbackPopupRoot != null)
+        {
+            decisionFeedbackPopupRoot.SetActive(false);
         }
     }
 
@@ -430,5 +516,63 @@ public class GameplayDecisionUI : MonoBehaviour
             heartIcon.sprite = i < clampedLives ? heartFullIcon : heartEmptyIcon;
             heartIcon.enabled = heartIcon.sprite != null;
         }
+    }
+
+    private void EnsureDecisionFeedbackPopupReferences()
+    {
+        if (decisionFeedbackPopupRoot != null)
+        {
+            return;
+        }
+
+        var popupRoot = new GameObject("DecisionFeedbackPopup", typeof(RectTransform), typeof(Image));
+        popupRoot.transform.SetParent(transform, false);
+
+        var popupRect = popupRoot.GetComponent<RectTransform>();
+        popupRect.anchorMin = new Vector2(0.5f, 0.5f);
+        popupRect.anchorMax = new Vector2(0.5f, 0.5f);
+        popupRect.sizeDelta = new Vector2(560f, 340f);
+
+        var popupImage = popupRoot.GetComponent<Image>();
+        popupImage.color = new Color(0f, 0f, 0f, 0.88f);
+
+        decisionFeedbackPopupRoot = popupRoot;
+        decisionFeedbackTitleText = CreatePopupText("Title", popupRoot.transform, new Vector2(0f, 130f), 34, TextAlignmentOptions.Center);
+        decisionFeedbackBodyText = CreatePopupText("Body", popupRoot.transform, new Vector2(0f, 18f), 24, TextAlignmentOptions.TopLeft);
+        decisionFeedbackBodyText.rectTransform.sizeDelta = new Vector2(500f, 190f);
+        decisionFeedbackLoadingText = CreatePopupText("Loading", popupRoot.transform, new Vector2(0f, -120f), 24, TextAlignmentOptions.Center);
+
+        var closeButtonObject = new GameObject("CloseButton", typeof(RectTransform), typeof(Image), typeof(Button));
+        closeButtonObject.transform.SetParent(popupRoot.transform, false);
+        var closeButtonRect = closeButtonObject.GetComponent<RectTransform>();
+        closeButtonRect.anchoredPosition = new Vector2(0f, -145f);
+        closeButtonRect.sizeDelta = new Vector2(200f, 44f);
+        closeButtonObject.GetComponent<Image>().color = new Color(0.22f, 0.22f, 0.22f, 1f);
+        decisionFeedbackCloseButton = closeButtonObject.GetComponent<Button>();
+
+        var closeLabel = CreatePopupText("CloseLabel", closeButtonObject.transform, Vector2.zero, 24, TextAlignmentOptions.Center);
+        closeLabel.text = "Close";
+    }
+
+    private static TMP_Text CreatePopupText(
+        string objectName,
+        Transform parent,
+        Vector2 anchoredPosition,
+        int fontSize,
+        TextAlignmentOptions alignment)
+    {
+        var textObject = new GameObject(objectName, typeof(RectTransform), typeof(TextMeshProUGUI));
+        textObject.transform.SetParent(parent, false);
+        var rect = textObject.GetComponent<RectTransform>();
+        rect.anchoredPosition = anchoredPosition;
+        rect.sizeDelta = new Vector2(500f, 80f);
+
+        var text = textObject.GetComponent<TextMeshProUGUI>();
+        text.fontSize = fontSize;
+        text.alignment = alignment;
+        text.color = Color.white;
+        text.text = string.Empty;
+        text.enableWordWrapping = true;
+        return text;
     }
 }

@@ -97,6 +97,7 @@ public class GameplayManager : MonoBehaviour
     [Header("Optional External Controllers")]
     [SerializeField] private TrainController trainController;
     [SerializeField] private MonoBehaviour inspectionController;
+    [SerializeField] private CyberAIPacketJudge cyberAIPacketJudge;
 
     [Header("Progression Configuration")]
     [SerializeField] private bool autoStartFirstLevelOnStart = true;
@@ -144,6 +145,7 @@ public class GameplayManager : MonoBehaviour
 
     private void OnEnable()
     {
+        cyberAIPacketJudge ??= FindObjectOfType<CyberAIPacketJudge>();
         CacheInspectButtons();
         CacheInspectionPopups();
         SubscribeToEvents();
@@ -442,6 +444,7 @@ public class GameplayManager : MonoBehaviour
         }
 
         var isCorrectDecision = activeTrainWave == null || !activeTrainWave.isSuspicious;
+        ShowWrongDecisionFeedbackIfNeeded(playerAccepted: true, isCorrectDecision);
         if (!HandleDecisionHealthResult(isCorrectDecision))
         {
             return;
@@ -475,6 +478,7 @@ public class GameplayManager : MonoBehaviour
         latestDecision = RequiredDecision.Reject;
 
         var isCorrectDecision = activeTrainWave != null && activeTrainWave.isSuspicious;
+        ShowWrongDecisionFeedbackIfNeeded(playerAccepted: false, isCorrectDecision);
         if (!HandleDecisionHealthResult(isCorrectDecision))
         {
             return;
@@ -707,6 +711,83 @@ public class GameplayManager : MonoBehaviour
 
         LoadLoseScene();
         return false;
+    }
+
+    private void ShowWrongDecisionFeedbackIfNeeded(bool playerAccepted, bool isCorrectDecision)
+    {
+        if (isCorrectDecision)
+        {
+            gameplayDecisionUI?.HideDecisionFeedbackPopup();
+            return;
+        }
+
+        gameplayDecisionUI?.ShowDecisionFeedbackLoading();
+
+        if (cyberAIPacketJudge == null)
+        {
+            ShowFallbackWrongDecisionFeedback(playerAccepted);
+            return;
+        }
+
+        var payload = BuildActiveWavePayloadSummary();
+        StartCoroutine(cyberAIPacketJudge.RequestDecisionFeedback(
+            payload,
+            playerAccepted,
+            activeTrainWave != null && activeTrainWave.isSuspicious,
+            feedback =>
+            {
+                if (gameplayDecisionUI == null || feedback == null)
+                {
+                    return;
+                }
+
+                gameplayDecisionUI.ShowDecisionFeedback(feedback.wrongReason, feedback.realityReason);
+            }));
+    }
+
+    private string BuildActiveWavePayloadSummary()
+    {
+        if (activeTrainWave?.compartmentData == null || activeTrainWave.compartmentData.Count == 0)
+        {
+            return "No packet payload provided";
+        }
+
+        var payloadParts = new List<string>();
+        for (var i = 0; i < activeTrainWave.compartmentData.Count; i++)
+        {
+            var data = activeTrainWave.compartmentData[i];
+            if (data == null || string.IsNullOrWhiteSpace(data.payload))
+            {
+                continue;
+            }
+
+            payloadParts.Add(data.payload.Trim());
+        }
+
+        return payloadParts.Count > 0
+            ? string.Join(" | ", payloadParts)
+            : "No packet payload provided";
+    }
+
+    private void ShowFallbackWrongDecisionFeedback(bool playerAccepted)
+    {
+        if (gameplayDecisionUI == null)
+        {
+            return;
+        }
+
+        var actuallySuspicious = activeTrainWave != null && activeTrainWave.isSuspicious;
+        if (playerAccepted && actuallySuspicious)
+        {
+            gameplayDecisionUI.ShowDecisionFeedback(
+                "You accepted traffic that matched suspicious indicators.",
+                "The packet was suspicious, so the safer decision was to reject it.");
+            return;
+        }
+
+        gameplayDecisionUI.ShowDecisionFeedback(
+            "You rejected traffic that lacked suspicious indicators.",
+            "The packet was safe, so the better decision was to accept it.");
     }
 
     private void ApplyDifficultySettings(LevelConfig config)

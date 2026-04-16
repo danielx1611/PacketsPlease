@@ -792,7 +792,7 @@ MonoBehaviour:
   - levelId: 1
     difficultyPreset: 0
     customDifficultyScalar: 1
-    manualPagesToUnlock: 0000000001000000
+    manualPagesToUnlock: 00000000
     dialoguePlan: {fileID: 11400000, guid: a5d7d1b77745dd54583a73eeb25be3ef, type: 2}
     winConditions:
       requiredInspectionsComplete: 0

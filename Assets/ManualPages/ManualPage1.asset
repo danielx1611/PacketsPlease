@@ -30,7 +30,7 @@ MonoBehaviour:
     Safe Example:
 
     POST /api/register HTTP/1.1\nHost: example.com\nContent-Type:
-    application/json\n\n{\n  \"username\": \"mjohnson\",\n  \"email\": \"mjohnson@example.com\",\n 
+    application/json\n{\n  \"username\": \"mjohnson\",\n  \"email\": \"mjohnson@example.com\",\n 
     \"password\": \"S3cur3P@ssw0rd!\"\n}'
   rightPageBody: '#GET requests
 

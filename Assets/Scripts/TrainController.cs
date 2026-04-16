@@ -82,11 +82,14 @@ public class TrainController : MonoBehaviour
     private int activeTrainMovements;
     private bool[] activeTrainMask = Array.Empty<bool>();
 
-    private void Start()
+    private void Awake()
     {
         EnsureDefaultTrainConfig();
         ResetForLevelStart();
+    }
 
+    private void Start()
+    {
         if (autoRunOnStart)
         {
             BeginTrainEntry();

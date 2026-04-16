@@ -130,6 +130,7 @@ public class GameplayManager : MonoBehaviour
     private Coroutine pendingWaveAdvanceCoroutine;
     private int currentTrainWaveIndex;
     private TrainWaveConfig activeTrainWave;
+    private bool skipIntroDialogueForCurrentLevel;
 
     private void OnEnable()
     {
@@ -140,10 +141,20 @@ public class GameplayManager : MonoBehaviour
 
     private void Start()
     {
-        if (autoStartFirstLevelOnStart)
+        if (!autoStartFirstLevelOnStart)
         {
-            StartLevel(initialLevelIndex);
+            return;
         }
+
+        if (GameplaySessionState.ConsumeRequestedStartLevel(out var requestedLevelIndex, out var skipFirstLevelTutorial))
+        {
+            skipIntroDialogueForCurrentLevel = skipFirstLevelTutorial;
+            StartLevel(requestedLevelIndex);
+            return;
+        }
+
+        skipIntroDialogueForCurrentLevel = false;
+        StartLevel(initialLevelIndex);
     }
 
     private void Update()
@@ -178,6 +189,7 @@ public class GameplayManager : MonoBehaviour
         }
 
         CurrentLevelIndex = index;
+        GameplaySessionState.SetLastKnownLevelIndex(CurrentLevelIndex);
         ResetLevelProgressTracking();
 
         ApplyDifficultySettings(config);
@@ -189,7 +201,10 @@ public class GameplayManager : MonoBehaviour
         activeTrainWave = null;
         TryStartNextTrainWaveForTrigger(string.Empty);
 
-        if (!TryStartAutoDialogueForTrigger(string.Empty))
+        var shouldSkipIntroDialogue = skipIntroDialogueForCurrentLevel && CurrentLevelIndex == initialLevelIndex;
+        skipIntroDialogueForCurrentLevel = false;
+
+        if (shouldSkipIntroDialogue || !TryStartAutoDialogueForTrigger(string.Empty))
         {
             SetState(GameState.PlayerAction);
         }

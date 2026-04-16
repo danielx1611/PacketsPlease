@@ -13,6 +13,7 @@ public class MainMenuUIController : MonoBehaviour
             return;
         }
 
+        GameplaySessionState.ResetSessionStartOverrides();
         SceneManager.LoadScene(gameplaySceneName);
     }
 }

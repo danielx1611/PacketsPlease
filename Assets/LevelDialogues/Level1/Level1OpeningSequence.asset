@@ -13,13 +13,22 @@ MonoBehaviour:
   m_Name: Level1OpeningSequence
   m_EditorClassIdentifier: 
   lines:
-  - text: Testing Opening Dialogue
+  - text: Click a train compartment to continue this tutorial step.
     speakerName: Guide
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0
     revealLettersPerSecond: 0
-  - text: Testing Opening Dialogue Follow-up text
+    interactionRequirement:
+      enabled: 1
+      allowedInteractionIds:
+      - train_compartment
+      requiredInteractionCount: 1
+  - text: proof of concept for interactive tutorial dialogue
     speakerName: Guide
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0
     revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1

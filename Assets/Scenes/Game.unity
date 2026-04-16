@@ -794,14 +794,14 @@ MonoBehaviour:
     manualPagesToUnlock: 00000000
     dialoguePlan: {fileID: 11400000, guid: a5d7d1b77745dd54583a73eeb25be3ef, type: 2}
     winConditions:
-      requiredInspectionsComplete: 0
+      requiredInspectionsComplete: 2
       requiresDecision: 0
       requiredDecision: 0
     trainWaves:
     - triggerId: train_wave_1
       isSuspicious: 0
       triggerFollowingWaveInList: 0
-      trainIndices: 
+      trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
       snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
@@ -811,8 +811,20 @@ MonoBehaviour:
           \"username\": \"jsmith\",\n  \"password\": \"Tr0ub4dor&3\"\n}'
     - triggerId: train_wave_2
       isSuspicious: 0
-      triggerFollowingWaveInList: 0
-      trainIndices: 
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
+      compartmentData:
+      - compartment: {fileID: 551808148}
+        payload: 'GET /api/products?category=electronics&sort=price&order=asc&page=2
+          HTTP/1.1\nHost: example.com\nAccept: application/json\nAuthorization: Bearer
+          eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzIn0.SflKxw'
+    - triggerId: 
+      isSuspicious: 1
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
       snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
@@ -10208,7 +10220,7 @@ MonoBehaviour:
   trains:
   - trainRoot: {fileID: 57132164}
     offScreenLeftX: -1000
-    onScreenX: 0
+    onScreenX: -300
     offScreenRightX: 1800
   speedProfile:
     farRange: 1000

@@ -102,7 +102,7 @@ MonoBehaviour:
     useCustomRevealSpeed: 0
     revealLettersPerSecond: 0
     interactionRequirement:
-      enabled: 1
+      enabled: 0
       allowedInteractionIds: []
       requiredInteractionCount: 1
   - text: As you get better, we'll allow more complex trains to come your way, and

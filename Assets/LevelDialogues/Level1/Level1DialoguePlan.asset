@@ -24,7 +24,7 @@ MonoBehaviour:
     startingLineIndex: 0
     triggerId: train_wave_1
     autoStart: 1
-    completionTriggerId: 
+    completionTriggerId: train_wave_2
   endingDialogueBlocks:
   - blockId: level1_ending
     sequence: {fileID: 11400000, guid: fff3335fb7be4f8ab333333333333333, type: 2}

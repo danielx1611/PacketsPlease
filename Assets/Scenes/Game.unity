@@ -786,7 +786,6 @@ MonoBehaviour:
   autoStartFirstLevelOnStart: 1
   initialLevelIndex: 0
   globalDifficultyMultiplier: 1
-  levelCompletionTriggerId: level_complete
   levels:
   - levelId: 1
     difficultyPreset: 0
@@ -797,6 +796,7 @@ MonoBehaviour:
       requiredInspectionsComplete: 2
       requiresDecision: 0
       requiredDecision: 0
+    levelCompletionTriggerId: level1_complete
     trainWaves:
     - triggerId: train_wave_1
       isSuspicious: 0

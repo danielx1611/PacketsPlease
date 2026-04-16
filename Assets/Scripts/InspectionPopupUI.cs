@@ -20,6 +20,11 @@ public class InspectionPopupUI : MonoBehaviour
 
     public void Show(TrainInspectable inspectable)
     {
+        if (inspectable == null || popupRoot == null || titleText == null || bodyText == null)
+        {
+            return;
+        }
+
         currentInspectable = inspectable;
 
         popupRoot.SetActive(true);
@@ -29,7 +34,13 @@ public class InspectionPopupUI : MonoBehaviour
 
     public void Hide()
     {
-        var wasVisible = popupRoot != null && popupRoot.activeSelf;
+        if (popupRoot == null)
+        {
+            currentInspectable = null;
+            return;
+        }
+
+        var wasVisible = popupRoot.activeSelf;
         popupRoot.SetActive(false);
         currentInspectable = null;
 

@@ -651,7 +651,8 @@ public class GameplayManager : MonoBehaviour
                 continue;
             }
 
-            var isAllowed = !tutorialInteractionLockActive || activeTutorialAllowedInteractions.Contains("train_compartment");
+            var isAllowed = !tutorialInteractionLockActive ||
+                            activeTutorialAllowedInteractions.Contains(inspectButton.TutorialInteractionId);
             inspectButton.SetTutorialInteractionAllowed(tutorialInteractionLockActive, isAllowed);
         }
     }

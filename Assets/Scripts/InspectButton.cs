@@ -2,12 +2,17 @@ using UnityEngine;
 
 public class InspectButton : MonoBehaviour
 {
+    private const string DefaultTutorialInteractionId = "train_compartment";
+
     [SerializeField] private TrainInspectable targetInspectable;
     [SerializeField] private InspectionPopupUI popupUI;
     [SerializeField] private TrainController trainController;
-    [SerializeField] private string tutorialInteractionId = "train_compartment";
+    [SerializeField] private string tutorialInteractionId = DefaultTutorialInteractionId;
 
     public event System.Action<string> OnTutorialInteractionPerformed;
+    public string TutorialInteractionId => string.IsNullOrWhiteSpace(tutorialInteractionId)
+        ? DefaultTutorialInteractionId
+        : tutorialInteractionId.Trim();
 
     private bool tutorialInteractionLocked;
     private bool tutorialInteractionAllowed = true;
@@ -35,7 +40,7 @@ public class InspectButton : MonoBehaviour
         if (targetInspectable != null && popupUI != null)
         {
             popupUI.Show(targetInspectable);
-            OnTutorialInteractionPerformed?.Invoke(tutorialInteractionId);
+            OnTutorialInteractionPerformed?.Invoke(TutorialInteractionId);
         }
     }
 

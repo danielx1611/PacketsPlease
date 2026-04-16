@@ -125,7 +125,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        if (characterDialogueUI.IsVisible || characterDialogueUI.IsRevealing)
+        if (characterDialogueUI.IsVisible || characterDialogueUI.IsRevealing || characterDialogueUI.IsWaitingForTutorialInteraction)
         {
             return;
         }
@@ -260,6 +260,7 @@ public class GameplayManager : MonoBehaviour
         var completionTriggerId = GetDialogueBlockCompletionTrigger(blockId);
         if (!string.IsNullOrWhiteSpace(completionTriggerId))
         {
+            SetState(GameState.PlayerAction);
             ResumeDialogueAfterTrigger(completionTriggerId);
             return;
         }

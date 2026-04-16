@@ -47,6 +47,7 @@ public class CharacterDialogueUI : MonoBehaviour
     public bool IsRevealing { get; private set; }
     public bool IsVisible => rootContainer != null && rootContainer.activeSelf;
     public bool IsAcceleratingReveal => IsRevealing && hasAcceleratedReveal;
+    public bool IsWaitingForTutorialInteraction => isWaitingForTutorialInteraction;
 
     private void Awake()
     {

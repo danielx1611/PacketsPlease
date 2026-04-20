@@ -28,8 +28,8 @@ public class InspectionPopupUI : MonoBehaviour
         currentInspectable = inspectable;
 
         popupRoot.SetActive(true);
-        titleText.text = inspectable.componentName;
-        bodyText.text = inspectable.GetInspectionText();
+        titleText.text = inspectable.GetInspectionTitle();
+        bodyText.text = inspectable.GetInspectionData();
     }
 
     public void Hide()

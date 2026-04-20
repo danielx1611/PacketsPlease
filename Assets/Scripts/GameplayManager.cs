@@ -80,7 +80,9 @@ public class GameplayManager : MonoBehaviour
     public class TrainCompartmentWaveData
     {
         public TrainInspectable compartment;
-        public string payload;
+        public string title;
+        [TextArea(3, 8)]
+        public string data;
     }
 
     [Serializable]
@@ -766,12 +768,12 @@ public class GameplayManager : MonoBehaviour
         for (var i = 0; i < activeTrainWave.compartmentData.Count; i++)
         {
             var data = activeTrainWave.compartmentData[i];
-            if (data == null || string.IsNullOrWhiteSpace(data.payload))
+            if (data == null || string.IsNullOrWhiteSpace(data.data))
             {
                 continue;
             }
 
-            payloadParts.Add(data.payload.Trim());
+            payloadParts.Add(data.data.Trim());
         }
 
         return payloadParts.Count > 0
@@ -1003,7 +1005,7 @@ public class GameplayManager : MonoBehaviour
         for (var i = 0; i < wave.compartmentData.Count; i++)
         {
             var data = wave.compartmentData[i];
-            data?.compartment?.SetPayload(data.payload);
+            data?.compartment?.SetInspectionData(data.title, data.data);
         }
     }
 

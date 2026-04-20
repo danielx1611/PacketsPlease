@@ -2,31 +2,22 @@ using UnityEngine;
 
 public class TrainInspectable : MonoBehaviour
 {
-    [Header("Display")]
-    public string componentName;
-    [TextArea(3, 6)]
-    public string description;
+    private string inspectionTitle = string.Empty;
+    private string inspectionData = string.Empty;
 
-    [Header("Gameplay")]
-    public string payload;
-
-    public void SetPayloadData(string newComponentName, string newDescription)
+    public void SetInspectionData(string newTitle, string newData)
     {
-        componentName = newComponentName;
-        description = newDescription;
+        inspectionTitle = newTitle?.Trim() ?? string.Empty;
+        inspectionData = newData?.Trim() ?? string.Empty;
     }
 
-    public void SetPayload(string newPayload)
+    public string GetInspectionTitle()
     {
-        payload = newPayload;
+        return string.IsNullOrWhiteSpace(inspectionTitle) ? "Inspection" : inspectionTitle;
     }
 
-    public string GetInspectionText()
+    public string GetInspectionData()
     {
-        var payloadText = string.IsNullOrWhiteSpace(payload)
-            ? string.Empty
-            : $"Payload: {payload}\n\n";
-
-        return payloadText + description;
+        return inspectionData;
     }
 }

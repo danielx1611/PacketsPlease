@@ -422,32 +422,33 @@ MonoBehaviour:
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
       snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
-      compartmentData:
-      - compartment: {fileID: 551808148}
-        title: Protocol and Flags
-        data: 'Protocol: TCP
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
 
 
-          Flags: SYN, ACK'
-      - compartment: {fileID: 10152729}
-        title: Source IP and Ports
-        data: 'Source IP: 172.58.99.240
+            Flags: SYN, ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 172.58.99.240
 
 
-          Source Port: 443
+            Source Port: 443
 
 
-          Destination
-          Port: 5146'
-      - compartment: {fileID: 1947682775}
-        title: Frame Number and Packet Size
-        data: 'Frame Number: 2
+            Destination
+            Port: 5146'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 2
 
 
-          Packet Size: 68'
-      - compartment: {fileID: 1626612990}
-        title: Payload
-        data: '@..t^..M...F..N..LX.........Jn....................S/7&..R...2QXb...9..a.|.6..]K.L..h.}?..nm.wt....Ij.k.+1&.....Yvl%.~t.!.l..rw....Y..A......A...r<>.X....E..6{8.EJ....)7........]<.7E.R..''.4...wS.'
+            Packet Size: 68'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '@..t^..M...F..N..LX.........Jn....................S/7&..R...2QXb...9..a.|.6..]K.L..h.}?..nm.wt....Ij.k.+1&.....Yvl%.~t.!.l..rw....Y..A......A...r<>.X....E..6{8.EJ....)7........]<.7E.R..''.4...wS.'
     - triggerId: train_wave_2
       isSuspicious: 0
       triggerFollowingWaveInList: 1
@@ -455,23 +456,24 @@ MonoBehaviour:
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
       snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentData:
-      - compartment: {fileID: 10152729}
-        title: Product Query
-        data: 'GET /api/products?category=electronics&sort=price&order=asc&page=2
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 10152729}
+          title: Product Query
+          data: 'GET /api/products?category=electronics&sort=price&order=asc&page=2
           HTTP/1.1\nHost: example.com\nAccept: application/json\nAuthorization: Bearer
           eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzIn0.SflKxw'
-      - compartment: {fileID: 551808148}
-        title: Search Request
-        data: 'GET /api/products/search?query=shirt&color=blue&size=m HTTP/1.1\nHost:
+        - compartment: {fileID: 551808148}
+          title: Search Request
+          data: 'GET /api/products/search?query=shirt&color=blue&size=m HTTP/1.1\nHost:
           example.com\nAccept: application/json'
-      - compartment: {fileID: 1947682775}
-        title: Session Refresh
-        data: 'POST /api/session/refresh HTTP/1.1\nHost: example.com\nContent-Type:
+        - compartment: {fileID: 1947682775}
+          title: Session Refresh
+          data: 'POST /api/session/refresh HTTP/1.1\nHost: example.com\nContent-Type:
           application/json\n\n{\"refresh_token\":\"abc123\"}'
-      - compartment: {fileID: 1626612990}
-        title: Cart Sync
-        data: 'PUT /api/cart HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\"items\":[{\"sku\":\"ABC-1\",\"qty\":2}]}'
+        - compartment: {fileID: 1626612990}
+          title: Cart Sync
+          data: 'PUT /api/cart HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\"items\":[{\"sku\":\"ABC-1\",\"qty\":2}]}'
 --- !u!4 &410981257
 Transform:
   m_ObjectHideFlags: 0

@@ -86,6 +86,12 @@ public class GameplayManager : MonoBehaviour
     }
 
     [Serializable]
+    public class TrainCompartmentDataSet
+    {
+        public List<TrainCompartmentWaveData> compartments = new();
+    }
+
+    [Serializable]
     public class TrainWaveConfig
     {
         [Tooltip("Trigger id required to run this wave. Leave empty to run as a default sequential wave.")]
@@ -98,7 +104,7 @@ public class GameplayManager : MonoBehaviour
         public bool startAllSelectedTrainsAtOnce = true;
         [Min(0f)] public float delayBeforeWaveStarts;
         public bool snapSelectedTrainsToOffScreenLeftBeforeEntry = true;
-        public List<TrainCompartmentWaveData> compartmentData = new();
+        public List<TrainCompartmentDataSet> compartmentDataSets = new();
     }
 
     [Header("Core References")]
@@ -759,21 +765,30 @@ public class GameplayManager : MonoBehaviour
 
     private string BuildActiveWavePayloadSummary()
     {
-        if (activeTrainWave?.compartmentData == null || activeTrainWave.compartmentData.Count == 0)
+        if (activeTrainWave?.compartmentDataSets == null || activeTrainWave.compartmentDataSets.Count == 0)
         {
             return "No packet payload provided";
         }
 
         var payloadParts = new List<string>();
-        for (var i = 0; i < activeTrainWave.compartmentData.Count; i++)
+        for (var i = 0; i < activeTrainWave.compartmentDataSets.Count; i++)
         {
-            var data = activeTrainWave.compartmentData[i];
-            if (data == null || string.IsNullOrWhiteSpace(data.data))
+            var dataSet = activeTrainWave.compartmentDataSets[i];
+            if (dataSet?.compartments == null)
             {
                 continue;
             }
 
-            payloadParts.Add(data.data.Trim());
+            for (var j = 0; j < dataSet.compartments.Count; j++)
+            {
+                var data = dataSet.compartments[j];
+                if (data == null || string.IsNullOrWhiteSpace(data.data))
+                {
+                    continue;
+                }
+
+                payloadParts.Add(data.data.Trim());
+            }
         }
 
         return payloadParts.Count > 0
@@ -997,15 +1012,24 @@ public class GameplayManager : MonoBehaviour
 
     private void ApplyWaveCompartmentData(TrainWaveConfig wave)
     {
-        if (wave?.compartmentData == null)
+        if (wave?.compartmentDataSets == null)
         {
             return;
         }
 
-        for (var i = 0; i < wave.compartmentData.Count; i++)
+        for (var i = 0; i < wave.compartmentDataSets.Count; i++)
         {
-            var data = wave.compartmentData[i];
-            data?.compartment?.SetInspectionData(data.title, data.data);
+            var dataSet = wave.compartmentDataSets[i];
+            if (dataSet?.compartments == null)
+            {
+                continue;
+            }
+
+            for (var j = 0; j < dataSet.compartments.Count; j++)
+            {
+                var data = dataSet.compartments[j];
+                data?.compartment?.SetInspectionData(data.title, data.data);
+            }
         }
     }
 

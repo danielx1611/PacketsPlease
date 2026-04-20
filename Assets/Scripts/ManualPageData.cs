@@ -16,6 +16,9 @@ public class ManualPageData : ScriptableObject
     [TextArea(4, 10)]
     [SerializeField] private string rightPageBody;
 
+    [Tooltip("When enabled, the right page remains hidden until it is explicitly unlocked by gameplay logic.")]
+    [SerializeField] private bool requireSecondPageUnlock;
+
     [Tooltip("Optional label used by designers for filtering/grouping manual pages by difficulty.")]
     [SerializeField] private string difficultyTag;
 
@@ -31,4 +34,6 @@ public class ManualPageData : ScriptableObject
     public string LeftPageBody => leftPageBody;
 
     public string RightPageBody => rightPageBody;
+
+    public bool RequireSecondPageUnlock => requireSecondPageUnlock;
 }

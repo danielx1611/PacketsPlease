@@ -5,6 +5,18 @@ using UnityEngine.UI;
 
 public class GameplayManual : MonoBehaviour
 {
+    public readonly struct ManualPageUnlockState
+    {
+        public ManualPageUnlockState(int pageIndex, bool unlockSecondPage)
+        {
+            PageIndex = pageIndex;
+            UnlockSecondPage = unlockSecondPage;
+        }
+
+        public int PageIndex { get; }
+        public bool UnlockSecondPage { get; }
+    }
+
     [SerializeField] private TMP_Text pageTitleText;
     [SerializeField] private TMP_Text leftPageText;
     [SerializeField] private TMP_Text rightPageText;
@@ -14,6 +26,7 @@ public class GameplayManual : MonoBehaviour
 
     private readonly List<UnityEngine.Events.UnityAction> tabClickHandlers = new();
     private readonly Dictionary<int, ManualPageData> manualPagesByIndex = new();
+    private readonly HashSet<int> secondPageUnlockedIndices = new();
 
     private int currentPageIndex = -1;
 
@@ -50,7 +63,7 @@ public class GameplayManual : MonoBehaviour
         }
     }
 
-    public void SetUnlockedPages(IEnumerable<int> pageIndices, int levelId = -1)
+    public void SetUnlockedPages(IEnumerable<ManualPageUnlockState> pageUnlockStates, int levelId = -1)
     {
         if (tabButtons.Count == 0)
         {
@@ -58,10 +71,13 @@ public class GameplayManual : MonoBehaviour
         }
 
         var unlockedIndexSet = new HashSet<int>();
-        if (pageIndices != null)
+        secondPageUnlockedIndices.Clear();
+
+        if (pageUnlockStates != null)
         {
-            foreach (var pageIndex in pageIndices)
+            foreach (var pageUnlockState in pageUnlockStates)
             {
+                var pageIndex = pageUnlockState.PageIndex;
                 if (!IsValidPageIndex(pageIndex))
                 {
                     Debug.LogWarning($"{nameof(GameplayManual)} invalid unlock index. {BuildWarningContext(pageIndex, levelId)}", this);
@@ -69,6 +85,10 @@ public class GameplayManual : MonoBehaviour
                 }
 
                 unlockedIndexSet.Add(pageIndex);
+                if (pageUnlockState.UnlockSecondPage)
+                {
+                    secondPageUnlockedIndices.Add(pageIndex);
+                }
             }
         }
         else
@@ -182,7 +202,13 @@ public class GameplayManual : MonoBehaviour
 
     private void SetDisplayedPageContent(ManualPageData pageData)
     {
-        SetDisplayedPageContent(pageData.PageTitle, pageData.LeftPageBody, pageData.RightPageBody);
+        var rightPageBody = pageData.RightPageBody;
+        if (pageData.RequireSecondPageUnlock && !secondPageUnlockedIndices.Contains(pageData.PageIndex))
+        {
+            rightPageBody = string.Empty;
+        }
+
+        SetDisplayedPageContent(pageData.PageTitle, pageData.LeftPageBody, rightPageBody);
     }
 
     private void SetDisplayedPageContent(string title, string leftBody, string rightBody)

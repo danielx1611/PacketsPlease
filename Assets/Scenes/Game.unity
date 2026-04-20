@@ -405,7 +405,9 @@ MonoBehaviour:
   - levelId: 1
     difficultyPreset: 0
     customDifficultyScalar: 1
-    manualPagesToUnlock: 00000000
+    manualPagesToUnlock:
+    - manualPageIndex: 0
+      unlockSecondPage: 0
     dialoguePlan: {fileID: 11400000, guid: a5d7d1b77745dd54583a73eeb25be3ef, type: 2}
     winConditions:
       requiredInspectionsComplete: 2
@@ -2618,7 +2620,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1000000000000000010, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000000000000000043, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_IsActive

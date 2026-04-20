@@ -13,8 +13,17 @@ MonoBehaviour:
   m_Name: ManualPage3
   m_EditorClassIdentifier: 
   pageIndex: 2
-  pageTitle: The Whitelist
-  leftPageBody: Testing Manual page data 3
-  rightPageBody: 
+  pageTitle: Flags
+  leftPageBody: "TCP Flags:\r\nTCP flags are control bits that describe the purpose
+    of a packet in the connection lifecycle. Common flags include SYN (start a connection),
+    ACK (acknowledge receipt), FIN (close a connection), and RST (reset/abort a connection).
+    These flags must follow a logical order\u2014for example, a connection normally
+    starts with SYN and ends with FIN. Flags that appear out of sequence or in impossible
+    combinations can indicate suspicious or malformed packets."
+  rightPageBody: 'UDP Flags:
+
+    The UDP protocol does not carry any flags in the
+    payload. If you see any flags in a UDP packet, that would be highly suspicious.'
+  requireSecondPageUnlock: 1
   difficultyTag: 
   unlockThreshold: 0

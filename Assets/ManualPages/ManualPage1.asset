@@ -13,41 +13,24 @@ MonoBehaviour:
   m_Name: ManualPage1
   m_EditorClassIdentifier: 
   pageIndex: 0
-  pageTitle: Welcome To RouterCo
-  leftPageBody: 'POST Requests:
+  pageTitle: Protocols
+  leftPageBody: 'TCP protocol
 
-    A POST request is used to send data from the
-    client to the server, typically in the request body (often JSON or form data),
-    to create or modify resources. To determine if a POST request is safe, the user
-    should focus on the body fields and any user-supplied values, looking for unusual
-    patterns such as embedded commands (;, &&), script tags, or unexpected data types.
-    Safe POST requests usually contain clean, well-formed data that matches the expected
-    input (e.g., a normal IP address or username), while unsafe ones often include
-    extra characters or commands that suggest injection attempts or misuse of the
-    server.
-
-
-    Safe Example:
-
-    POST /api/register HTTP/1.1\nHost: example.com\nContent-Type:
-    application/json\n{\n  \"username\": \"mjohnson\",\n  \"email\": \"mjohnson@example.com\",\n 
-    \"password\": \"S3cur3P@ssw0rd!\"\n}'
-  rightPageBody: 'GET requests
-
-    A GET request is used to retrieve data from the
-    server, with parameters typically included in the URL query string. To evaluate
-    safety, the user should examine the query parameters, since these are often user-controlled,
-    and check for suspicious additions like SQL keywords (UNION, SELECT), encoded
-    characters (%60, %3B), or attempts to manipulate file paths (../). Safe GET requests
-    generally have simple, expected parameter values, while unsafe ones include injected
-    code or malformed inputs designed to exploit how the server processes those parameters.
-
-
-    Safe
-    Example:
-
-    GET /api/products?category=books&sort=rating&order=desc&page=1
-    HTTP/1.1\nHost: example.com\nAccept: application/json\nAuthorization: Bearer
-    eyJhbGciOiJIUzI1NiJ9.exampletoken123'
+    TCP (Transmission Control Protocol) is a reliable,
+    connection-based protocol used to send data between two devices over a network.
+    Before sending actual data, TCP first establishes a connection using a handshake
+    process, and then ensures that all packets arrive correctly and in order. If
+    packets are lost, duplicated, or arrive out of order, TCP handles retransmission
+    and reordering.'
+  rightPageBody: "UDP protocol\r\nUDP (User Datagram Protocol) is a fast, connectionless
+    protocol used to send data between devices without first establishing a connection.
+    Unlike TCP, UDP does not guarantee delivery, ordering, or duplication protection\u2014packets
+    are simply sent as independent \u201Cdatagrams.\u201D Because of this, UDP relies
+    heavily on the payload itself and the expected behavior of the application (like
+    DNS, streaming, or gaming) rather than protocol-level checks. Suspicious packets
+    may include unusually large payloads, repeated or unsolicited responses, random
+    or malformed data, unexpected ports, or rapid sequences of packets that resemble
+    scanning or flooding behavior."
+  requireSecondPageUnlock: 1
   difficultyTag: 
   unlockThreshold: 0

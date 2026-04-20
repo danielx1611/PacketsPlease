@@ -13,8 +13,19 @@ MonoBehaviour:
   m_Name: ManualPage2
   m_EditorClassIdentifier: 
   pageIndex: 1
-  pageTitle: The Whitelist
-  leftPageBody: Testing Manual page data 2
-  rightPageBody: ""
+  pageTitle: Ports
+  leftPageBody: "Source IP/Ports:\r\nThe source IP address identifies the device
+    that sent the packet, while the source port identifies the specific application
+    or service on that device. Together, they act like a \u201Creturn address\u201D
+    for the packet. In TCP, these values should remain consistent throughout a connection.
+    If a packet suddenly changes source IP or port mid-stream without a new connection
+    starting, it may be suspicious or invalid."
+  rightPageBody: "Destination Ports:\r\nThe destination port indicates which service
+    on the receiving device should handle the packet (for example, web traffic often
+    uses port 80 or 443). This is like an \u201Coffice number\u201D inside a building.
+    In a valid TCP session, the destination port usually stays consistent, since
+    the connection is tied to a specific service. Unexpected changes in destination
+    ports during a session can indicate misrouting or malicious behavior."
+  requireSecondPageUnlock: 0
   difficultyTag: 
   unlockThreshold: 0

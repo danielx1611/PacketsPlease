@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: ManualPage4
   m_EditorClassIdentifier: 
   pageIndex: 3
-  pageTitle: The Whitelist
-  leftPageBody: Testing Manual page data 4
+  pageTitle: Frame Numbers
+  leftPageBody: 'Frame Numbers:
+
+    Frame numbers (as seen in tools like Wireshark)
+    are not part of TCP itself but are used by network analysis tools to label packets
+    in the order they were captured. They help observers track and reference specific
+    packets during inspection. Frame numbers are mainly used for simplicity''s sake.
+    Frame numbers in a single stream should be increasing for every valid packet
+    in the stream.'
   rightPageBody: 
+  requireSecondPageUnlock: 0
   difficultyTag: 
   unlockThreshold: 0

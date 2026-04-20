@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: ManualPage6
   m_EditorClassIdentifier: 
   pageIndex: 5
-  pageTitle: The Whitelist
-  leftPageBody: Testing Manual page data 6
+  pageTitle: Payloads
+  leftPageBody: "Payloads:\r\nThe payload is the actual data being carried inside
+    the packet\u2014the \u201Cmessage content\u201D being delivered. In TCP, payloads
+    are split across multiple packets and reassembled by the receiver. Suspicious
+    payloads might contain unexpected data, corrupted formatting, or content that
+    does not match the expected communication type."
   rightPageBody: 
+  requireSecondPageUnlock: 0
   difficultyTag: 
   unlockThreshold: 0

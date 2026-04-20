@@ -253,8 +253,32 @@ public class GameplayManual : MonoBehaviour
         }
 
         ValidatePageDataAgainstTabs();
+        UpdateTabButtonLabels();
     }
 
+
+    private void UpdateTabButtonLabels()
+    {
+        for (var tabIndex = 0; tabIndex < tabButtons.Count; tabIndex++)
+        {
+            var tabButton = tabButtons[tabIndex];
+            if (tabButton == null)
+            {
+                continue;
+            }
+
+            var tabLabel = tabButton.GetComponentInChildren<TMP_Text>(true);
+            if (tabLabel == null)
+            {
+                continue;
+            }
+
+            if (manualPagesByIndex.TryGetValue(tabIndex, out var pageData) && pageData != null)
+            {
+                tabLabel.text = pageData.PageTitle;
+            }
+        }
+    }
     private void ValidatePageDataAgainstTabs()
     {
         if (tabButtons.Count == 0 && manualPagesByIndex.Count > 0)

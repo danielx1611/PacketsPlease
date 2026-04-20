@@ -357,7 +357,7 @@ MonoBehaviour:
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
   button: {fileID: 0}
-  tutorialInteractionId: train_compartment
+  tutorialInteractionId: train_compartment3
   continueDialogueTriggerRelay: {fileID: 0}
   continueDialogueTriggerId: train_compartment3_inspected
 --- !u!1 &410981255
@@ -459,21 +459,17 @@ MonoBehaviour:
       compartmentDataSets:
       - compartments:
         - compartment: {fileID: 10152729}
-          title: Product Query
-          data: 'GET /api/products?category=electronics&sort=price&order=asc&page=2
-          HTTP/1.1\nHost: example.com\nAccept: application/json\nAuthorization: Bearer
-          eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMTIzIn0.SflKxw'
+          title: Protocol and Flags
+          data: 
         - compartment: {fileID: 551808148}
-          title: Search Request
-          data: 'GET /api/products/search?query=shirt&color=blue&size=m HTTP/1.1\nHost:
-          example.com\nAccept: application/json'
+          title: Source IP and Ports
+          data: 
         - compartment: {fileID: 1947682775}
-          title: Session Refresh
-          data: 'POST /api/session/refresh HTTP/1.1\nHost: example.com\nContent-Type:
-          application/json\n\n{\"refresh_token\":\"abc123\"}'
+          title: Frame Number and Packet Size
+          data: 
         - compartment: {fileID: 1626612990}
-          title: Cart Sync
-          data: 'PUT /api/cart HTTP/1.1\nHost: example.com\nContent-Type: application/json\n\n{\"items\":[{\"sku\":\"ABC-1\",\"qty\":2}]}'
+          title: Payload
+          data: 
 --- !u!4 &410981257
 Transform:
   m_ObjectHideFlags: 0
@@ -1587,7 +1583,7 @@ MonoBehaviour:
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
   button: {fileID: 0}
-  tutorialInteractionId: train_compartment
+  tutorialInteractionId: train_compartment1
   continueDialogueTriggerRelay: {fileID: 0}
   continueDialogueTriggerId: train_compartment1_inspected
 --- !u!1001 &1462000000
@@ -2001,7 +1997,7 @@ MonoBehaviour:
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
   button: {fileID: 0}
-  tutorialInteractionId: train_compartment
+  tutorialInteractionId: train_compartment4
   continueDialogueTriggerRelay: {fileID: 0}
   continueDialogueTriggerId: train_compartment4_inspected
 --- !u!1 &1626612988
@@ -2389,7 +2385,7 @@ MonoBehaviour:
   popupUI: {fileID: 1156341610}
   trainController: {fileID: 758005010}
   button: {fileID: 0}
-  tutorialInteractionId: train_compartment
+  tutorialInteractionId: train_compartment2
   continueDialogueTriggerRelay: {fileID: 0}
   continueDialogueTriggerId: train_compartment2_inspected
 --- !u!1001 &1746515908160394454

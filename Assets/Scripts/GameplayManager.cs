@@ -41,6 +41,16 @@ public class GameplayManager : MonoBehaviour
     }
 
     [Serializable]
+    public class ManualPageUnlockConfig
+    {
+        [Min(0)]
+        public int manualPageIndex;
+
+        [Tooltip("When enabled, this unlock also reveals the right-hand page for manual pages that require a second-page unlock.")]
+        public bool unlockSecondPage;
+    }
+
+    [Serializable]
     public class LevelConfig
     {
         [Min(0)]
@@ -51,8 +61,8 @@ public class GameplayManager : MonoBehaviour
         [Range(0.1f, 5f)]
         public float customDifficultyScalar = 1f;
 
-        [Tooltip("Manual page indexes to unlock at level start.")]
-        public List<int> manualPagesToUnlock = new();
+        [Tooltip("Manual pages to unlock at level start. Optionally reveals second page content for pages that require it.")]
+        public List<ManualPageUnlockConfig> manualPagesToUnlock = new();
 
         [Header("Dialogue Flow")]
         public LevelDialoguePlan dialoguePlan;
@@ -811,7 +821,23 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        gameplayManual.SetUnlockedPages(config.manualPagesToUnlock, config.levelId);
+        var unlockStates = new List<GameplayManual.ManualPageUnlockState>();
+        if (config.manualPagesToUnlock != null)
+        {
+            foreach (var unlockConfig in config.manualPagesToUnlock)
+            {
+                if (unlockConfig == null)
+                {
+                    continue;
+                }
+
+                unlockStates.Add(new GameplayManual.ManualPageUnlockState(
+                    unlockConfig.manualPageIndex,
+                    unlockConfig.unlockSecondPage));
+            }
+        }
+
+        gameplayManual.SetUnlockedPages(unlockStates, config.levelId);
     }
 
     private bool TryStartNextTrainWaveForTrigger(string triggerId)

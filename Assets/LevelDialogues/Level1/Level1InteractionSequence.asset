@@ -32,6 +32,27 @@ MonoBehaviour:
       enabled: 0
       allowedInteractionIds: []
       requiredInteractionCount: 1
+  - text: 'Ok listen up. Every TCP connection begins with a handshake. The handshake
+      should go: SYN -> SYN, ACK -> ACK.'
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: The client and server will then exchange data alongside ACK or PSH, ACK
+      flags until termination:... -> FIN -> ACK -> FIN -> ACK or in case of a problem,
+      RST.
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
   - text: Nothing seems out of the ordinary, we're done here. (Close the window with
       the "x" at the top right)
     speakerName: Sheriff
@@ -115,8 +136,10 @@ MonoBehaviour:
       allowedInteractionIds:
       - train_compartment4
       requiredInteractionCount: 1
-  - text: This job doesn't pay us enough to decipher what's being passed in the payload
-      of a TCP packet. This field will be more useful for other protocols later.
+  - text: This is the payload. This is what we're really interested in and is used
+      for the application higher-ups. This payload is encrypted so you couldn't possibly
+      understand what it says. Other protocols may be unencrypted, but that's something
+      you can worry about later.
     speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0
@@ -158,7 +181,7 @@ MonoBehaviour:
       allowedInteractionIds: []
       requiredInteractionCount: 1
   - text: I'm counting on you to stop them and reject their request before it harms
-      the company. If you let too many go bye, you're fired.
+      the company. If you let too many go by, you're fired.
     speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0

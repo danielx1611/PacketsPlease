@@ -45,6 +45,9 @@ public class GameplayDecisionUI : MonoBehaviour
     public event Action<IReadOnlyList<int>> OnRejectTrainRequested;
     public event Action<bool> OnManualVisibilityChanged;
     public event Action<string> OnTutorialInteractionPerformed;
+    public event Action OnDecisionFeedbackClosed;
+
+    public bool IsDecisionFeedbackVisible => decisionFeedbackPopupRoot != null && decisionFeedbackPopupRoot.activeSelf;
 
     private readonly List<bool> resolvedTrainStates = new();
     private bool isReadyToDecide;
@@ -251,9 +254,17 @@ public class GameplayDecisionUI : MonoBehaviour
 
     public void HideDecisionFeedbackPopup()
     {
-        if (decisionFeedbackPopupRoot != null)
+        if (decisionFeedbackPopupRoot == null)
         {
-            decisionFeedbackPopupRoot.SetActive(false);
+            return;
+        }
+
+        var wasVisible = decisionFeedbackPopupRoot.activeSelf;
+        decisionFeedbackPopupRoot.SetActive(false);
+
+        if (wasVisible)
+        {
+            OnDecisionFeedbackClosed?.Invoke();
         }
     }
 

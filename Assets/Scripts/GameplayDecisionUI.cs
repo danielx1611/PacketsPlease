@@ -8,6 +8,8 @@ public class GameplayDecisionUI : MonoBehaviour
 {
     private const string OpenManualInteractionId = "open_manual";
     private const string CloseManualInteractionId = "close_manual";
+    private const string OpenChecklistInteractionId = "open_checklist";
+    private const string CloseChecklistInteractionId = "close_checklist";
     private const string AcceptTrainInteractionId = "accept_train";
     private const string RejectTrainInteractionId = "reject_train";
 
@@ -79,7 +81,7 @@ public class GameplayDecisionUI : MonoBehaviour
 
         if (checklistCloseButton != null)
         {
-            checklistCloseButton.onClick.AddListener(HideChecklist);
+            checklistCloseButton.onClick.AddListener(HideChecklistFromCloseButton);
         }
 
         if (acceptTrainButton != null)
@@ -124,7 +126,7 @@ public class GameplayDecisionUI : MonoBehaviour
 
         if (checklistCloseButton != null)
         {
-            checklistCloseButton.onClick.RemoveListener(HideChecklist);
+            checklistCloseButton.onClick.RemoveListener(HideChecklistFromCloseButton);
         }
 
         if (acceptTrainButton != null)
@@ -150,12 +152,25 @@ public class GameplayDecisionUI : MonoBehaviour
 
     public void ToggleChecklist()
     {
-        if (checklistMenuRoot == null)
+        if (checklistMenuRoot != null && checklistMenuRoot.activeSelf)
+        {
+            if (!IsTutorialInteractionAllowed(CloseChecklistInteractionId))
+            {
+                return;
+            }
+
+            HideChecklist();
+            OnTutorialInteractionPerformed?.Invoke(CloseChecklistInteractionId);
+            return;
+        }
+
+        if (!IsTutorialInteractionAllowed(OpenChecklistInteractionId))
         {
             return;
         }
 
-        checklistMenuRoot.SetActive(!checklistMenuRoot.activeSelf);
+        ShowChecklist();
+        OnTutorialInteractionPerformed?.Invoke(OpenChecklistInteractionId);
     }
 
     public void ShowChecklist()
@@ -170,6 +185,11 @@ public class GameplayDecisionUI : MonoBehaviour
 
     public void HideChecklist()
     {
+        if (!IsTutorialInteractionAllowed(CloseChecklistInteractionId))
+        {
+            return;
+        }
+
         if (checklistMenuRoot == null)
         {
             return;
@@ -354,6 +374,17 @@ public class GameplayDecisionUI : MonoBehaviour
         OnTutorialInteractionPerformed?.Invoke(CloseManualInteractionId);
     }
 
+    private void HideChecklistFromCloseButton()
+    {
+        if (!IsTutorialInteractionAllowed(CloseChecklistInteractionId))
+        {
+            return;
+        }
+
+        HideChecklist();
+        OnTutorialInteractionPerformed?.Invoke(CloseChecklistInteractionId);
+    }
+
     public void SetTutorialInteractionLock(bool isLocked, IReadOnlyCollection<string> allowedInteractionIds)
     {
         hasTutorialInteractionLock = isLocked;
@@ -499,6 +530,8 @@ public class GameplayDecisionUI : MonoBehaviour
     {
         SetButtonTutorialInteractable(manualToggleButton, OpenManualInteractionId);
         SetButtonTutorialInteractable(manualCloseButton, CloseManualInteractionId);
+        SetButtonTutorialInteractable(checklistToggleButton, OpenChecklistInteractionId);
+        SetButtonTutorialInteractable(checklistCloseButton, CloseChecklistInteractionId);
         SetButtonTutorialInteractable(acceptTrainButton, AcceptTrainInteractionId);
         SetButtonTutorialInteractable(rejectTrainButton, RejectTrainInteractionId);
         RefreshDecisionButtonState();

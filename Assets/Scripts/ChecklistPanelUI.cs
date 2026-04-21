@@ -19,6 +19,11 @@ public class ChecklistPanelUI : MonoBehaviour
     }
 
     [SerializeField] private List<ChecklistEntry> entries = new();
+    [Header("Expected Values")]
+    [SerializeField] private TMP_Text expectedSourceTitleText;
+    [SerializeField] private TMP_Text expectedSourceValueText;
+    [SerializeField] private TMP_Text expectedDestinationTitleText;
+    [SerializeField] private TMP_Text expectedDestinationValueText;
 
     private readonly Dictionary<string, ChecklistEntry> entriesById = new();
     private readonly Dictionary<ChecklistEntry, UnityAction> clickHandlersByEntry = new();
@@ -59,6 +64,33 @@ public class ChecklistPanelUI : MonoBehaviour
         }
 
         clickHandlersByEntry.Clear();
+    }
+
+    public void SetExpectedValues(string expectedSourceIpsAndPorts, string expectedDestinationPorts)
+    {
+        if (expectedSourceTitleText != null)
+        {
+            expectedSourceTitleText.text = "Expected Source IP's/Ports";
+        }
+
+        if (expectedDestinationTitleText != null)
+        {
+            expectedDestinationTitleText.text = "Expected Destination Ports";
+        }
+
+        if (expectedSourceValueText != null)
+        {
+            expectedSourceValueText.text = string.IsNullOrWhiteSpace(expectedSourceIpsAndPorts)
+                ? "None configured."
+                : expectedSourceIpsAndPorts;
+        }
+
+        if (expectedDestinationValueText != null)
+        {
+            expectedDestinationValueText.text = string.IsNullOrWhiteSpace(expectedDestinationPorts)
+                ? "None configured."
+                : expectedDestinationPorts;
+        }
     }
 
     public void SetCategoryChecked(string categoryId, bool isChecked)

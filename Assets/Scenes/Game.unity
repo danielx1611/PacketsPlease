@@ -414,6 +414,8 @@ MonoBehaviour:
       requiresDecision: 0
       requiredDecision: 0
     levelCompletionTriggerId: level1_complete
+    expectedSourceIpsAndPorts: '172.58.99.240:443'
+    expectedDestinationPorts: '5146'
     trainWaves:
     - triggerId: train_wave_1
       isSuspicious: 0

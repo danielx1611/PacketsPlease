@@ -392,6 +392,7 @@ MonoBehaviour:
   gameplayManual: {fileID: 5877050652187154923}
   gameplayDecisionUI: {fileID: 5877050652187154922}
   characterDialogueUI: {fileID: 1462000002}
+  checklistPanelUI: {fileID: 0}
   trainController: {fileID: 758005010}
   inspectionController: {fileID: 0}
   cyberAIPacketJudge: {fileID: 5877050652187154927}
@@ -408,14 +409,24 @@ MonoBehaviour:
     manualPagesToUnlock:
     - manualPageIndex: 0
       unlockSecondPage: 0
+    - manualPageIndex: 1
+      unlockSecondPage: 1
+    - manualPageIndex: 2
+      unlockSecondPage: 1
+    - manualPageIndex: 3
+      unlockSecondPage: 1
+    - manualPageIndex: 4
+      unlockSecondPage: 1
+    - manualPageIndex: 5
+      unlockSecondPage: 1
     dialoguePlan: {fileID: 11400000, guid: a5d7d1b77745dd54583a73eeb25be3ef, type: 2}
     winConditions:
       requiredInspectionsComplete: 2
       requiresDecision: 0
       requiredDecision: 0
     levelCompletionTriggerId: level1_complete
-    expectedSourceIpsAndPorts: '172.58.99.240:443'
-    expectedDestinationPorts: '5146'
+    expectedSourceIpsAndPorts: 132.432.255.255 / 443
+    expectedDestinationPorts: 52955
     trainWaves:
     - triggerId: train_wave_1
       isSuspicious: 0
@@ -423,7 +434,7 @@ MonoBehaviour:
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
       compartmentDataSets:
       - compartments:
         - compartment: {fileID: 551808148}
@@ -434,23 +445,26 @@ MonoBehaviour:
             Flags: SYN, ACK'
         - compartment: {fileID: 10152729}
           title: Source IP and Ports
-          data: 'Source IP: 172.58.99.240
+          data: 'Source IP: 132.432.255.255
 
 
             Source Port: 443
 
 
             Destination
-            Port: 5146'
+            Port: 52955'
         - compartment: {fileID: 1947682775}
           title: Frame Number and Packet Size
           data: 'Frame Number: 2
 
 
-            Packet Size: 68'
+            Packet Size: 70'
         - compartment: {fileID: 1626612990}
           title: Payload
-          data: '@..t^..M...F..N..LX.........Jn....................S/7&..R...2QXb...9..a.|.6..]K.L..h.}?..nm.wt....Ij.k.+1&.....Yvl%.~t.!.l..rw....Y..A......A...r<>.X....E..6{8.EJ....)7........]<.7E.R..''.4...wS.'
+          data: '...d.UV.O..0E.qi,........l..?f.u...n......T
+
+            B.[+.....]....q2.p....9..+8s.m..`z..p..9..P.....F..i>...>...       
+            ...o........*.....2..Xj.2...Y...t7.&...+......D...F...uAE.X....c...6..54.z.b..M.?...bG..0....=)?+...........+$...._P.......0.....T.6#.1.tMe..w....^|.V...%......l....'
     - triggerId: train_wave_2
       isSuspicious: 0
       triggerFollowingWaveInList: 1
@@ -462,16 +476,214 @@ MonoBehaviour:
       - compartments:
         - compartment: {fileID: 551808148}
           title: Protocol and Flags
-          data: 
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
         - compartment: {fileID: 10152729}
           title: Source IP and Ports
-          data: 
+          data: 'Source IP: 132.432.255.255
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 52955'
         - compartment: {fileID: 1947682775}
           title: Frame Number and Packet Size
-          data: 
+          data: 'Frame Number: 5
+
+
+            Packet Size: 160'
         - compartment: {fileID: 1626612990}
           title: Payload
-          data: 
+          data: 'f....].s......."..-.J3i.......U%a....q..D...
+
+            B....9f2.p..K..JWz.d.>....._.5T2.../g..y..a..].I....tk.\.._J.~u....E....L..]w0n...@......
+
+            a-..8.$..Lr5y..$..Z....g''9.G.x...'
+    - triggerId: train_wave_3
+      isSuspicious: 1
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 626.642.234.111
+
+
+            Source Port: 5000
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 7
+
+
+            Packet Size: 180'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '...d.UV.O..0E.qi,........l..?f.u...n......T
+
+            B.[+.....]....q2.p....9..+8s.m..`z..p..9..P.....F..i>...>...       
+            ...o........*.....2..Xj.2...Y...t7.&...+......D...F...uAE.X....c...6..54.z.b..M.?...bG..0....=)?+...........+$...._P.......0.....T.6#.1.tMe..w....^|.V...%......l....'
+    - triggerId: train_wave_4
+      isSuspicious: 1
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 132.432.255.255
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 7
+
+
+            Packet Size: 300000000'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: 'f....].s......."..-.J3i.......U%a....q..D...
+
+            B....9f2.p..K..JWz.d.>....._.5T2.../g..y..a..].I....tk.\.._J.~u....E....L..]w0n...@......
+
+            a-..8.$..Lr5y..$..Z....g''9.G.x...'
+    - triggerId: train_wave_5
+      isSuspicious: 0
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 132.432.255.255
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 7
+
+
+            Packet Size: 240'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: ..............q.><..\.n....N.........C..p.1..@X.......R....@b6..$R...O......NK..6y........#_.Hdw#..0.h....k.....UG.I....YW..P.....;....+...@...*l.s......XF..3...Z...m......      
+            .|..S.`...R.......Q.Ip.......~|..E...h|.....0.qjd....q0&.m....F..`S...,....
+    - triggerId: train_wave_6
+      isSuspicious: 1
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: RST'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 132.432.255.1
+
+
+            Source Port: 442
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 9
+
+
+            Packet Size: 500'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: ..............a.><..\.n....@.........C..p.1..2X.......R....@b6..$R...O......NK..6y........#_.Hdw#..0.b....k.....UG.I....1W..P.....;....+...d...*l.s......XF..3...Z...m......      
+            .|..S.`...f.......Q.Ip.......~|..g...h|.....0.tjd....R0&.m....F..`S...,....
+    - triggerId: train_wave_7
+      isSuspicious: 0
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: RST'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 132.432.255.255
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 9
+
+
+            Packet Size: 90'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '.!a..u...N.        .WShs...F....?.r/.r..4....G.[
+
+            ......I.......j.e.gfp.\eja.z...'
 --- !u!4 &410981257
 Transform:
   m_ObjectHideFlags: 0
@@ -2355,6 +2567,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1000000000000000067, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2000000000000000001, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2434,6 +2650,54 @@ PrefabInstance:
     - target: {fileID: 2000000000000000001, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000014, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.5188679
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000014, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.5188679
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000014, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.5188679
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000014, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000014, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000014, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000069, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.4528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000069, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.4528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000069, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.4528302
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000069, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000069, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.754717
+      objectReference: {fileID: 0}
+    - target: {fileID: 5000000000000000069, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.754717
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

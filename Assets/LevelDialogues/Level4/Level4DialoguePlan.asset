@@ -16,7 +16,7 @@ MonoBehaviour:
   - blockId: level4_intro_before_train
     sequence: {fileID: 11400000, guid: 9e9ca1576d0bf6844827edc8fa16160a, type: 2}
     startingLineIndex: 0
-    triggerId: 
+    triggerId: level3_complete
     autoStart: 1
     completionTriggerId: level_4_train_wave_1
   endingDialogueBlocks:

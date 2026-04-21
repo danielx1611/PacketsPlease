@@ -23,8 +23,8 @@ MonoBehaviour:
     simplicity''s sake. Frame numbers in a single stream should be increasing for
     every valid packet in the stream.'
   rightPageBody: 'NOTE: Frame Numbers should be increasing per stream. A stream for
-    one protocol and a stream for another have two different counters. Make sure
-    you pay attention to the current stream and frame number you are investigating.'
+    one session and a stream for another have two different counters. Make sure you
+    pay attention to the current stream and frame number you are investigating.'
   requireSecondPageUnlock: 0
   difficultyTag: 
   unlockThreshold: 0

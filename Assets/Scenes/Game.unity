@@ -885,10 +885,6 @@ MonoBehaviour:
     - manualPageIndex: 5
       unlockSecondPage: 1
     dialoguePlan: {fileID: 11400000, guid: a5d7d1b77745dd54583a73eeb25be3ef, type: 2}
-    winConditions:
-      requiredInspectionsComplete: 2
-      requiresDecision: 0
-      requiredDecision: 0
     levelCompletionTriggerId: level1_complete
     expectedSourceIpsAndPorts: 132.432.255.255 / 443
     expectedDestinationPorts: 52955
@@ -1175,10 +1171,6 @@ MonoBehaviour:
     - manualPageIndex: 5
       unlockSecondPage: 1
     dialoguePlan: {fileID: 11400000, guid: f65cd8793fdae8b46aeb43a2b9460a7a, type: 2}
-    winConditions:
-      requiredInspectionsComplete: 2
-      requiresDecision: 0
-      requiredDecision: 0
     levelCompletionTriggerId: level2_complete
     expectedSourceIpsAndPorts: '91.62.14.233/443
 
@@ -1301,7 +1293,7 @@ MonoBehaviour:
       isSuspicious: 1
       wrongChoiceExplanation: This packet had a strange combination of TCP flags.
       triggerFollowingWaveInList: 1
-      trainIndices: 0000000001000000
+      trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
       delayBeforeWaveStarts: 0
       snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
@@ -1514,10 +1506,6 @@ MonoBehaviour:
     - manualPageIndex: 5
       unlockSecondPage: 1
     dialoguePlan: {fileID: 11400000, guid: 7a32def63a3195f49bd6e19aab9ef4ca, type: 2}
-    winConditions:
-      requiredInspectionsComplete: 2
-      requiresDecision: 0
-      requiredDecision: 0
     levelCompletionTriggerId: level3_complete
     expectedSourceIpsAndPorts: '203.77.154.89/846
 
@@ -1738,7 +1726,7 @@ MonoBehaviour:
             Flags: ACK'
         - compartment: {fileID: 10152729}
           title: Source IP and Ports
-          data: 'Source IP: 203.77.154.89
+          data: 'Source IP: 8.134.201.17
 
 
             Source Port: 443
@@ -2002,10 +1990,6 @@ MonoBehaviour:
     - manualPageIndex: 5
       unlockSecondPage: 1
     dialoguePlan: {fileID: 11400000, guid: d396f37aeadd51c4588672f3d50154b5, type: 2}
-    winConditions:
-      requiredInspectionsComplete: 2
-      requiresDecision: 0
-      requiredDecision: 0
     levelCompletionTriggerId: level4_complete
     expectedSourceIpsAndPorts: '172.58.99.240/443
 
@@ -2058,13 +2042,13 @@ MonoBehaviour:
 
             .]K.L..h.}?..nm.wt....Ij.k.+1&.....Yvl%.~t.!.l..rw....Y..A......A...r<>.X....E..6{8.EJ....)7........]<.7E.R..''.4...wS.'
       - compartments:
-        - compartment: {fileID: 551808148}
+        - compartment: {fileID: 1391789937}
           title: Protocol and Flags
           data: 'Protocol: TCP
 
 
             Flags: ACK'
-        - compartment: {fileID: 10152729}
+        - compartment: {fileID: 1394781599}
           title: Source IP and Ports
           data: 'Source IP: 172.58.99.240
 
@@ -2074,13 +2058,13 @@ MonoBehaviour:
 
             Destination
             Port: 5146'
-        - compartment: {fileID: 1947682775}
+        - compartment: {fileID: 225639636}
           title: Frame Number and Packet Size
           data: 'Frame Number: 3
 
 
             Packet Size: 241'
-        - compartment: {fileID: 1626612990}
+        - compartment: {fileID: 487521172}
           title: Payload
           data: 'J.2.........-....Y.....$g
 

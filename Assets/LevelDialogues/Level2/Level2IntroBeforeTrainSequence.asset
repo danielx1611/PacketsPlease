@@ -23,7 +23,7 @@ MonoBehaviour:
       allowedInteractionIds: []
       requiredInteractionCount: 1
   - text: I see you're still around and kicking. Get ready 'cause there's more you
-      need to know about
+      need to know about.
     speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0

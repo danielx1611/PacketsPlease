@@ -72,6 +72,12 @@ public class GameplayManager : MonoBehaviour
         [Tooltip("Trigger id raised when this level is considered complete.")]
         public string levelCompletionTriggerId = "level_complete";
 
+        [Header("Checklist Expected Values")]
+        [TextArea(2, 5)]
+        public string expectedSourceIpsAndPorts;
+        [TextArea(2, 5)]
+        public string expectedDestinationPorts;
+
         [Header("Train Waves")]
         public List<TrainWaveConfig> trainWaves = new();
     }
@@ -111,6 +117,7 @@ public class GameplayManager : MonoBehaviour
     [SerializeField] private GameplayManual gameplayManual;
     [SerializeField] private GameplayDecisionUI gameplayDecisionUI;
     [SerializeField] private CharacterDialogueUI characterDialogueUI;
+    [SerializeField] private ChecklistPanelUI checklistPanelUI;
 
     [Header("Optional External Controllers")]
     [SerializeField] private TrainController trainController;
@@ -229,6 +236,7 @@ public class GameplayManager : MonoBehaviour
 
         ApplyDifficultySettings(config);
         ApplyManualUnlocks(config);
+        ApplyChecklistExpectedValues(config);
         InitializeDialoguePlan(config.dialoguePlan);
         ClearTutorialInteractionLock();
         trainController?.ResetForLevelStart();
@@ -255,6 +263,16 @@ public class GameplayManager : MonoBehaviour
         {
             SetState(GameState.PlayerAction);
         }
+    }
+
+    private void ApplyChecklistExpectedValues(LevelConfig config)
+    {
+        if (checklistPanelUI == null && gameplayDecisionUI != null)
+        {
+            checklistPanelUI = gameplayDecisionUI.GetComponentInChildren<ChecklistPanelUI>(true);
+        }
+
+        checklistPanelUI?.SetExpectedValues(config.expectedSourceIpsAndPorts, config.expectedDestinationPorts);
     }
 
     public void AdvanceToNextLevel()

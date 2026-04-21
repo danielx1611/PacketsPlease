@@ -368,6 +368,7 @@ public class GameplayManager : MonoBehaviour
         if (levelWinConditionsMet || IsEndingDialogueBlock(blockId))
         {
             var levelCompletionTriggerId = GetCurrentLevelCompletionTriggerId();
+            SetState(GameState.PlayerAction);
             if (!TryStartAutoDialogueForTrigger(levelCompletionTriggerId))
             {
                 AdvanceToNextLevel();

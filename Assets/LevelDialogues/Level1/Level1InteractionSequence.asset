@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Level1InteractionSequence
   m_EditorClassIdentifier: 
   lines:
-  - text: First let's check the Source IP/Port.. (Click on the first train compartment)
+  - text: First let's check the Protocol and Flags... (Click on the first train compartment)
     speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0
@@ -23,17 +23,7 @@ MonoBehaviour:
       allowedInteractionIds:
       - train_compartment1
       requiredInteractionCount: 1
-  - text: You can see that we're receiving a POST request to /api/login. The corresponding
-      information should include a username and password.
-    speakerName: Sheriff
-    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
-    useCustomRevealSpeed: 0
-    revealLettersPerSecond: 0
-    interactionRequirement:
-      enabled: 0
-      allowedInteractionIds: []
-      requiredInteractionCount: 1
-  - text: In this train, the username is "jsmith" and the password is "Tr0ub4dor&3".
+  - text: In this train, the protocol is TCP and the flags are SYN, ACK.
     speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0
@@ -53,8 +43,101 @@ MonoBehaviour:
       allowedInteractionIds:
       - close_train_compartment_popup
       requiredInteractionCount: 1
-  - text: This kind of information doesn't seem out of the ordinary. Therefore, we
-      will accept the train. (Click "Accept" at the top)
+  - text: Next, let's check the Source IP/Port... (Click on the second train compartment)
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 1
+      allowedInteractionIds:
+      - train_compartment2
+      requiredInteractionCount: 1
+  - text: 'In this train, the source IP is 132.432.255.255 and the source port is
+      443 '
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: Nothing seems out of the ordinary, we're done here. (Close the window with
+      the "x" at the top right)
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 1
+      allowedInteractionIds:
+      - close_train_compartment_popup
+      requiredInteractionCount: 1
+  - text: Next, let's check the Frame Number and Packet Size... (Click on the third
+      train compartment)
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 1
+      allowedInteractionIds:
+      - train_compartment3
+      requiredInteractionCount: 1
+  - text: In this train, the Frame Number is 2 and the Packet Size is 70 bytes.
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: Nothing seems out of the ordinary, we're done here. (Close the window with
+      the "x" at the top right)
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 1
+      allowedInteractionIds:
+      - close_train_compartment_popup
+      requiredInteractionCount: 1
+  - text: Lastly, let's check the Payload... (Click on the fourth train compartment)
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 1
+      allowedInteractionIds:
+      - train_compartment4
+      requiredInteractionCount: 1
+  - text: This job doesn't pay us enough to decipher what's being passed in the payload
+      of a TCP packet. This field will be more useful for other protocols later.
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: Nothing seems out of the ordinary, we're done here. (Close the window with
+      the "x" at the top right)
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 1
+      allowedInteractionIds:
+      - close_train_compartment_popup
+      requiredInteractionCount: 1
+  - text: This kind of information doesn't seem suspicious. Therefore, we will accept
+      the train. (Click "Accept" at the top)
     speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0

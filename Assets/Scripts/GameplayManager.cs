@@ -202,7 +202,7 @@ public class GameplayManager : MonoBehaviour
         UnsubscribeFromEvents();
     }
 
-    public void StartLevel(int index)
+    public void StartLevel(int index, string entryTriggerId = null)
     {
         if (!TryGetLevel(index, out var config))
         {
@@ -210,6 +210,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
+        var normalizedEntryTriggerId = entryTriggerId?.Trim() ?? string.Empty;
         CurrentLevelIndex = index;
         GameplaySessionState.SetLastKnownLevelIndex(CurrentLevelIndex);
         ResetLevelProgressTracking();
@@ -233,13 +234,22 @@ public class GameplayManager : MonoBehaviour
         }
         else
         {
-            TryStartNextTrainWaveForTrigger(string.Empty);
+            if (!TryStartNextTrainWaveForTrigger(normalizedEntryTriggerId) &&
+                !string.IsNullOrWhiteSpace(normalizedEntryTriggerId))
+            {
+                TryStartNextTrainWaveForTrigger(string.Empty);
+            }
         }
 
         var shouldSkipIntroDialogue = skipIntroDialogueForCurrentLevel && CurrentLevelIndex == initialLevelIndex;
         skipIntroDialogueForCurrentLevel = false;
 
-        if (shouldSkipIntroDialogue || !TryStartAutoDialogueForTrigger(string.Empty))
+        var startedAutoDialogue = !shouldSkipIntroDialogue &&
+                                  (TryStartAutoDialogueForTrigger(normalizedEntryTriggerId) ||
+                                   (!string.IsNullOrWhiteSpace(normalizedEntryTriggerId) &&
+                                    TryStartAutoDialogueForTrigger(string.Empty)));
+
+        if (shouldSkipIntroDialogue || !startedAutoDialogue)
         {
             SetState(GameState.PlayerAction);
         }
@@ -257,6 +267,7 @@ public class GameplayManager : MonoBehaviour
 
     public void AdvanceToNextLevel()
     {
+        var completionTriggerId = GetCurrentLevelCompletionTriggerId();
         var nextIndex = CurrentLevelIndex + 1;
         if (!TryGetLevel(nextIndex, out _))
         {
@@ -265,7 +276,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        StartLevel(nextIndex);
+        StartLevel(nextIndex, completionTriggerId);
     }
 
     public void RestartLevel()

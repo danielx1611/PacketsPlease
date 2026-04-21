@@ -22,24 +22,6 @@ public class GameplayManager : MonoBehaviour
         Custom
     }
 
-    public enum RequiredDecision
-    {
-        None,
-        Accept,
-        Reject,
-        Either
-    }
-
-    [Serializable]
-    public class WinConditions
-    {
-        [Min(0)]
-        public int requiredInspectionsComplete;
-
-        public bool requiresDecision = true;
-        public RequiredDecision requiredDecision = RequiredDecision.Either;
-    }
-
     [Serializable]
     public class ManualPageUnlockConfig
     {
@@ -68,7 +50,6 @@ public class GameplayManager : MonoBehaviour
         public LevelDialoguePlan dialoguePlan;
 
         [Header("Advance Conditions")]
-        public WinConditions winConditions = new();
         [Tooltip("Trigger id raised when this level is considered complete.")]
         public string levelCompletionTriggerId = "level_complete";
 
@@ -152,10 +133,7 @@ public class GameplayManager : MonoBehaviour
     private readonly HashSet<string> activeTutorialAllowedInteractions = new(StringComparer.Ordinal);
     private readonly HashSet<string> completedTutorialInteractions = new(StringComparer.Ordinal);
 
-    private int completedInspections;
-    private bool decisionReceived;
     private bool pendingLoseSceneLoadAfterFeedbackClose;
-    private RequiredDecision latestDecision = RequiredDecision.None;
     private bool levelWinConditionsMet;
     private string activeDialogueBlockId;
     private LevelDialoguePlan activeDialoguePlan;
@@ -308,7 +286,6 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        completedInspections++;
         EvaluateLevelProgression();
     }
 
@@ -377,7 +354,7 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        if (levelWinConditionsMet)
+        if (levelWinConditionsMet || IsEndingDialogueBlock(blockId))
         {
             var levelCompletionTriggerId = GetCurrentLevelCompletionTriggerId();
             if (!TryStartAutoDialogueForTrigger(levelCompletionTriggerId))
@@ -389,6 +366,36 @@ public class GameplayManager : MonoBehaviour
         }
 
         SetState(GameState.PlayerAction);
+    }
+
+    private bool IsEndingDialogueBlock(string blockId)
+    {
+        if (string.IsNullOrWhiteSpace(blockId) || activeDialoguePlan == null)
+        {
+            return false;
+        }
+
+        var endingBlocks = activeDialoguePlan.endingDialogueBlocks;
+        if (endingBlocks == null)
+        {
+            return false;
+        }
+
+        for (var i = 0; i < endingBlocks.Count; i++)
+        {
+            var endingBlock = endingBlocks[i];
+            if (endingBlock == null || string.IsNullOrWhiteSpace(endingBlock.blockId))
+            {
+                continue;
+            }
+
+            if (string.Equals(endingBlock.blockId, blockId, StringComparison.Ordinal))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public void ResumeDialogueAfterTrigger(string triggerId)
@@ -475,9 +482,6 @@ public class GameplayManager : MonoBehaviour
 
         trainController?.SendAcceptedTrainsOffScreen(selectedTrainIndices);
         gameplayDecisionUI?.ResolveSelectedTrains(selectedTrainIndices);
-        decisionReceived = true;
-        latestDecision = RequiredDecision.Accept;
-
         if (activeTrainWave != null && activeTrainWave.isSuspicious)
         {
             Debug.LogWarning("A suspicious train wave was accepted.", this);
@@ -514,9 +518,6 @@ public class GameplayManager : MonoBehaviour
 
         trainController?.SendRejectedTrainsOffScreen(selectedTrainIndices);
         gameplayDecisionUI?.ResolveSelectedTrains(selectedTrainIndices);
-        decisionReceived = true;
-        latestDecision = RequiredDecision.Reject;
-
         var isCorrectDecision = activeTrainWave != null && activeTrainWave.isSuspicious;
         ShowWrongDecisionFeedbackIfNeeded(isCorrectDecision);
         if (!HandleDecisionHealthResult(isCorrectDecision))
@@ -580,12 +581,14 @@ public class GameplayManager : MonoBehaviour
 
     private void EvaluateLevelProgression()
     {
-        if (!TryGetLevel(CurrentLevelIndex, out var config))
+        if (CurrentLevelIndex < 0 || CurrentState == GameState.LevelComplete)
         {
             return;
         }
 
-        if (!AreWinConditionsMet(config.winConditions))
+        var trainIsMoving = trainController != null && trainController.IsTrainMoving;
+        var hasPendingWave = activeTrainWave != null || HasRemainingTrainWaves();
+        if (trainIsMoving || hasPendingWave)
         {
             if (CurrentState == GameState.AwaitingTrigger)
             {
@@ -597,36 +600,6 @@ public class GameplayManager : MonoBehaviour
 
         levelWinConditionsMet = true;
         ResumeDialogueAfterTrigger(GetCurrentLevelCompletionTriggerId());
-    }
-
-    private bool AreWinConditionsMet(WinConditions conditions)
-    {
-        if (conditions == null)
-        {
-            return true;
-        }
-
-        if (completedInspections < conditions.requiredInspectionsComplete)
-        {
-            return false;
-        }
-
-        if (!conditions.requiresDecision)
-        {
-            return true;
-        }
-
-        if (!decisionReceived)
-        {
-            return false;
-        }
-
-        return conditions.requiredDecision switch
-        {
-            RequiredDecision.None => true,
-            RequiredDecision.Either => latestDecision == RequiredDecision.Accept || latestDecision == RequiredDecision.Reject,
-            _ => latestDecision == conditions.requiredDecision
-        };
     }
 
     private void InitializeDialoguePlan(LevelDialoguePlan plan)
@@ -724,9 +697,6 @@ public class GameplayManager : MonoBehaviour
 
     private void ResetLevelProgressTracking()
     {
-        completedInspections = 0;
-        decisionReceived = false;
-        latestDecision = RequiredDecision.None;
         levelWinConditionsMet = false;
         activeDialogueBlockId = null;
         ClearTutorialInteractionLock();

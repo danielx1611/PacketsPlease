@@ -170,13 +170,25 @@ public class GameplayManager : MonoBehaviour
         {
             skipIntroDialogueForCurrentLevel = skipFirstLevelTutorial;
             startAtFirstFollowingWaveForCurrentLevel = startAtFirstFollowingWave;
-            StartLevel(requestedLevelIndex);
+            StartLevel(requestedLevelIndex, GetEntryTriggerForRequestedLevel(requestedLevelIndex));
             return;
         }
 
         skipIntroDialogueForCurrentLevel = false;
         startAtFirstFollowingWaveForCurrentLevel = false;
         StartLevel(initialLevelIndex);
+    }
+
+    private string GetEntryTriggerForRequestedLevel(int requestedLevelIndex)
+    {
+        if (requestedLevelIndex <= 0)
+        {
+            return string.Empty;
+        }
+
+        return TryGetLevel(requestedLevelIndex - 1, out var previousLevelConfig)
+            ? previousLevelConfig.levelCompletionTriggerId?.Trim()
+            : string.Empty;
     }
 
     private void Update()

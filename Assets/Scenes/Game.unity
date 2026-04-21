@@ -893,7 +893,7 @@ MonoBehaviour:
     expectedSourceIpsAndPorts: 132.432.255.255 / 443
     expectedDestinationPorts: 52955
     trainWaves:
-    - triggerId: train_wave_1
+    - triggerId: level_1_train_wave_1
       isSuspicious: 0
       wrongChoiceExplanation: This packet was safe.
       triggerFollowingWaveInList: 0
@@ -931,7 +931,7 @@ MonoBehaviour:
 
             B.[+.....]....q2.p....9..+8s.m..`z..p..9..P.....F..i>...>...       
             ...o........*.....2..Xj.2...Y...t7.&...+......D...F...uAE.X....c...6..54.z.b..M.?...bG..0....=)?+...........+$...._P.......0.....T.6#.1.tMe..w....^|.V...%......l....'
-    - triggerId: train_wave_2
+    - triggerId: level_1_train_wave_2
       isSuspicious: 0
       wrongChoiceExplanation: This packet was safe.
       triggerFollowingWaveInList: 1
@@ -1191,7 +1191,7 @@ MonoBehaviour:
       145.210.78.56/567/443'
     expectedDestinationPorts: 52955
     trainWaves:
-    - triggerId: train_wave_1
+    - triggerId: level_2_train_wave_1
       isSuspicious: 0
       wrongChoiceExplanation: This packet was safe.
       triggerFollowingWaveInList: 1
@@ -1530,7 +1530,7 @@ MonoBehaviour:
       119.33.220.142/834'
     expectedDestinationPorts: 5000-6000
     trainWaves:
-    - triggerId: train_wave_1
+    - triggerId: level_3_train_wave_1
       isSuspicious: 1
       wrongChoiceExplanation: These packets had abnormally large packet sizes.
       triggerFollowingWaveInList: 1
@@ -1546,7 +1546,7 @@ MonoBehaviour:
 
 
             Flags: N/A'
-        - compartment: {fileID: 1391789937}
+        - compartment: {fileID: 10152729}
           title: Source IP and Ports
           data: 'Source IP: 145.210.78.56
 
@@ -1758,7 +1758,7 @@ MonoBehaviour:
             JiR..4`.w.U9.,......;...Z?....M....j...J.k\P....*x..H....E..... ..7>=."...r.4....nYe.J{.|EaJ.fb.
     - triggerId: train_wave_5
       isSuspicious: 1
-      wrongChoiceExplanation: These packets resembly a malicious port scan since
+      wrongChoiceExplanation: These packets resemble a malicious port scan since
         they try to scan multiple destination ports from the same source port.
       triggerFollowingWaveInList: 1
       trainIndices: 000000000100000002000000
@@ -2001,149 +2001,26 @@ MonoBehaviour:
       unlockSecondPage: 1
     - manualPageIndex: 5
       unlockSecondPage: 1
-    dialoguePlan: {fileID: 11400000, guid: 7a32def63a3195f49bd6e19aab9ef4ca, type: 2}
+    dialoguePlan: {fileID: 11400000, guid: d396f37aeadd51c4588672f3d50154b5, type: 2}
     winConditions:
       requiredInspectionsComplete: 2
       requiresDecision: 0
       requiredDecision: 0
     levelCompletionTriggerId: level4_complete
-    expectedSourceIpsAndPorts: '203.77.154.89/846
+    expectedSourceIpsAndPorts: '172.58.99.240/443
 
-      172.58.99.240/245
+      145.210.78.56/656
 
-      145.210.78.56/987
+      91.62.14.233/456
 
-      8.134.201.17/443
+      23.178.45.199/485
 
-      119.33.220.142/834'
+      119.33.220.142/443/397
+
+      203.77.154.89/989'
     expectedDestinationPorts: 5000-6000
     trainWaves:
-    - triggerId: train_wave_1
-      isSuspicious: 1
-      wrongChoiceExplanation: These packets had abnormally large packet sizes.
-      triggerFollowingWaveInList: 1
-      trainIndices: 000000000100000002000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentDataSets:
-      - compartments:
-        - compartment: {fileID: 551808148}
-          title: Protocol and Flags
-          data: 'Protocol: UDP
-
-
-            Flags: N/A'
-        - compartment: {fileID: 1391789937}
-          title: Source IP and Ports
-          data: 'Source IP: 145.210.78.56
-
-
-            Source Port: 567
-
-
-            Destination
-            Port: 5245'
-        - compartment: {fileID: 1947682775}
-          title: Frame Number and Packet Size
-          data: 'Frame Number: 2
-
-
-            Packet Size: 5513221'
-        - compartment: {fileID: 1626612990}
-          title: Payload
-          data: '"LLMNR Query: host.local"'
-      - compartments:
-        - compartment: {fileID: 1391789937}
-          title: Protocol and Flags
-          data: 'Protocol: UDP
-
-
-            Flags: N/A'
-        - compartment: {fileID: 1394781599}
-          title: Source IP and Ports
-          data: 'Source IP: 145.210.78.56
-
-
-            Source Port: 567
-
-
-            Destination
-            Port: 5245'
-        - compartment: {fileID: 225639636}
-          title: Frame Number and Packet Size
-          data: 'Frame Number: 3
-
-
-            Packet Size: 75110023'
-        - compartment: {fileID: 487521172}
-          title: Payload
-          data: '"LLMNR Query: host.local"'
-      - compartments:
-        - compartment: {fileID: 268560575}
-          title: Protocol and Flags
-          data: 'Protocol: UDP
-
-
-            Flags: N/A'
-        - compartment: {fileID: 1429827192}
-          title: Source IP and Ports
-          data: 'Source IP: 145.210.78.56
-
-
-            Source Port: 567
-
-
-            Destination
-            Port: 5245'
-        - compartment: {fileID: 1738556369}
-          title: Frame Number and Packet Size
-          data: 'Frame Number: 3
-
-
-            Packet Size: 215315863'
-        - compartment: {fileID: 1626202852}
-          title: Payload
-          data: '"LLMNR Query: host.local"'
-    - triggerId: train_wave_2
-      isSuspicious: 0
-      wrongChoiceExplanation: This packet was safe.
-      triggerFollowingWaveInList: 1
-      trainIndices: 00000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentDataSets:
-      - compartments:
-        - compartment: {fileID: 551808148}
-          title: Protocol and Flags
-          data: 'Protocol: TCP
-
-
-            Flags: SYN, ACK'
-        - compartment: {fileID: 10152729}
-          title: Source IP and Ports
-          data: 'Source IP:8.134.201.17
-
-
-            Source Port: 443
-
-
-            Destination
-            Port: 5334'
-        - compartment: {fileID: 1947682775}
-          title: Frame Number and Packet Size
-          data: 'Frame Number: 1
-
-
-            Packet Size: 212'
-        - compartment: {fileID: 1626612990}
-          title: Payload
-          data: '....a....&=...X+...=.o..b/..%..>[.....[_K......#..Z.uA.o<=c.....^..yC.d..9.$..K.D.[Y....#*...R.fD..p.83.N1...A.B...u.mZ:..T7..Y....g..a..hn.J#..#..p.       
-            ...`....u........4...P~F....&
-
-            c..P'
-    - triggerId: train_wave_3
+    - triggerId: level_4_train_wave_1
       isSuspicious: 0
       wrongChoiceExplanation: These packets were safe.
       triggerFollowingWaveInList: 1
@@ -2158,59 +2035,207 @@ MonoBehaviour:
           data: 'Protocol: TCP
 
 
-            Flags: ACK'
+            Flags: SYN, ACK'
         - compartment: {fileID: 10152729}
           title: Source IP and Ports
-          data: 'Source IP: 203.77.154.89
+          data: 'Source IP: 172.58.99.240
 
 
             Source Port: 443
 
 
             Destination
-            Port: 5334'
+            Port: 5146'
         - compartment: {fileID: 1947682775}
           title: Frame Number and Packet Size
-          data: 'Frame Number: 3
+          data: 'Frame Number: 2
 
 
-            Packet Size: 186'
+            Packet Size: 68'
         - compartment: {fileID: 1626612990}
           title: Payload
-          data: .......Z.B......I...........k..D_;...).V.EZv^4).B.....j.Kq..x{N...S...       
-            ...........H.T..'.9.m.R...d.../..6.2..'.r.B....u .A.R.D.:\...!.....h.,
+          data: '@..t^..M. ..F..N..LX.........Jn....................S/7&..R...2QXb...9..a.|.6.
+
+            .]K.L..h.}?..nm.wt....Ij.k.+1&.....Yvl%.~t.!.l..rw....Y..A......A...r<>.X....E..6{8.EJ....)7........]<.7E.R..''.4...wS.'
       - compartments:
-        - compartment: {fileID: 1391789937}
+        - compartment: {fileID: 551808148}
           title: Protocol and Flags
           data: 'Protocol: TCP
 
 
             Flags: ACK'
-        - compartment: {fileID: 1394781599}
+        - compartment: {fileID: 10152729}
           title: Source IP and Ports
-          data: 'Source IP: 203.77.154.89
+          data: 'Source IP: 172.58.99.240
 
 
             Source Port: 443
 
 
             Destination
-            Port: 5334'
+            Port: 5146'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 3
+
+
+            Packet Size: 241'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: 'J.2.........-....Y.....$g
+
+            -..G..|&c..?le..2...4.....)...%...+.w..F.t...:E...05.N.m!.}.''#...u...g.......<..V....}....w......jL.....L1..T.1...'
+    - triggerId: train_wave_2
+      isSuspicious: 1
+      wrongChoiceExplanation: These packets used an invalid destination port.
+      triggerFollowingWaveInList: 1
+      trainIndices: 0000000001000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 656
+
+
+            Destination
+            Port: 4952'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 12
+
+
+            Packet Size: 140'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"ISAKMP Key Exchange Init"'
+      - compartments:
+        - compartment: {fileID: 1391789937}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1394781599}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 656
+
+
+            Destination
+            Port: 4952'
         - compartment: {fileID: 225639636}
           title: Frame Number and Packet Size
-          data: 'Frame Number: 4
+          data: 'Frame Number: 13
+
+
+            Packet Size: 145'
+        - compartment: {fileID: 487521172}
+          title: Payload
+          data: '"ISAKMP Key Exchange Response"'
+    - triggerId: train_wave_3
+      isSuspicious: 0
+      wrongChoiceExplanation: These packets were safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 000000000100000002000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 656
+
+
+            Destination
+            Port: 5412'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 9
+
+
+            Packet Size: 168'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"SNMP Get Request"'
+      - compartments:
+        - compartment: {fileID: 1391789937}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1394781599}
+          title: Source IP and Ports
+          data: 'Source IP: 91.62.14.233
+
+
+            Source Port: 456
+
+
+            Destination
+            Port: 5963'
+        - compartment: {fileID: 225639636}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 2
 
 
             Packet Size: 186'
         - compartment: {fileID: 487521172}
           title: Payload
-          data: '....j.[4.W.1..i......ho}.t.ia....''Ex.v..e.$.....XT....vH...Q.x...U......._H-".".U...~..f..~..G.......*..C5.3{^....../..>.
-            ...m..+.!&.1...?......H.,..V..."sD). d...v..-.0.X.!.....J.............!...!
+          data: '"NetBIOS Name Response"'
+      - compartments:
+        - compartment: {fileID: 268560575}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
 
-            ..7,'
+
+            Flags: N/A'
+        - compartment: {fileID: 1429827192}
+          title: Source IP and Ports
+          data: 'Source IP: 23.178.45.199
+
+
+            Source Port: 485
+
+
+            Destination
+            Port: 5963'
+        - compartment: {fileID: 1738556369}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 5
+
+
+            Packet Size: 157'
+        - compartment: {fileID: 1626202852}
+          title: Payload
+          data: '"DNS Response: openai.com IP"'
     - triggerId: train_wave_4
-      isSuspicious: 1
-      wrongChoiceExplanation: This packet had an out of order frame number.
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
       triggerFollowingWaveInList: 1
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
@@ -2223,30 +2248,67 @@ MonoBehaviour:
           data: 'Protocol: TCP
 
 
-            Flags: ACK'
+            Flags: RST'
         - compartment: {fileID: 10152729}
           title: Source IP and Ports
-          data: 'Source IP: 203.77.154.89
+          data: 'Source IP: 172.58.99.240
 
 
             Source Port: 443
 
 
             Destination
-            Port: 5334'
+            Port: 5146'
         - compartment: {fileID: 1947682775}
           title: Frame Number and Packet Size
-          data: 'Frame Number: 2
+          data: 'Frame Number: 8
 
 
-            Packet Size: 185'
+            Packet Size: 75'
         - compartment: {fileID: 1626612990}
           title: Payload
-          data: ^Y9h..)...5.. YE.c......4..q..n..l.Q..b.._D<.9.'..)..3K3s.\.....p..Q>..q>.4.t.^.}..Y..'!N...K.S)..8.8..@{"W...e4i)U....m.
-            JiR..4`.w.U9.,......;...Z?....M....j...J.k\P....*x..H....E..... ..7>=."...r.4....nYe.J{.|EaJ.fb.
+          data: .(..A..p.|....!f.....2[..+E..t....7n...V(..2.C..Pw....{.m.......+.'N..?!0........
+            '.\G.^H..7LN.......#....L...O....8.,q&.........fE..Z.^..6h.=.Q6....mK.UH.e....l9..Y.....5.       
+            ......W...A...b.....-oj.......Y..|.....=.~
     - triggerId: train_wave_5
       isSuspicious: 1
-      wrongChoiceExplanation: These packets resembly a malicious port scan since
+      wrongChoiceExplanation: This UDP packet had a flag set, which UDP packets do
+        not have.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 119.33.220.142
+
+
+            Source Port: 397
+
+
+            Destination
+            Port: 5555'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 3
+
+
+            Packet Size: 170'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"DNS Query: example.com A record"'
+    - triggerId: train_wave_6
+      isSuspicious: 1
+      wrongChoiceExplanation: These packets resemble a malicious port scan since
         they try to scan multiple destination ports from the same source port.
       triggerFollowingWaveInList: 1
       trainIndices: 000000000100000002000000
@@ -2263,23 +2325,23 @@ MonoBehaviour:
             Flags: N/A'
         - compartment: {fileID: 10152729}
           title: Source IP and Ports
-          data: 'Source IP: 145.210.78.56
+          data: 'Source IP: 203.77.154.89
 
 
-            Source Port: 987
+            Source Port: 989
 
 
             Destination
-            Port: 5412'
+            Port: 5444'
         - compartment: {fileID: 1947682775}
           title: Frame Number and Packet Size
-          data: 'Frame Number: 7
+          data: 'Frame Number: 4
 
 
-            Packet Size: 54'
+            Packet Size: 147'
         - compartment: {fileID: 1626612990}
           title: Payload
-          data: '"Random probe"'
+          data: '"DHCP Acknowledgement"'
       - compartments:
         - compartment: {fileID: 1391789937}
           title: Protocol and Flags
@@ -2289,23 +2351,23 @@ MonoBehaviour:
             Flags: N/A'
         - compartment: {fileID: 1394781599}
           title: Source IP and Ports
-          data: 'Source IP: 145.210.78.56
+          data: 'Source IP: 203.77.154.89
 
 
-            Source Port: 987
+            Source Port: 989
 
 
             Destination
-            Port: 5413'
+            Port: 5445'
         - compartment: {fileID: 225639636}
           title: Frame Number and Packet Size
-          data: 'Frame Number: 8
+          data: 'Frame Number: 5
 
 
-            Packet Size: 54'
+            Packet Size: 147'
         - compartment: {fileID: 487521172}
           title: Payload
-          data: '"Random probe"'
+          data: '"DHCP Acknowledgement"'
       - compartments:
         - compartment: {fileID: 268560575}
           title: Protocol and Flags
@@ -2315,164 +2377,23 @@ MonoBehaviour:
             Flags: N/A'
         - compartment: {fileID: 1429827192}
           title: Source IP and Ports
-          data: 'Source IP: 145.210.78.56
-
-
-            Source Port: 987
-
-
-            Destination
-            Port: 5414'
-        - compartment: {fileID: 1738556369}
-          title: Frame Number and Packet Size
-          data: 'Frame Number: 9
-
-
-            Packet Size: 54'
-        - compartment: {fileID: 1626202852}
-          title: Payload
-          data: '"Random probe"'
-    - triggerId: train_wave_6
-      isSuspicious: 0
-      wrongChoiceExplanation: This packet was safe.
-      triggerFollowingWaveInList: 1
-      trainIndices: 00000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentDataSets:
-      - compartments:
-        - compartment: {fileID: 551808148}
-          title: Protocol and Flags
-          data: 'Protocol: TCP
-
-
-            Flags: FIN, ACK'
-        - compartment: {fileID: 10152729}
-          title: Source IP and Ports
           data: 'Source IP: 203.77.154.89
 
 
-            Source Port: 443
+            Source Port: 989
 
 
             Destination
-            Port: 5334'
-        - compartment: {fileID: 1947682775}
+            Port: 5446'
+        - compartment: {fileID: 1738556369}
           title: Frame Number and Packet Size
           data: 'Frame Number: 6
 
 
-            Packet Size: 180'
-        - compartment: {fileID: 1626612990}
+            Packet Size: 147'
+        - compartment: {fileID: 1626202852}
           title: Payload
-          data: .N ...i..'.T. ...ST2.....+..g.k$.T= .u[2'...J.V.YFc..%...o.+Q..N.....y....u.....`..K.<.).W.mM~.H.,.WF....@.I......97~P.[..L....L..r">....8O%...       
-            ..z.a.}.5(T.W`..}e.......K=.d.E..'8.G.8.ZK.y.q_..s.'l.......        .{.......B
-    - triggerId: train_wave_7
-      isSuspicious: 0
-      wrongChoiceExplanation: This packet was safe.
-      triggerFollowingWaveInList: 1
-      trainIndices: 00000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentDataSets:
-      - compartments:
-        - compartment: {fileID: 551808148}
-          title: Protocol and Flags
-          data: 'Protocol: UDP
-
-
-            Flags: N/A'
-        - compartment: {fileID: 10152729}
-          title: Source IP and Ports
-          data: 'Source IP: 119.33.220.142
-
-
-            Source Port: 834
-
-
-            Destination
-            Port: 5548'
-        - compartment: {fileID: 1947682775}
-          title: Frame Number and Packet Size
-          data: 'Frame Number: 12
-
-
-            Packet Size: 84'
-        - compartment: {fileID: 1626612990}
-          title: Payload
-          data: '"QUIC Handshake Response"'
-    - triggerId: train_wave_8
-      isSuspicious: 1
-      wrongChoiceExplanation: This packet had a suspicious payload.
-      triggerFollowingWaveInList: 1
-      trainIndices: 00000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentDataSets:
-      - compartments:
-        - compartment: {fileID: 551808148}
-          title: Protocol and Flags
-          data: 'Protocol: UDP
-
-
-            Flags: N/A'
-        - compartment: {fileID: 10152729}
-          title: Source IP and Ports
-          data: 'Source IP: 119.33.220.142
-
-
-            Source Port: 834
-
-
-            Destination
-            Port: 5548'
-        - compartment: {fileID: 1947682775}
-          title: Frame Number and Packet Size
-          data: 'Frame Number: 13
-
-
-            Packet Size: 96'
-        - compartment: {fileID: 1626612990}
-          title: Payload
-          data: '"Malformed packet"'
-    - triggerId: train_wave_9
-      isSuspicious: 0
-      wrongChoiceExplanation: This packet was safe.
-      triggerFollowingWaveInList: 1
-      trainIndices: 00000000
-      startAllSelectedTrainsAtOnce: 0
-      delayBeforeWaveStarts: 0
-      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
-      compartmentDataSets:
-      - compartments:
-        - compartment: {fileID: 551808148}
-          title: Protocol and Flags
-          data: 'Protocol: UDP
-
-
-            Flags: N/A'
-        - compartment: {fileID: 10152729}
-          title: Source IP and Ports
-          data: 'Source IP: 119.33.220.142
-
-
-            Source Port: 834
-
-
-            Destination
-            Port: 5548'
-        - compartment: {fileID: 1947682775}
-          title: Frame Number and Packet Size
-          data: 'Frame Number: 14
-
-
-            Packet Size: 102'
-        - compartment: {fileID: 1626612990}
-          title: Payload
-          data: '"QUIC Encrypted Data"'
+          data: '"DHCP Acknowledgement"'
 --- !u!4 &410981257
 Transform:
   m_ObjectHideFlags: 0

@@ -209,6 +209,40 @@ MonoBehaviour:
       allowedInteractionIds:
       - close_manual
       requiredInteractionCount: 1
+  - text: Remember, review your checklist to make sure you checked every possible
+      thing those fools might try to do. (Click the "Checklist" button in the top
+      left)
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 1
+      allowedInteractionIds:
+      - open_checklist
+      requiredInteractionCount: 1
+  - text: In the Checklist, you can see which ip's and ports we are expecting to
+      hear from today. Make sure all packets you accept are company approved, we
+      can't risk any evildoers compromising us.
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: Once you're done reviewing, go ahead and close the checklist. (Click the
+      "Close" button in the bottom left)
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 1
+      allowedInteractionIds:
+      - close_checklist
+      requiredInteractionCount: 1
   - text: Alright, you're on your own now, partner. Let's see how you fare! Oh, and...
       try not to get fired on the first day, will ya?
     speakerName: Sheriff

@@ -382,7 +382,7 @@ public class GameplayManager : MonoBehaviour
             var levelCompletionTriggerId = GetCurrentLevelCompletionTriggerId();
             if (!TryStartAutoDialogueForTrigger(levelCompletionTriggerId))
             {
-                SetState(GameState.LevelComplete);
+                AdvanceToNextLevel();
             }
 
             return;
@@ -409,7 +409,7 @@ public class GameplayManager : MonoBehaviour
 
         if (levelWinConditionsMet && string.Equals(normalizedTriggerId, GetCurrentLevelCompletionTriggerId(), StringComparison.Ordinal))
         {
-            SetState(GameState.LevelComplete);
+            AdvanceToNextLevel();
             return;
         }
 

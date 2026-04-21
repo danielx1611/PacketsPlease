@@ -22,7 +22,7 @@ MonoBehaviour:
   - blockId: level1_interaction_sequence
     sequence: {fileID: 11400000, guid: eee2224fb7be4f8ab222222222222222, type: 2}
     startingLineIndex: 0
-    triggerId: train_wave_1
+    triggerId: level_1_train_wave_1
     autoStart: 1
     completionTriggerId: level_1_train_wave_2
   endingDialogueBlocks:

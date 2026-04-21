@@ -23,7 +23,8 @@ MonoBehaviour:
       allowedInteractionIds:
       - train_compartment1
       requiredInteractionCount: 1
-  - text: In this train, the protocol is TCP and the flags are SYN, ACK.
+  - text: 'Ok listen up. Every TCP connection begins with a handshake. The handshake
+      should go: SYN -> SYN, ACK -> ACK.'
     speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0
@@ -32,8 +33,7 @@ MonoBehaviour:
       enabled: 0
       allowedInteractionIds: []
       requiredInteractionCount: 1
-  - text: 'Ok listen up. Every TCP connection begins with a handshake. The handshake
-      should go: SYN -> SYN, ACK -> ACK.'
+  - text: In this train, the protocol is TCP and the flags are SYN, ACK.
     speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0
@@ -74,8 +74,8 @@ MonoBehaviour:
       allowedInteractionIds:
       - train_compartment2
       requiredInteractionCount: 1
-  - text: 'In this train, the source IP is 132.432.255.255 and the source port is
-      443 '
+  - text: In this train, the source IP is 132.432.255.255 and the source port is
+      443. The destination port is 52955.
     speakerName: Sheriff
     portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
     useCustomRevealSpeed: 0

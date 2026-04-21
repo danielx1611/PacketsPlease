@@ -104,6 +104,9 @@ public class GameplayManager : MonoBehaviour
         public string triggerId;
         [Tooltip("Marks this entire wave as suspicious. Accepting this wave will log a warning.")]
         public bool isSuspicious;
+        [TextArea(2, 6)]
+        [Tooltip("Displayed immediately on the incorrect decision popup when the player chooses the wrong action for this wave.")]
+        public string wrongChoiceExplanation;
         [Tooltip("If enabled, this wave will trigger the very next configured wave when resolved.")]
         public bool triggerFollowingWaveInList;
         public List<int> trainIndices = new();
@@ -122,7 +125,6 @@ public class GameplayManager : MonoBehaviour
     [Header("Optional External Controllers")]
     [SerializeField] private TrainController trainController;
     [SerializeField] private MonoBehaviour inspectionController;
-    [SerializeField] private CyberAIPacketJudge cyberAIPacketJudge;
 
     [Header("Progression Configuration")]
     [SerializeField] private bool autoStartFirstLevelOnStart = true;
@@ -171,7 +173,6 @@ public class GameplayManager : MonoBehaviour
 
     private void OnEnable()
     {
-        cyberAIPacketJudge ??= FindObjectOfType<CyberAIPacketJudge>();
         CacheInspectButtons();
         CacheInspectionPopups();
         SubscribeToEvents();
@@ -483,7 +484,7 @@ public class GameplayManager : MonoBehaviour
         }
 
         var isCorrectDecision = activeTrainWave == null || !activeTrainWave.isSuspicious;
-        ShowWrongDecisionFeedbackIfNeeded(playerAccepted: true, isCorrectDecision);
+        ShowWrongDecisionFeedbackIfNeeded(isCorrectDecision);
         if (!HandleDecisionHealthResult(isCorrectDecision))
         {
             return;
@@ -517,7 +518,7 @@ public class GameplayManager : MonoBehaviour
         latestDecision = RequiredDecision.Reject;
 
         var isCorrectDecision = activeTrainWave != null && activeTrainWave.isSuspicious;
-        ShowWrongDecisionFeedbackIfNeeded(playerAccepted: false, isCorrectDecision);
+        ShowWrongDecisionFeedbackIfNeeded(isCorrectDecision);
         if (!HandleDecisionHealthResult(isCorrectDecision))
         {
             return;
@@ -759,7 +760,7 @@ public class GameplayManager : MonoBehaviour
         return false;
     }
 
-    private void ShowWrongDecisionFeedbackIfNeeded(bool playerAccepted, bool isCorrectDecision)
+    private void ShowWrongDecisionFeedbackIfNeeded(bool isCorrectDecision)
     {
         if (isCorrectDecision)
         {
@@ -767,80 +768,15 @@ public class GameplayManager : MonoBehaviour
             return;
         }
 
-        gameplayDecisionUI?.ShowDecisionFeedbackLoading();
-
-        if (cyberAIPacketJudge == null)
+        var wrongChoiceExplanation = activeTrainWave != null
+            ? activeTrainWave.wrongChoiceExplanation
+            : string.Empty;
+        if (string.IsNullOrWhiteSpace(wrongChoiceExplanation))
         {
-            ShowFallbackWrongDecisionFeedback(playerAccepted);
-            return;
+            wrongChoiceExplanation = "That choice does not match the risk indicators for this wave.";
         }
 
-        var payload = BuildActiveWavePayloadSummary();
-        StartCoroutine(cyberAIPacketJudge.RequestDecisionFeedback(
-            payload,
-            playerAccepted,
-            activeTrainWave != null && activeTrainWave.isSuspicious,
-            feedback =>
-            {
-                if (gameplayDecisionUI == null || feedback == null)
-                {
-                    return;
-                }
-
-                gameplayDecisionUI.ShowDecisionFeedback(feedback.wrongReason);
-            }));
-    }
-
-    private string BuildActiveWavePayloadSummary()
-    {
-        if (activeTrainWave?.compartmentDataSets == null || activeTrainWave.compartmentDataSets.Count == 0)
-        {
-            return "No packet payload provided";
-        }
-
-        var payloadParts = new List<string>();
-        for (var i = 0; i < activeTrainWave.compartmentDataSets.Count; i++)
-        {
-            var dataSet = activeTrainWave.compartmentDataSets[i];
-            if (dataSet?.compartments == null)
-            {
-                continue;
-            }
-
-            for (var j = 0; j < dataSet.compartments.Count; j++)
-            {
-                var data = dataSet.compartments[j];
-                if (data == null || string.IsNullOrWhiteSpace(data.data))
-                {
-                    continue;
-                }
-
-                payloadParts.Add(data.data.Trim());
-            }
-        }
-
-        return payloadParts.Count > 0
-            ? string.Join(" | ", payloadParts)
-            : "No packet payload provided";
-    }
-
-    private void ShowFallbackWrongDecisionFeedback(bool playerAccepted)
-    {
-        if (gameplayDecisionUI == null)
-        {
-            return;
-        }
-
-        var actuallySuspicious = activeTrainWave != null && activeTrainWave.isSuspicious;
-        if (playerAccepted && actuallySuspicious)
-        {
-            gameplayDecisionUI.ShowDecisionFeedback(
-                "You accepted traffic that matched suspicious indicators.");
-            return;
-        }
-
-        gameplayDecisionUI.ShowDecisionFeedback(
-            "You rejected traffic that lacked suspicious indicators.");
+        gameplayDecisionUI?.ShowDecisionFeedback(wrongChoiceExplanation);
     }
 
 

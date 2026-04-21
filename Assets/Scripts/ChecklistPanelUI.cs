@@ -109,7 +109,7 @@ public class ChecklistPanelUI : MonoBehaviour
             return;
         }
 
-        var statusPrefix = entry.isChecked ? "Selected" : "Not selected";
+        var statusPrefix = entry.isChecked ? "Anomaly Detected" : "No Anomaly Detected";
         if (entry.toggleButton != null && !entry.toggleButton.interactable)
         {
             statusPrefix = $"{statusPrefix} (Disabled)";

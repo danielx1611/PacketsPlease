@@ -152,6 +152,7 @@ public class GameplayManager : MonoBehaviour
 
     private int completedInspections;
     private bool decisionReceived;
+    private bool pendingLoseSceneLoadAfterFeedbackClose;
     private RequiredDecision latestDecision = RequiredDecision.None;
     private bool levelWinConditionsMet;
     private string activeDialogueBlockId;
@@ -434,6 +435,7 @@ public class GameplayManager : MonoBehaviour
         gameplayDecisionUI.OnAcceptTrainRequested += HandleAcceptTrainRequested;
         gameplayDecisionUI.OnRejectTrainRequested += HandleRejectTrainRequested;
         gameplayDecisionUI.OnTutorialInteractionPerformed += HandleTutorialInteractionPerformed;
+        gameplayDecisionUI.OnDecisionFeedbackClosed += HandleDecisionFeedbackClosed;
         SubscribeToInspectButtons();
     }
 
@@ -455,6 +457,7 @@ public class GameplayManager : MonoBehaviour
         gameplayDecisionUI.OnAcceptTrainRequested -= HandleAcceptTrainRequested;
         gameplayDecisionUI.OnRejectTrainRequested -= HandleRejectTrainRequested;
         gameplayDecisionUI.OnTutorialInteractionPerformed -= HandleTutorialInteractionPerformed;
+        gameplayDecisionUI.OnDecisionFeedbackClosed -= HandleDecisionFeedbackClosed;
     }
 
     private void HandleAcceptTrainRequested(IReadOnlyList<int> selectedTrainIndices)
@@ -726,6 +729,7 @@ public class GameplayManager : MonoBehaviour
         levelWinConditionsMet = false;
         activeDialogueBlockId = null;
         ClearTutorialInteractionLock();
+        pendingLoseSceneLoadAfterFeedbackClose = false;
         currentLives = Mathf.Max(1, maxLives);
         gameplayDecisionUI?.RefreshLives(currentLives);
     }
@@ -743,6 +747,12 @@ public class GameplayManager : MonoBehaviour
         if (currentLives > 0)
         {
             return true;
+        }
+
+        if (gameplayDecisionUI != null && gameplayDecisionUI.IsDecisionFeedbackVisible)
+        {
+            pendingLoseSceneLoadAfterFeedbackClose = true;
+            return false;
         }
 
         LoadLoseScene();
@@ -831,6 +841,18 @@ public class GameplayManager : MonoBehaviour
 
         gameplayDecisionUI.ShowDecisionFeedback(
             "You rejected traffic that lacked suspicious indicators.");
+    }
+
+
+    private void HandleDecisionFeedbackClosed()
+    {
+        if (!pendingLoseSceneLoadAfterFeedbackClose || currentLives > 0)
+        {
+            return;
+        }
+
+        pendingLoseSceneLoadAfterFeedbackClose = false;
+        LoadLoseScene();
     }
 
     private void ApplyDifficultySettings(LevelConfig config)
@@ -1151,6 +1173,7 @@ public class GameplayManager : MonoBehaviour
 
     private void LoadLoseScene()
     {
+        pendingLoseSceneLoadAfterFeedbackClose = false;
         if (string.IsNullOrWhiteSpace(loseSceneName))
         {
             Debug.LogWarning($"{nameof(GameplayManager)} could not load the lose scene because no scene name is configured.", this);

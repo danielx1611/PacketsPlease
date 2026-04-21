@@ -16,6 +16,11 @@ public class GameplayDecisionUI : MonoBehaviour
     [SerializeField] private Button manualToggleButton;
     [SerializeField] private Button manualCloseButton;
 
+    [Header("Checklist UI")]
+    [SerializeField] private GameObject checklistMenuRoot;
+    [SerializeField] private Button checklistToggleButton;
+    [SerializeField] private Button checklistCloseButton;
+
     [Header("Decision Buttons")]
     [SerializeField] private Button acceptTrainButton;
     [SerializeField] private Button rejectTrainButton;
@@ -48,6 +53,7 @@ public class GameplayDecisionUI : MonoBehaviour
     {
         EnsureDecisionFeedbackPopupReferences();
         HideManual();
+        HideChecklist();
         HideDecisionFeedbackPopup();
         UpdateReadyToDecideLabel();
         RefreshDecisionButtonState();
@@ -64,6 +70,16 @@ public class GameplayDecisionUI : MonoBehaviour
         if (manualCloseButton != null)
         {
             manualCloseButton.onClick.AddListener(HideManualFromCloseButton);
+        }
+
+        if (checklistToggleButton != null)
+        {
+            checklistToggleButton.onClick.AddListener(ToggleChecklist);
+        }
+
+        if (checklistCloseButton != null)
+        {
+            checklistCloseButton.onClick.AddListener(HideChecklist);
         }
 
         if (acceptTrainButton != null)
@@ -101,6 +117,16 @@ public class GameplayDecisionUI : MonoBehaviour
             manualCloseButton.onClick.RemoveListener(HideManualFromCloseButton);
         }
 
+        if (checklistToggleButton != null)
+        {
+            checklistToggleButton.onClick.RemoveListener(ToggleChecklist);
+        }
+
+        if (checklistCloseButton != null)
+        {
+            checklistCloseButton.onClick.RemoveListener(HideChecklist);
+        }
+
         if (acceptTrainButton != null)
         {
             acceptTrainButton.onClick.RemoveListener(AcceptCurrentTrain);
@@ -120,6 +146,36 @@ public class GameplayDecisionUI : MonoBehaviour
         {
             decisionFeedbackCloseButton.onClick.RemoveListener(HideDecisionFeedbackPopup);
         }
+    }
+
+    public void ToggleChecklist()
+    {
+        if (checklistMenuRoot == null)
+        {
+            return;
+        }
+
+        checklistMenuRoot.SetActive(!checklistMenuRoot.activeSelf);
+    }
+
+    public void ShowChecklist()
+    {
+        if (checklistMenuRoot == null)
+        {
+            return;
+        }
+
+        checklistMenuRoot.SetActive(true);
+    }
+
+    public void HideChecklist()
+    {
+        if (checklistMenuRoot == null)
+        {
+            return;
+        }
+
+        checklistMenuRoot.SetActive(false);
     }
 
     public void ShowDecisionFeedbackLoading()

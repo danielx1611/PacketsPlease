@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac80fa7a29d743cf9669c067efa12c7b, type: 3}
+  m_Name: Level3DialoguePlan
+  m_EditorClassIdentifier: 
+  introDialogueBlocks:
+  - blockId: level3_intro_before_train
+    sequence: {fileID: 11400000, guid: 316fbbedb6698e14b9f1f61913f962f6, type: 2}
+    startingLineIndex: 0
+    triggerId: 
+    autoStart: 1
+    completionTriggerId: train_wave_1
+  endingDialogueBlocks:
+  - blockId: level3_ending
+    sequence: {fileID: 11400000, guid: 876057521d6ef224b80ecef0188ac4ee, type: 2}
+    startingLineIndex: 0
+    triggerId: level3_complete
+    autoStart: 1
+    completionTriggerId: 

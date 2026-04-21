@@ -17,12 +17,14 @@ MonoBehaviour:
   leftPageBody: 'Frame Numbers:
 
     Frame numbers (as seen in tools like Wireshark)
-    are not part of TCP itself but are used by network analysis tools to label packets
-    in the order they were captured. They help observers track and reference specific
-    packets during inspection. Frame numbers are mainly used for simplicity''s sake.
-    Frame numbers in a single stream should be increasing for every valid packet
-    in the stream.'
-  rightPageBody: 
+    are not part of the protocols themselves but are used by network analysis tools
+    to label packets in the order they were captured. They help observers track and
+    reference specific packets during inspection. Frame numbers are mainly used for
+    simplicity''s sake. Frame numbers in a single stream should be increasing for
+    every valid packet in the stream.'
+  rightPageBody: 'NOTE: Frame Numbers should be increasing per stream. A stream for
+    one protocol and a stream for another have two different counters. Make sure
+    you pay attention to the current stream and frame number you are investigating.'
   requireSecondPageUnlock: 0
   difficultyTag: 
   unlockThreshold: 0

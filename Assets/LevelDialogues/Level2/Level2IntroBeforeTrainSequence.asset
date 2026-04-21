@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7a5919ff3dd728499db3d01b9c7d9c4, type: 3}
+  m_Name: Level2IntroBeforeTrainSequence
+  m_EditorClassIdentifier: 
+  lines:
+  - text: The next day...
+    speakerName: ' '
+    portrait: {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: I see you're still around and kicking. Get ready 'cause there's more you
+      need to know about
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: From now on, we're going to also receive UDP trains which are different
+      from TCP ones.
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: These don't require handshakes and have unencrypted payloads. Therefore,
+      you need to pay attention to what is being sent there. If something doesn't
+      look right, reject it!
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: Also, I should let you know that multiple trains will be coming in at some
+      point. When you accept or reject them, you do so for all. Make sure to choose
+      wisely!
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1
+  - text: Good luck!
+    speakerName: Sheriff
+    portrait: {fileID: -7307842283543146795, guid: 8e858e9d9926f124392468c068f061d7, type: 3}
+    useCustomRevealSpeed: 0
+    revealLettersPerSecond: 0
+    interactionRequirement:
+      enabled: 0
+      allowedInteractionIds: []
+      requiredInteractionCount: 1

@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 10152728}
   - component: {fileID: 10152729}
   m_Layer: 5
-  m_Name: Compartment2
+  m_Name: Train1Compartment2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -360,6 +360,472 @@ MonoBehaviour:
   tutorialInteractionId: train_compartment3
   continueDialogueTriggerRelay: {fileID: 0}
   continueDialogueTriggerId: train_compartment3_inspected
+--- !u!1 &225639634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 225639635}
+  - component: {fileID: 225639636}
+  m_Layer: 5
+  m_Name: Train2Compartment3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &225639635
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225639634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 276894433}
+  m_Father: {fileID: 343742186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -100, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &225639636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225639634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &240479765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 240479766}
+  m_Layer: 5
+  m_Name: Train3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &240479766
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240479765}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 268560574}
+  - {fileID: 1429827191}
+  - {fileID: 1738556368}
+  - {fileID: 1626202851}
+  m_Father: {fileID: 758005009}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -47.5}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &256302472
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 256302473}
+  - component: {fileID: 256302475}
+  - component: {fileID: 256302474}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &256302473
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256302472}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2037363337}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &256302474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256302472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &256302475
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 256302472}
+  m_CullTransparentMesh: 1
+--- !u!1 &268560573
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 268560574}
+  - component: {fileID: 268560575}
+  m_Layer: 5
+  m_Name: Train3Compartment1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &268560574
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268560573}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1925977102}
+  m_Father: {fileID: 240479766}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 300, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &268560575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268560573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &276894432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 276894433}
+  - component: {fileID: 276894437}
+  - component: {fileID: 276894436}
+  - component: {fileID: 276894435}
+  - component: {fileID: 276894434}
+  m_Layer: 5
+  m_Name: Compartment3Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &276894433
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276894432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1817711173}
+  m_Father: {fileID: 225639635}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &276894434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276894432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 276894435}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276894436}
+        m_TargetAssemblyTypeName: InspectButton, Assembly-CSharp
+        m_MethodName: Inspect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &276894435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276894432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1139090859619364202, guid: bbf78e508f28c414b8f9ed6df05d1b15, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &276894436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276894432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb4675e843309c4597daf43fc92ea51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetInspectable: {fileID: 225639636}
+  popupUI: {fileID: 1156341610}
+  trainController: {fileID: 758005010}
+  button: {fileID: 0}
+  tutorialInteractionId: train_compartment3
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment3_inspected
+--- !u!222 &276894437
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276894432}
+  m_CullTransparentMesh: 1
+--- !u!1 &343742185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 343742186}
+  m_Layer: 5
+  m_Name: Train2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &343742186
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 343742185}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1391789936}
+  - {fileID: 1394781598}
+  - {fileID: 225639635}
+  - {fileID: 487521171}
+  m_Father: {fileID: 758005009}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -130}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &410981255
 GameObject:
   m_ObjectHideFlags: 0
@@ -392,10 +858,9 @@ MonoBehaviour:
   gameplayManual: {fileID: 5877050652187154923}
   gameplayDecisionUI: {fileID: 5877050652187154922}
   characterDialogueUI: {fileID: 1462000002}
-  checklistPanelUI: {fileID: 0}
+  checklistPanelUI: {fileID: 1405076373}
   trainController: {fileID: 758005010}
   inspectionController: {fileID: 0}
-  cyberAIPacketJudge: {fileID: 5877050652187154927}
   autoStartFirstLevelOnStart: 1
   initialLevelIndex: 0
   globalDifficultyMultiplier: 1
@@ -430,6 +895,7 @@ MonoBehaviour:
     trainWaves:
     - triggerId: train_wave_1
       isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
       triggerFollowingWaveInList: 0
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
@@ -467,6 +933,7 @@ MonoBehaviour:
             ...o........*.....2..Xj.2...Y...t7.&...+......D...F...uAE.X....c...6..54.z.b..M.?...bG..0....=)?+...........+$...._P.......0.....T.6#.1.tMe..w....^|.V...%......l....'
     - triggerId: train_wave_2
       isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
       triggerFollowingWaveInList: 1
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
@@ -505,6 +972,8 @@ MonoBehaviour:
             a-..8.$..Lr5y..$..Z....g''9.G.x...'
     - triggerId: train_wave_3
       isSuspicious: 1
+      wrongChoiceExplanation: This was suspicious because it came from a different
+        IP and the source port was not expected either.
       triggerFollowingWaveInList: 1
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
@@ -542,6 +1011,7 @@ MonoBehaviour:
             ...o........*.....2..Xj.2...Y...t7.&...+......D...F...uAE.X....c...6..54.z.b..M.?...bG..0....=)?+...........+$...._P.......0.....T.6#.1.tMe..w....^|.V...%......l....'
     - triggerId: train_wave_4
       isSuspicious: 1
+      wrongChoiceExplanation: The packet size was way too large.
       triggerFollowingWaveInList: 1
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
@@ -580,6 +1050,7 @@ MonoBehaviour:
             a-..8.$..Lr5y..$..Z....g''9.G.x...'
     - triggerId: train_wave_5
       isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
       triggerFollowingWaveInList: 1
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
@@ -615,6 +1086,8 @@ MonoBehaviour:
             .|..S.`...R.......Q.Ip.......~|..E...h|.....0.qjd....q0&.m....F..`S...,....
     - triggerId: train_wave_6
       isSuspicious: 1
+      wrongChoiceExplanation: The packet size size was too large; the ip address
+        and source port were not expected.
       triggerFollowingWaveInList: 1
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
@@ -643,13 +1116,14 @@ MonoBehaviour:
           data: 'Frame Number: 9
 
 
-            Packet Size: 500'
+            Packet Size: 50000'
         - compartment: {fileID: 1626612990}
           title: Payload
           data: ..............a.><..\.n....@.........C..p.1..2X.......R....@b6..$R...O......NK..6y........#_.Hdw#..0.b....k.....UG.I....1W..P.....;....+...d...*l.s......XF..3...Z...m......      
             .|..S.`...f.......Q.Ip.......~|..g...h|.....0.tjd....R0&.m....F..`S...,....
     - triggerId: train_wave_7
       isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
       triggerFollowingWaveInList: 1
       trainIndices: 00000000
       startAllSelectedTrainsAtOnce: 0
@@ -684,6 +1158,1321 @@ MonoBehaviour:
           data: '.!a..u...N.        .WShs...F....?.r/.r..4....G.[
 
             ......I.......j.e.gfp.\eja.z...'
+  - levelId: 2
+    difficultyPreset: 0
+    customDifficultyScalar: 1
+    manualPagesToUnlock:
+    - manualPageIndex: 0
+      unlockSecondPage: 1
+    - manualPageIndex: 1
+      unlockSecondPage: 1
+    - manualPageIndex: 2
+      unlockSecondPage: 1
+    - manualPageIndex: 3
+      unlockSecondPage: 1
+    - manualPageIndex: 4
+      unlockSecondPage: 1
+    - manualPageIndex: 5
+      unlockSecondPage: 1
+    dialoguePlan: {fileID: 11400000, guid: f65cd8793fdae8b46aeb43a2b9460a7a, type: 2}
+    winConditions:
+      requiredInspectionsComplete: 2
+      requiresDecision: 0
+      requiredDecision: 0
+    levelCompletionTriggerId: level2_complete
+    expectedSourceIpsAndPorts: '91.62.14.233/443
+
+      23.178.45.199/443
+
+      145.210.78.56/567/443
+
+      23.178.45.199/443
+
+      145.210.78.56/567/443'
+    expectedDestinationPorts: 52955
+    trainWaves:
+    - triggerId: train_wave_1
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 9
+
+
+            Packet Size: 194'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"NTP Request"'
+    - triggerId: train_wave_2
+      isSuspicious: 1
+      wrongChoiceExplanation: Out of order frame number.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 2
+
+
+            Packet Size: 170'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"SSDP Discovery Request"'
+    - triggerId: train_wave_3
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: SYN, ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 91.62.14.233
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 2
+
+
+            Packet Size: 70'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: ...X_...sj..S....n..3.b.H.T3...Dd..EK....M.1~.... i.q....6..w$..}...//2..."e;.@...1.....}.T8R.K.....1a...'.".F..5........=/._...!.U..It,......9V.*....c..2...@@n..aW..?K.....7t..       
+            k*9o%....q$. .Pa..t.0H.G.........N<..
+    - triggerId: train_wave_4
+      isSuspicious: 1
+      wrongChoiceExplanation: This packet had a strange combination of TCP flags.
+      triggerFollowingWaveInList: 1
+      trainIndices: 0000000001000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: FIN, PSH, URG'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 91.62.14.233
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 5
+
+
+            Packet Size: 210'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: R'mf.0..{......X.....+o...NH\.|..f&oJ\|..........L.S....G.3....h}I...zT.[.[.......zD_...:....q.b...D....l/.9....@........5f[}.kQ.
+            .......J..f|....s_5..y..:..{Mf.."...#...... .q.Tr...p.>..KW...$..E...u..x......
+    - triggerId: train_wave_5
+      isSuspicious: 0
+      wrongChoiceExplanation: These packets were safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 16
+
+
+            Packet Size: 177'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"mDNS Query: printer.local"'
+      - compartments:
+        - compartment: {fileID: 1391789937}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+            Flags: N/A'
+        - compartment: {fileID: 1394781599}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 225639636}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 18
+
+
+            Packet Size: 174'
+        - compartment: {fileID: 487521172}
+          title: Payload
+          data: '"mDNS Response: printer.local IP"'
+    - triggerId: train_wave_6
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 91.62.14.233
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 11
+
+
+            Packet Size: 177'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: ...X_...sj..S....n..3.b.H.T3...Dd..EK....M.1~.... i.q....6..w$..}...//2..."e;.@...1.....}.T8R.K.....1a...'.".F..5........=/._...!.U..It,......9V.*....c..2...@@n..aW..?K.....7t..       
+            k*9o%....q$. .Pa..t.0H.G.........N<..
+    - triggerId: train_wave_7
+      isSuspicious: 1
+      wrongChoiceExplanation: Unexpected port number.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 343
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 13
+
+
+            Packet Size: 220'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: c.Q...Q.y.9T J.Q.rJ.."o.C.7.j..{rv..E..&.JL....p...>.A.....a...../>B."...p....m`...NF#..?.       
+            .8.......Lu\..^.?..p...]....0Sn.......R......x......c.j.......$[.,'AI.'h6L.J`...Cw...e.?....W...       
+            `....W.9....4.>.
+    - triggerId: train_wave_8
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+            Flags: FIN, ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 91.62.14.233
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 52955'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 14
+
+
+            Packet Size: 75'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: ..5.'.j...v...(j.*.H2sw4.D..        ..<.=....Diy_.O..v.....Zg*k.{.~.<..]..}x..i.G.<N"N../..@.......{......^v.C.r.8,.q.xyLx>.OH.+..`...X...VW.z...U.U.._.O..........!~.i.`.Md.....o
+  - levelId: 3
+    difficultyPreset: 0
+    customDifficultyScalar: 1
+    manualPagesToUnlock:
+    - manualPageIndex: 0
+      unlockSecondPage: 1
+    - manualPageIndex: 1
+      unlockSecondPage: 1
+    - manualPageIndex: 2
+      unlockSecondPage: 1
+    - manualPageIndex: 3
+      unlockSecondPage: 1
+    - manualPageIndex: 4
+      unlockSecondPage: 1
+    - manualPageIndex: 5
+      unlockSecondPage: 1
+    dialoguePlan: {fileID: 11400000, guid: 7a32def63a3195f49bd6e19aab9ef4ca, type: 2}
+    winConditions:
+      requiredInspectionsComplete: 2
+      requiresDecision: 0
+      requiredDecision: 0
+    levelCompletionTriggerId: level3_complete
+    expectedSourceIpsAndPorts: '203.77.154.89/846
+
+      172.58.99.240/245
+
+      145.210.78.56/987
+
+      8.134.201.17/443
+
+      119.33.220.142/834'
+    expectedDestinationPorts: 5000-6000
+    trainWaves:
+    - triggerId: train_wave_1
+      isSuspicious: 1
+      wrongChoiceExplanation: These packets had abnormally large packet sizes.
+      triggerFollowingWaveInList: 1
+      trainIndices: 000000000100000002000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1391789937}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 5245'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 2
+
+
+            Packet Size: 5513221'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"LLMNR Query: host.local"'
+      - compartments:
+        - compartment: {fileID: 1391789937}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1394781599}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 5245'
+        - compartment: {fileID: 225639636}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 3
+
+
+            Packet Size: 75110023'
+        - compartment: {fileID: 487521172}
+          title: Payload
+          data: '"LLMNR Query: host.local"'
+      - compartments:
+        - compartment: {fileID: 268560575}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1429827192}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 5245'
+        - compartment: {fileID: 1738556369}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 3
+
+
+            Packet Size: 215315863'
+        - compartment: {fileID: 1626202852}
+          title: Payload
+          data: '"LLMNR Query: host.local"'
+    - triggerId: train_wave_2
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: SYN, ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP:8.134.201.17
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 1
+
+
+            Packet Size: 212'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '....a....&=...X+...=.o..b/..%..>[.....[_K......#..Z.uA.o<=c.....^..yC.d..9.$..K.D.[Y....#*...R.fD..p.83.N1...A.B...u.mZ:..T7..Y....g..a..hn.J#..#..p.       
+            ...`....u........4...P~F....&
+
+            c..P'
+    - triggerId: train_wave_3
+      isSuspicious: 0
+      wrongChoiceExplanation: These packets were safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 0000000001000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 203.77.154.89
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 3
+
+
+            Packet Size: 186'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: .......Z.B......I...........k..D_;...).V.EZv^4).B.....j.Kq..x{N...S...       
+            ...........H.T..'.9.m.R...d.../..6.2..'.r.B....u .A.R.D.:\...!.....h.,
+      - compartments:
+        - compartment: {fileID: 1391789937}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 1394781599}
+          title: Source IP and Ports
+          data: 'Source IP: 203.77.154.89
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 225639636}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 4
+
+
+            Packet Size: 186'
+        - compartment: {fileID: 487521172}
+          title: Payload
+          data: '....j.[4.W.1..i......ho}.t.ia....''Ex.v..e.$.....XT....vH...Q.x...U......._H-".".U...~..f..~..G.......*..C5.3{^....../..>.
+            ...m..+.!&.1...?......H.,..V..."sD). d...v..-.0.X.!.....J.............!...!
+
+            ..7,'
+    - triggerId: train_wave_4
+      isSuspicious: 1
+      wrongChoiceExplanation: This packet had an out of order frame number.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 203.77.154.89
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 2
+
+
+            Packet Size: 185'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: ^Y9h..)...5.. YE.c......4..q..n..l.Q..b.._D<.9.'..)..3K3s.\.....p..Q>..q>.4.t.^.}..Y..'!N...K.S)..8.8..@{"W...e4i)U....m.
+            JiR..4`.w.U9.,......;...Z?....M....j...J.k\P....*x..H....E..... ..7>=."...r.4....nYe.J{.|EaJ.fb.
+    - triggerId: train_wave_5
+      isSuspicious: 1
+      wrongChoiceExplanation: These packets resembly a malicious port scan since
+        they try to scan multiple destination ports from the same source port.
+      triggerFollowingWaveInList: 1
+      trainIndices: 000000000100000002000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 987
+
+
+            Destination
+            Port: 5412'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 7
+
+
+            Packet Size: 54'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"Random probe"'
+      - compartments:
+        - compartment: {fileID: 1391789937}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1394781599}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 987
+
+
+            Destination
+            Port: 5413'
+        - compartment: {fileID: 225639636}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 8
+
+
+            Packet Size: 54'
+        - compartment: {fileID: 487521172}
+          title: Payload
+          data: '"Random probe"'
+      - compartments:
+        - compartment: {fileID: 268560575}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1429827192}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 987
+
+
+            Destination
+            Port: 5414'
+        - compartment: {fileID: 1738556369}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 9
+
+
+            Packet Size: 54'
+        - compartment: {fileID: 1626202852}
+          title: Payload
+          data: '"Random probe"'
+    - triggerId: train_wave_6
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: FIN, ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 203.77.154.89
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 6
+
+
+            Packet Size: 180'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: .N ...i..'.T. ...ST2.....+..g.k$.T= .u[2'...J.V.YFc..%...o.+Q..N.....y....u.....`..K.<.).W.mM~.H.,.WF....@.I......97~P.[..L....L..r">....8O%...       
+            ..z.a.}.5(T.W`..}e.......K=.d.E..'8.G.8.ZK.y.q_..s.'l.......        .{.......B
+    - triggerId: train_wave_7
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 119.33.220.142
+
+
+            Source Port: 834
+
+
+            Destination
+            Port: 5548'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 12
+
+
+            Packet Size: 84'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"QUIC Handshake Response"'
+    - triggerId: train_wave_8
+      isSuspicious: 1
+      wrongChoiceExplanation: This packet had a suspicious payload.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 119.33.220.142
+
+
+            Source Port: 834
+
+
+            Destination
+            Port: 5548'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 13
+
+
+            Packet Size: 96'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"Malformed packet"'
+    - triggerId: train_wave_9
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 119.33.220.142
+
+
+            Source Port: 834
+
+
+            Destination
+            Port: 5548'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 14
+
+
+            Packet Size: 102'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"QUIC Encrypted Data"'
+  - levelId: 4
+    difficultyPreset: 0
+    customDifficultyScalar: 1
+    manualPagesToUnlock:
+    - manualPageIndex: 0
+      unlockSecondPage: 1
+    - manualPageIndex: 1
+      unlockSecondPage: 1
+    - manualPageIndex: 2
+      unlockSecondPage: 1
+    - manualPageIndex: 3
+      unlockSecondPage: 1
+    - manualPageIndex: 4
+      unlockSecondPage: 1
+    - manualPageIndex: 5
+      unlockSecondPage: 1
+    dialoguePlan: {fileID: 11400000, guid: 7a32def63a3195f49bd6e19aab9ef4ca, type: 2}
+    winConditions:
+      requiredInspectionsComplete: 2
+      requiresDecision: 0
+      requiredDecision: 0
+    levelCompletionTriggerId: level4_complete
+    expectedSourceIpsAndPorts: '203.77.154.89/846
+
+      172.58.99.240/245
+
+      145.210.78.56/987
+
+      8.134.201.17/443
+
+      119.33.220.142/834'
+    expectedDestinationPorts: 5000-6000
+    trainWaves:
+    - triggerId: train_wave_1
+      isSuspicious: 1
+      wrongChoiceExplanation: These packets had abnormally large packet sizes.
+      triggerFollowingWaveInList: 1
+      trainIndices: 000000000100000002000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1391789937}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 5245'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 2
+
+
+            Packet Size: 5513221'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"LLMNR Query: host.local"'
+      - compartments:
+        - compartment: {fileID: 1391789937}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1394781599}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 5245'
+        - compartment: {fileID: 225639636}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 3
+
+
+            Packet Size: 75110023'
+        - compartment: {fileID: 487521172}
+          title: Payload
+          data: '"LLMNR Query: host.local"'
+      - compartments:
+        - compartment: {fileID: 268560575}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1429827192}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 567
+
+
+            Destination
+            Port: 5245'
+        - compartment: {fileID: 1738556369}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 3
+
+
+            Packet Size: 215315863'
+        - compartment: {fileID: 1626202852}
+          title: Payload
+          data: '"LLMNR Query: host.local"'
+    - triggerId: train_wave_2
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: SYN, ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP:8.134.201.17
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 1
+
+
+            Packet Size: 212'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '....a....&=...X+...=.o..b/..%..>[.....[_K......#..Z.uA.o<=c.....^..yC.d..9.$..K.D.[Y....#*...R.fD..p.83.N1...A.B...u.mZ:..T7..Y....g..a..hn.J#..#..p.       
+            ...`....u........4...P~F....&
+
+            c..P'
+    - triggerId: train_wave_3
+      isSuspicious: 0
+      wrongChoiceExplanation: These packets were safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 0000000001000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 203.77.154.89
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 3
+
+
+            Packet Size: 186'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: .......Z.B......I...........k..D_;...).V.EZv^4).B.....j.Kq..x{N...S...       
+            ...........H.T..'.9.m.R...d.../..6.2..'.r.B....u .A.R.D.:\...!.....h.,
+      - compartments:
+        - compartment: {fileID: 1391789937}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 1394781599}
+          title: Source IP and Ports
+          data: 'Source IP: 203.77.154.89
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 225639636}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 4
+
+
+            Packet Size: 186'
+        - compartment: {fileID: 487521172}
+          title: Payload
+          data: '....j.[4.W.1..i......ho}.t.ia....''Ex.v..e.$.....XT....vH...Q.x...U......._H-".".U...~..f..~..G.......*..C5.3{^....../..>.
+            ...m..+.!&.1...?......H.,..V..."sD). d...v..-.0.X.!.....J.............!...!
+
+            ..7,'
+    - triggerId: train_wave_4
+      isSuspicious: 1
+      wrongChoiceExplanation: This packet had an out of order frame number.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 203.77.154.89
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 2
+
+
+            Packet Size: 185'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: ^Y9h..)...5.. YE.c......4..q..n..l.Q..b.._D<.9.'..)..3K3s.\.....p..Q>..q>.4.t.^.}..Y..'!N...K.S)..8.8..@{"W...e4i)U....m.
+            JiR..4`.w.U9.,......;...Z?....M....j...J.k\P....*x..H....E..... ..7>=."...r.4....nYe.J{.|EaJ.fb.
+    - triggerId: train_wave_5
+      isSuspicious: 1
+      wrongChoiceExplanation: These packets resembly a malicious port scan since
+        they try to scan multiple destination ports from the same source port.
+      triggerFollowingWaveInList: 1
+      trainIndices: 000000000100000002000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 987
+
+
+            Destination
+            Port: 5412'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 7
+
+
+            Packet Size: 54'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"Random probe"'
+      - compartments:
+        - compartment: {fileID: 1391789937}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1394781599}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 987
+
+
+            Destination
+            Port: 5413'
+        - compartment: {fileID: 225639636}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 8
+
+
+            Packet Size: 54'
+        - compartment: {fileID: 487521172}
+          title: Payload
+          data: '"Random probe"'
+      - compartments:
+        - compartment: {fileID: 268560575}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 1429827192}
+          title: Source IP and Ports
+          data: 'Source IP: 145.210.78.56
+
+
+            Source Port: 987
+
+
+            Destination
+            Port: 5414'
+        - compartment: {fileID: 1738556369}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 9
+
+
+            Packet Size: 54'
+        - compartment: {fileID: 1626202852}
+          title: Payload
+          data: '"Random probe"'
+    - triggerId: train_wave_6
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: TCP
+
+
+            Flags: FIN, ACK'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 203.77.154.89
+
+
+            Source Port: 443
+
+
+            Destination
+            Port: 5334'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 6
+
+
+            Packet Size: 180'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: .N ...i..'.T. ...ST2.....+..g.k$.T= .u[2'...J.V.YFc..%...o.+Q..N.....y....u.....`..K.<.).W.mM~.H.,.WF....@.I......97~P.[..L....L..r">....8O%...       
+            ..z.a.}.5(T.W`..}e.......K=.d.E..'8.G.8.ZK.y.q_..s.'l.......        .{.......B
+    - triggerId: train_wave_7
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 119.33.220.142
+
+
+            Source Port: 834
+
+
+            Destination
+            Port: 5548'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 12
+
+
+            Packet Size: 84'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"QUIC Handshake Response"'
+    - triggerId: train_wave_8
+      isSuspicious: 1
+      wrongChoiceExplanation: This packet had a suspicious payload.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 119.33.220.142
+
+
+            Source Port: 834
+
+
+            Destination
+            Port: 5548'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 13
+
+
+            Packet Size: 96'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"Malformed packet"'
+    - triggerId: train_wave_9
+      isSuspicious: 0
+      wrongChoiceExplanation: This packet was safe.
+      triggerFollowingWaveInList: 1
+      trainIndices: 00000000
+      startAllSelectedTrainsAtOnce: 0
+      delayBeforeWaveStarts: 0
+      snapSelectedTrainsToOffScreenLeftBeforeEntry: 1
+      compartmentDataSets:
+      - compartments:
+        - compartment: {fileID: 551808148}
+          title: Protocol and Flags
+          data: 'Protocol: UDP
+
+
+            Flags: N/A'
+        - compartment: {fileID: 10152729}
+          title: Source IP and Ports
+          data: 'Source IP: 119.33.220.142
+
+
+            Source Port: 834
+
+
+            Destination
+            Port: 5548'
+        - compartment: {fileID: 1947682775}
+          title: Frame Number and Packet Size
+          data: 'Frame Number: 14
+
+
+            Packet Size: 102'
+        - compartment: {fileID: 1626612990}
+          title: Payload
+          data: '"QUIC Encrypted Data"'
 --- !u!4 &410981257
 Transform:
   m_ObjectHideFlags: 0
@@ -699,6 +2488,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &487521170
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 487521171}
+  - component: {fileID: 487521172}
+  m_Layer: 5
+  m_Name: Train2Compartment4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &487521171
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487521170}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1635750449}
+  m_Father: {fileID: 343742186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -300, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &487521172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487521170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,7 +2685,7 @@ GameObject:
   - component: {fileID: 551808147}
   - component: {fileID: 551808148}
   m_Layer: 5
-  m_Name: Compartment1
+  m_Name: Train1Compartment1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1004,6 +2842,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 57132164}
+  - {fileID: 343742186}
+  - {fileID: 240479766}
   m_Father: {fileID: 798521992}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -1028,13 +2868,21 @@ MonoBehaviour:
     offScreenLeftX: -1000
     onScreenX: 0
     offScreenRightX: 1000
+  - trainRoot: {fileID: 343742186}
+    offScreenLeftX: -1000
+    onScreenX: 0
+    offScreenRightX: 1000
+  - trainRoot: {fileID: 240479766}
+    offScreenLeftX: -1000
+    onScreenX: 0
+    offScreenRightX: 1000
   speedProfile:
     farRange: 1000
     nearRange: 150
     farSpeed: 500
     midSpeed: 300
     nearSpeed: 150
-  delayBetweenTrains: 0.15
+  delayBetweenTrains: 0.25
   autoRunOnStart: 0
 --- !u!1 &794318295
 GameObject:
@@ -1278,6 +3126,143 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &811790629
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 811790630}
+  - component: {fileID: 811790632}
+  - component: {fileID: 811790631}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &811790630
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811790629}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1925977102}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &811790631
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811790629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &811790632
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811790629}
+  m_CullTransparentMesh: 1
 --- !u!1 &897928815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1510,6 +3495,296 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab5be5be8a7719a4b8e1740fa988de27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1236029255
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1236029256}
+  - component: {fileID: 1236029258}
+  - component: {fileID: 1236029257}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1236029256
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236029255}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2088223884}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1236029257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236029255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1236029258
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236029255}
+  m_CullTransparentMesh: 1
+--- !u!1 &1269604378
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1269604379}
+  - component: {fileID: 1269604383}
+  - component: {fileID: 1269604382}
+  - component: {fileID: 1269604381}
+  - component: {fileID: 1269604380}
+  m_Layer: 5
+  m_Name: Compartment2Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1269604379
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269604378}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1732924550}
+  m_Father: {fileID: 1394781598}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1269604380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269604378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1269604381}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1269604382}
+        m_TargetAssemblyTypeName: InspectButton, Assembly-CSharp
+        m_MethodName: Inspect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1269604381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269604378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1139090859619364202, guid: bbf78e508f28c414b8f9ed6df05d1b15, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1269604382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269604378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb4675e843309c4597daf43fc92ea51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetInspectable: {fileID: 1394781599}
+  popupUI: {fileID: 1156341610}
+  trainController: {fileID: 758005010}
+  button: {fileID: 0}
+  tutorialInteractionId: train_compartment2
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment2_inspected
+--- !u!222 &1269604383
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269604378}
+  m_CullTransparentMesh: 1
 --- !u!1 &1325215038
 GameObject:
   m_ObjectHideFlags: 0
@@ -1800,6 +4075,317 @@ MonoBehaviour:
   tutorialInteractionId: train_compartment1
   continueDialogueTriggerRelay: {fileID: 0}
   continueDialogueTriggerId: train_compartment1_inspected
+--- !u!1 &1371962676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1371962677}
+  - component: {fileID: 1371962681}
+  - component: {fileID: 1371962680}
+  - component: {fileID: 1371962679}
+  - component: {fileID: 1371962678}
+  m_Layer: 5
+  m_Name: Compartment2Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1371962677
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371962676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1750423340}
+  m_Father: {fileID: 1429827191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1371962678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371962676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1371962679}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1371962680}
+        m_TargetAssemblyTypeName: InspectButton, Assembly-CSharp
+        m_MethodName: Inspect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1371962679
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371962676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3607705161681229478, guid: bbf78e508f28c414b8f9ed6df05d1b15, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1371962680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371962676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb4675e843309c4597daf43fc92ea51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetInspectable: {fileID: 1429827192}
+  popupUI: {fileID: 1156341610}
+  trainController: {fileID: 758005010}
+  button: {fileID: 0}
+  tutorialInteractionId: train_compartment2
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment2_inspected
+--- !u!222 &1371962681
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371962676}
+  m_CullTransparentMesh: 1
+--- !u!1 &1391789935
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1391789936}
+  - component: {fileID: 1391789937}
+  m_Layer: 5
+  m_Name: Train2Compartment1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1391789936
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391789935}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2088223884}
+  m_Father: {fileID: 343742186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 300, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1391789937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1391789935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1394781597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1394781598}
+  - component: {fileID: 1394781599}
+  m_Layer: 5
+  m_Name: Train2Compartment2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1394781598
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394781597}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1269604379}
+  m_Father: {fileID: 343742186}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 100, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1394781599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394781597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1405076373 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4000000000000000267, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+  m_PrefabInstance: {fileID: 5877050652187154921}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bd36ea269de4ae1b26ff4a4aa3facb3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1429827190
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1429827191}
+  - component: {fileID: 1429827192}
+  m_Layer: 5
+  m_Name: Train3Compartment2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1429827191
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429827190}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1371962677}
+  m_Father: {fileID: 240479766}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 100, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1429827192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1429827190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1462000000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2070,6 +4656,55 @@ MonoBehaviour:
   tutorialInteractionId: train_compartment4
   continueDialogueTriggerRelay: {fileID: 0}
   continueDialogueTriggerId: train_compartment4_inspected
+--- !u!1 &1626202850
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1626202851}
+  - component: {fileID: 1626202852}
+  m_Layer: 5
+  m_Name: Train3Compartment4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1626202851
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626202850}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1651476422}
+  m_Father: {fileID: 240479766}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -300, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1626202852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626202850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1626612988
 GameObject:
   m_ObjectHideFlags: 0
@@ -2081,7 +4716,7 @@ GameObject:
   - component: {fileID: 1626612989}
   - component: {fileID: 1626612990}
   m_Layer: 5
-  m_Name: Compartment4
+  m_Name: Train1Compartment4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2119,6 +4754,635 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1635750448
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1635750449}
+  - component: {fileID: 1635750453}
+  - component: {fileID: 1635750452}
+  - component: {fileID: 1635750451}
+  - component: {fileID: 1635750450}
+  m_Layer: 5
+  m_Name: Compartment4Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1635750449
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635750448}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1956708504}
+  m_Father: {fileID: 487521171}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1635750450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635750448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1635750451}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1635750452}
+        m_TargetAssemblyTypeName: InspectButton, Assembly-CSharp
+        m_MethodName: Inspect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1635750451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635750448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1139090859619364202, guid: bbf78e508f28c414b8f9ed6df05d1b15, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1635750452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635750448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb4675e843309c4597daf43fc92ea51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetInspectable: {fileID: 487521172}
+  popupUI: {fileID: 1156341610}
+  trainController: {fileID: 758005010}
+  button: {fileID: 0}
+  tutorialInteractionId: train_compartment4
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment4_inspected
+--- !u!222 &1635750453
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1635750448}
+  m_CullTransparentMesh: 1
+--- !u!1 &1651476421
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1651476422}
+  - component: {fileID: 1651476426}
+  - component: {fileID: 1651476425}
+  - component: {fileID: 1651476424}
+  - component: {fileID: 1651476423}
+  m_Layer: 5
+  m_Name: Compartment4Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1651476422
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651476421}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2039609818}
+  m_Father: {fileID: 1626202851}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1651476423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651476421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1651476424}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1651476425}
+        m_TargetAssemblyTypeName: InspectButton, Assembly-CSharp
+        m_MethodName: Inspect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1651476424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651476421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3607705161681229478, guid: bbf78e508f28c414b8f9ed6df05d1b15, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1651476425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651476421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb4675e843309c4597daf43fc92ea51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetInspectable: {fileID: 1626202852}
+  popupUI: {fileID: 1156341610}
+  trainController: {fileID: 758005010}
+  button: {fileID: 0}
+  tutorialInteractionId: train_compartment4
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment4_inspected
+--- !u!222 &1651476426
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1651476421}
+  m_CullTransparentMesh: 1
+--- !u!1 &1732924549
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1732924550}
+  - component: {fileID: 1732924552}
+  - component: {fileID: 1732924551}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1732924550
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732924549}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1269604379}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1732924551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732924549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1732924552
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1732924549}
+  m_CullTransparentMesh: 1
+--- !u!1 &1738556367
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738556368}
+  - component: {fileID: 1738556369}
+  m_Layer: 5
+  m_Name: Train3Compartment3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1738556368
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738556367}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2037363337}
+  m_Father: {fileID: 240479766}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -100, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1738556369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1738556367}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1750423339
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1750423340}
+  - component: {fileID: 1750423342}
+  - component: {fileID: 1750423341}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1750423340
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750423339}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1371962677}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1750423341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750423339}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1750423342
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750423339}
+  m_CullTransparentMesh: 1
 --- !u!1 &1757695465
 GameObject:
   m_ObjectHideFlags: 0
@@ -2256,6 +5520,296 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1757695465}
   m_CullTransparentMesh: 1
+--- !u!1 &1817711172
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1817711173}
+  - component: {fileID: 1817711175}
+  - component: {fileID: 1817711174}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1817711173
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817711172}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 276894433}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1817711174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817711172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1817711175
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817711172}
+  m_CullTransparentMesh: 1
+--- !u!1 &1925977101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925977102}
+  - component: {fileID: 1925977106}
+  - component: {fileID: 1925977105}
+  - component: {fileID: 1925977104}
+  - component: {fileID: 1925977103}
+  m_Layer: 5
+  m_Name: Compartment1Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1925977102
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925977101}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 811790630}
+  m_Father: {fileID: 268560574}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1925977103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925977101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1925977104}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1925977105}
+        m_TargetAssemblyTypeName: InspectButton, Assembly-CSharp
+        m_MethodName: Inspect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1925977104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925977101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3607705161681229478, guid: bbf78e508f28c414b8f9ed6df05d1b15, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1925977105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925977101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb4675e843309c4597daf43fc92ea51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetInspectable: {fileID: 268560575}
+  popupUI: {fileID: 1156341610}
+  trainController: {fileID: 758005010}
+  button: {fileID: 0}
+  tutorialInteractionId: train_compartment1
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment1_inspected
+--- !u!222 &1925977106
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925977101}
+  m_CullTransparentMesh: 1
 --- !u!1 &1947682773
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,7 +5821,7 @@ GameObject:
   - component: {fileID: 1947682774}
   - component: {fileID: 1947682775}
   m_Layer: 5
-  m_Name: Compartment3
+  m_Name: Train1Compartment3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2305,6 +5859,586 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa4a090f59d5af41975f724be167dbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1956708503
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1956708504}
+  - component: {fileID: 1956708506}
+  - component: {fileID: 1956708505}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1956708504
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956708503}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1635750449}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1956708505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956708503}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1956708506
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1956708503}
+  m_CullTransparentMesh: 1
+--- !u!1 &2037363336
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2037363337}
+  - component: {fileID: 2037363341}
+  - component: {fileID: 2037363340}
+  - component: {fileID: 2037363339}
+  - component: {fileID: 2037363338}
+  m_Layer: 5
+  m_Name: Compartment3Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2037363337
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037363336}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 256302473}
+  m_Father: {fileID: 1738556368}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2037363338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037363336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.5568628, g: 0.5568628, b: 0.5568628, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2037363339}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2037363340}
+        m_TargetAssemblyTypeName: InspectButton, Assembly-CSharp
+        m_MethodName: Inspect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2037363339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037363336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 3607705161681229478, guid: bbf78e508f28c414b8f9ed6df05d1b15, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2037363340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037363336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb4675e843309c4597daf43fc92ea51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetInspectable: {fileID: 1738556369}
+  popupUI: {fileID: 1156341610}
+  trainController: {fileID: 758005010}
+  button: {fileID: 0}
+  tutorialInteractionId: train_compartment3
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment3_inspected
+--- !u!222 &2037363341
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037363336}
+  m_CullTransparentMesh: 1
+--- !u!1 &2039609817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2039609818}
+  - component: {fileID: 2039609820}
+  - component: {fileID: 2039609819}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2039609818
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039609817}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1651476422}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2039609819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039609817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2039609820
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2039609817}
+  m_CullTransparentMesh: 1
+--- !u!1 &2088223883
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2088223884}
+  - component: {fileID: 2088223888}
+  - component: {fileID: 2088223887}
+  - component: {fileID: 2088223886}
+  - component: {fileID: 2088223885}
+  m_Layer: 5
+  m_Name: Compartment1Button
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2088223884
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088223883}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1236029256}
+  m_Father: {fileID: 1391789936}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 25}
+  m_SizeDelta: {x: 200, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2088223885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088223883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 1}
+    m_PressedColor: {r: 0.6037736, g: 0.6037736, b: 0.6037736, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.5566038, g: 0.5566038, b: 0.5566038, a: 1}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 2088223886}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2088223887}
+        m_TargetAssemblyTypeName: InspectButton, Assembly-CSharp
+        m_MethodName: Inspect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2088223886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088223883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -1139090859619364202, guid: bbf78e508f28c414b8f9ed6df05d1b15, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &2088223887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088223883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cb4675e843309c4597daf43fc92ea51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetInspectable: {fileID: 1391789937}
+  popupUI: {fileID: 1156341610}
+  trainController: {fileID: 758005010}
+  button: {fileID: 0}
+  tutorialInteractionId: train_compartment1
+  continueDialogueTriggerRelay: {fileID: 0}
+  continueDialogueTriggerId: train_compartment1_inspected
+--- !u!222 &2088223888
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088223883}
+  m_CullTransparentMesh: 1
 --- !u!1 &2145711667
 GameObject:
   m_ObjectHideFlags: 0
@@ -2567,6 +6701,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameplayUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1000000000000000010, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1000000000000000067, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -2726,17 +6864,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5de4f14b7e48bcbf96ef9115d1ab0e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5877050652187154927 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4000000000000000065, guid: 865b54efe8644c540b91ab15846d8360, type: 3}
-  m_PrefabInstance: {fileID: 5877050652187154921}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2de773c916214b688740470fca0a7132, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &7641510253550092558
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2745,9 +6872,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2922757692093601125, guid: a44cf861ba61dd84c96a3d3891966cc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5267341376248076335, guid: a44cf861ba61dd84c96a3d3891966cc7, type: 3}
       propertyPath: m_Name
       value: Background
+      objectReference: {fileID: 0}
+    - target: {fileID: 6521447918215738560, guid: a44cf861ba61dd84c96a3d3891966cc7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8301729161008535158, guid: a44cf861ba61dd84c96a3d3891966cc7, type: 3}
       propertyPath: m_LocalPosition.x

@@ -412,7 +412,7 @@ MonoBehaviour:
     - manualPageIndex: 1
       unlockSecondPage: 1
     - manualPageIndex: 2
-      unlockSecondPage: 1
+      unlockSecondPage: 0
     - manualPageIndex: 3
       unlockSecondPage: 1
     - manualPageIndex: 4

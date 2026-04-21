@@ -27,10 +27,10 @@ public class LevelDialoguePlan : ScriptableObject
     }
 
     [Header("Intro / Gameplay Dialogue")]
-    [SerializeField] private List<DialogueBlock> introDialogueBlocks = new();
+    [SerializeField] public List<DialogueBlock> introDialogueBlocks = new();
 
     [Header("Ending Dialogue")]
-    [SerializeField] private List<DialogueBlock> endingDialogueBlocks = new();
+    [SerializeField] public List<DialogueBlock> endingDialogueBlocks = new();
 
     public IReadOnlyList<DialogueBlock> IntroDialogueBlocks => introDialogueBlocks;
     public IReadOnlyList<DialogueBlock> EndingDialogueBlocks => endingDialogueBlocks;

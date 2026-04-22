@@ -1,12 +1,20 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class TrainController : MonoBehaviour
 {
+    private enum TrainCoordinateSpace
+    {
+        World,
+        Local
+    }
+
     [Serializable]
     public class TrainConfig
     {
+        [FormerlySerializedAs("trainRoot")]
         [SerializeField] private Transform trainRoot;
         [SerializeField] private float offScreenLeftX = -15f;
         [SerializeField] private float onScreenX = 0f;
@@ -71,6 +79,7 @@ public class TrainController : MonoBehaviour
 
     [Header("Train Configuration")]
     [SerializeField] private List<TrainConfig> trains = new();
+    [SerializeField] private TrainCoordinateSpace coordinateSpace = TrainCoordinateSpace.World;
     [SerializeField] private TrainSpeedProfile speedProfile = new();
     [SerializeField] private float delayBetweenTrains = 0.15f;
     [SerializeField] private bool autoRunOnStart;
@@ -264,18 +273,18 @@ public class TrainController : MonoBehaviour
         SetTrainMoving(true);
 
         var targetX = GetTargetX(train, destination);
-        var startX = train.TrainRoot.localPosition.x;
+        var startX = GetTrainX(train.TrainRoot);
         var totalDistance = Mathf.Abs(targetX - startX);
-        while (!Mathf.Approximately(train.TrainRoot.localPosition.x, targetX))
+        while (!Mathf.Approximately(GetTrainX(train.TrainRoot), targetX))
         {
-            var position = train.TrainRoot.localPosition;
-            var distanceToTarget = Mathf.Abs(targetX - position.x);
+            var currentX = GetTrainX(train.TrainRoot);
+            var distanceToTarget = Mathf.Abs(targetX - currentX);
             var distanceForSpeedProfile = accelerateFromStart
                 ? Mathf.Max(0f, totalDistance - distanceToTarget)
                 : distanceToTarget;
             var movementSpeed = (speedProfile ??= new TrainSpeedProfile()).GetSpeed(distanceForSpeedProfile);
-            var nextX = Mathf.MoveTowards(position.x, targetX, movementSpeed * Time.deltaTime);
-            train.TrainRoot.localPosition = new Vector3(nextX, position.y, position.z);
+            var nextX = Mathf.MoveTowards(currentX, targetX, movementSpeed * Time.deltaTime);
+            SetTrainX(train.TrainRoot, nextX);
             yield return null;
         }
 
@@ -326,8 +335,27 @@ public class TrainController : MonoBehaviour
 
     private void SnapTrainToX(TrainConfig train, float x)
     {
-        var position = train.TrainRoot.localPosition;
-        train.TrainRoot.localPosition = new Vector3(x, position.y, position.z);
+        SetTrainX(train.TrainRoot, x);
+    }
+
+    private float GetTrainX(Transform trainRoot)
+    {
+        return coordinateSpace == TrainCoordinateSpace.World
+            ? trainRoot.position.x
+            : trainRoot.localPosition.x;
+    }
+
+    private void SetTrainX(Transform trainRoot, float x)
+    {
+        if (coordinateSpace == TrainCoordinateSpace.World)
+        {
+            var position = trainRoot.position;
+            trainRoot.position = new Vector3(x, position.y, position.z);
+            return;
+        }
+
+        var localPosition = trainRoot.localPosition;
+        trainRoot.localPosition = new Vector3(x, localPosition.y, localPosition.z);
     }
 
     private float GetTargetX(TrainConfig train, TrainDestination destination)
